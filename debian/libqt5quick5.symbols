@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 5.3.2 amd64 armel powerpc s390x
+# SymbolsHelper-Confirmed: 5.3.2 amd64 armel i386 powerpc s390x
 libQt5Quick.so.5 libqt5quick5 #MINVER#
 | libqt5quick5 #MINVER#, qtdeclarative-abi-5-3-2
  (arch=alpha arm64 armel hppa powerpc ppc64 ppc64el s390x sparc sparc64)_ZN10QByteArray7reserveEi@Base 5.3.1
@@ -248,6 +248,9 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN10QSGTextureD0Ev@Base 5.0.2
  _ZN10QSGTextureD1Ev@Base 5.0.2
  _ZN10QSGTextureD2Ev@Base 5.0.2
+ (arch=amd64 i386)_ZN10QTransformC1ERKS_@Base 5.3.2
+ (arch=amd64 i386)_ZN10QTransformC2ERKS_@Base 5.3.2
+ (optional=templinst|arch=amd64 i386)_ZN11QMetaMethod10fromSignalIM13QNetworkReplyFvxxEEES_T_@Base 5.3.2
  _ZN11QQuickState10setExtendsERK7QString@Base 5.0.2 1
  _ZN11QQuickState11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.0.2 1
  _ZN11QQuickState11qt_metacastEPKc@Base 5.0.2 1
@@ -410,6 +413,12 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN12QQuickWindowD0Ev@Base 5.0.2
  _ZN12QQuickWindowD1Ev@Base 5.0.2
  _ZN12QQuickWindowD2Ev@Base 5.0.2
+ (arch=amd64 i386)_ZN12QSGGlyphNodeD0Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN12QSGGlyphNodeD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN12QSGGlyphNodeD2Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN12QSGImageNodeD0Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN12QSGImageNodeD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN12QSGImageNodeD2Ev@Base 5.3.2
  _ZN13QQuickAnchors10classBeginEv@Base 5.0.2 1
  _ZN13QQuickAnchors10resetRightEv@Base 5.0.2 1
  _ZN13QQuickAnchors10setMarginsEd@Base 5.2.0 1
@@ -492,6 +501,9 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN13QSGRenderNode19setInheritedOpacityEd@Base 5.2.0 1
  _ZN13QSGRenderNodeC1Ev@Base 5.0.2 1
  _ZN13QSGRenderNodeC2Ev@Base 5.0.2 1
+ (arch=amd64 i386)_ZN13QSGRenderNodeD0Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN13QSGRenderNodeD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN13QSGRenderNodeD2Ev@Base 5.3.2
  _ZN14QQuickAnimator10transitionER5QListI17QQuickStateActionERS0_I12QQmlPropertyEN23QQuickAbstractAnimation19TransitionDirectionEP7QObject@Base 5.2.0~beta1 1
  _ZN14QQuickAnimator11fromChangedEd@Base 5.2.0~beta1 1
  _ZN14QQuickAnimator11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.2.0~beta1 1
@@ -510,6 +522,9 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN14QQuickAnimatorC1ER21QQuickAnimatorPrivateP7QObject@Base 5.2.0~beta1 1
  _ZN14QQuickAnimatorC2EP7QObject@Base 5.2.0~beta1 1
  _ZN14QQuickAnimatorC2ER21QQuickAnimatorPrivateP7QObject@Base 5.2.0~beta1 1
+ (arch=amd64 i386)_ZN14QQuickAnimatorD0Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN14QQuickAnimatorD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN14QQuickAnimatorD2Ev@Base 5.3.2
  _ZN14QQuickBehavior10setEnabledEb@Base 5.0.2 1
  _ZN14QQuickBehavior11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.0.2 1
  _ZN14QQuickBehavior11qt_metacastEPKc@Base 5.0.2 1
@@ -542,7 +557,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN14QQuickProfiler11qt_metacastEPKc@Base 5.3.0 1
  _ZN14QQuickProfiler12sendMessagesExR5QListI10QByteArrayE@Base 5.3.0 1
  _ZN14QQuickProfiler14reportDataImplEv@Base 5.3.0 1
- (optional=templinst|arch=amd64 kfreebsd-amd64)_ZN14QQuickProfiler15sceneGraphFrameILN23QQmlProfilerDefinitions19SceneGraphFrameTypeE2ELS2_2EEEvxxxxx@Base 5.3.0 1
+ (optional=templinst|arch=amd64 i386 kfreebsd-amd64)_ZN14QQuickProfiler15sceneGraphFrameILN23QQmlProfilerDefinitions19SceneGraphFrameTypeE2ELS2_2EEEvxxxxx@Base 5.3.0 1
  _ZN14QQuickProfiler16staticMetaObjectE@Base 5.3.0 1
  _ZN14QQuickProfiler17stopProfilingImplEv@Base 5.3.0 1
  _ZN14QQuickProfiler18startProfilingImplEv@Base 5.3.0 1
@@ -752,6 +767,8 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN15DesignerSupportC2Ev@Base 5.0.2
  _ZN15DesignerSupportD1Ev@Base 5.0.2
  _ZN15DesignerSupportD2Ev@Base 5.0.2
+ (arch=amd64 i386)_ZN15QLinearGradientD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN15QLinearGradientD2Ev@Base 5.3.2
  _ZN15QQuickFlickable10flickEndedEv@Base 5.0.2 1
  _ZN15QQuickFlickable10setReboundEP16QQuickTransition@Base 5.0.2 1
  _ZN15QQuickFlickable10timerEventEP11QTimerEvent@Base 5.0.2 1
@@ -1058,6 +1075,8 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN15QQuickYAnimatorD0Ev@Base 5.2.0~beta1 1
  _ZN15QQuickYAnimatorD1Ev@Base 5.2.0~beta1 1
  _ZN15QQuickYAnimatorD2Ev@Base 5.2.0~beta1 1
+ (arch=amd64 i386)_ZN15QRadialGradientD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN15QRadialGradientD2Ev@Base 5.3.2
  _ZN15QSGGeometryNode11setMaterialEP11QSGMaterial@Base 5.0.2
  _ZN15QSGGeometryNode14setRenderOrderEi@Base 5.0.2
  _ZN15QSGGeometryNode17setOpaqueMaterialEP11QSGMaterial@Base 5.0.2
@@ -1080,6 +1099,8 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN15QSGPlainTextureD0Ev@Base 5.0.2 1
  _ZN15QSGPlainTextureD1Ev@Base 5.0.2 1
  _ZN15QSGPlainTextureD2Ev@Base 5.0.2 1
+ (arch=amd64 i386)_ZN16QConicalGradientD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN16QConicalGradientD2Ev@Base 5.3.2
  (optional=internal|arch=arm64 hppa powerpc sparc64)_ZN16QCoreApplication9sendEventEP7QObjectP6QEvent@Base 5.3.2
  _ZN16QQuickCloseEvent11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.1.0 1
  _ZN16QQuickCloseEvent11qt_metacastEPKc@Base 5.1.0 1
@@ -1194,6 +1215,9 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN16QSGContextPluginD0Ev@Base 5.0.2 1
  _ZN16QSGContextPluginD1Ev@Base 5.0.2 1
  _ZN16QSGContextPluginD2Ev@Base 5.0.2 1
+ (arch=amd64 i386)_ZN16QSGRectangleNodeD0Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN16QSGRectangleNodeD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN16QSGRectangleNodeD2Ev@Base 5.3.2
  _ZN16QSGRenderContext10initializeEP14QOpenGLContext@Base 5.2.0~rc1 1
  _ZN16QSGRenderContext10initializeEP17QSGMaterialShader@Base 5.3.0 1
  _ZN16QSGRenderContext10invalidateEv@Base 5.2.0~rc1 1
@@ -1233,6 +1257,9 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN17QQuickAnimatorJob9setTargetEP10QQuickItem@Base 5.2.0~beta1 1
  _ZN17QQuickAnimatorJobC1Ev@Base 5.2.0~beta1 1
  _ZN17QQuickAnimatorJobC2Ev@Base 5.2.0~beta1 1
+ (arch=amd64 i386)_ZN17QQuickAnimatorJobD0Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN17QQuickAnimatorJobD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN17QQuickAnimatorJobD2Ev@Base 5.3.2
  _ZN17QQuickItemPrivate10data_clearEP16QQmlListPropertyI7QObjectE@Base 5.0.2 1
  _ZN17QQuickItemPrivate10data_countEP16QQmlListPropertyI7QObjectE@Base 5.0.2 1
  _ZN17QQuickItemPrivate10itemChangeEN10QQuickItem10ItemChangeERKNS0_14ItemChangeDataE@Base 5.0.2 1
@@ -1334,6 +1361,9 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN17QSGDynamicTexture11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.0.2
  _ZN17QSGDynamicTexture11qt_metacastEPKc@Base 5.0.2
  _ZN17QSGDynamicTexture16staticMetaObjectE@Base 5.0.2
+ (arch=amd64 i386)_ZN17QSGDynamicTextureD0Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN17QSGDynamicTextureD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN17QSGDynamicTextureD2Ev@Base 5.3.2
  _ZN17QSGMaterialShader10deactivateEv@Base 5.0.2
  _ZN17QSGMaterialShader11updateStateERKNS_11RenderStateEP11QSGMaterialS4_@Base 5.0.2
  _ZN17QSGMaterialShader19setShaderSourceFileE6QFlagsIN13QOpenGLShader13ShaderTypeBitEERK7QString@Base 5.2.0~rc1
@@ -1457,6 +1487,9 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN18QSGTextureProvider11qt_metacastEPKc@Base 5.0.2
  _ZN18QSGTextureProvider14textureChangedEv@Base 5.0.2
  _ZN18QSGTextureProvider16staticMetaObjectE@Base 5.0.2
+ (arch=amd64 i386)_ZN18QSGTextureProviderD0Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN18QSGTextureProviderD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN18QSGTextureProviderD2Ev@Base 5.3.2
  _ZN19QQuickImageProvider12requestImageERK7QStringP5QSizeRKS3_@Base 5.0.2
  _ZN19QQuickImageProvider13requestPixmapERK7QStringP5QSizeRKS3_@Base 5.0.2
  _ZN19QQuickImageProvider14requestTextureERK7QStringP5QSizeRKS3_@Base 5.0.2
@@ -1897,6 +1930,9 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN23QQuickFramebufferObject8RendererD2Ev@Base 5.2.0~beta1 1
  _ZN23QQuickFramebufferObjectC1EP10QQuickItem@Base 5.2.0~beta1
  _ZN23QQuickFramebufferObjectC2EP10QQuickItem@Base 5.2.0~beta1
+ (arch=amd64 i386)_ZN23QQuickFramebufferObjectD0Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN23QQuickFramebufferObjectD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN23QQuickFramebufferObjectD2Ev@Base 5.3.2
  _ZN23QQuickParallelAnimation10transitionER5QListI17QQuickStateActionERS0_I12QQmlPropertyEN23QQuickAbstractAnimation19TransitionDirectionEP7QObject@Base 5.2.0~beta1 1
  _ZN23QQuickParallelAnimation11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.0.2 1
  _ZN23QQuickParallelAnimation11qt_metacastEPKc@Base 5.0.2 1
@@ -2117,6 +2153,9 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN26QQuickShaderEffectMaterialD0Ev@Base 5.0.2 1
  _ZN26QQuickShaderEffectMaterialD1Ev@Base 5.0.2 1
  _ZN26QQuickShaderEffectMaterialD2Ev@Base 5.0.2 1
+ (arch=amd64 i386)_ZN26QSGContextFactoryInterfaceD0Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN26QSGContextFactoryInterfaceD1Ev@Base 5.3.2
+ (arch=amd64 i386)_ZN26QSGContextFactoryInterfaceD2Ev@Base 5.3.2
  _ZN26QSGDistanceFieldGlyphCache12glyphMetricsEjd@Base 5.2.0 1
  _ZN26QSGDistanceFieldGlyphCache13updateTextureEjjRK5QSize@Base 5.0.2 1
  _ZN26QSGDistanceFieldGlyphCache14s_emptyTextureE@Base 5.0.2 1
@@ -2191,11 +2230,14 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN39QSGLoQSubPixelDistanceFieldTextMaterialD0Ev@Base 5.0.2 1
  _ZN39QSGLoQSubPixelDistanceFieldTextMaterialD1Ev@Base 5.0.2 1
  _ZN39QSGLoQSubPixelDistanceFieldTextMaterialD2Ev@Base 5.0.2 1
+ (arch=i386)_ZN3QV415PersistentValueaSERKNS_11ScopedValueE@Base 5.3.2
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialC1Ev@Base 5.0.2 1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialC2Ev@Base 5.0.2 1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialD0Ev@Base 5.0.2 1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialD1Ev@Base 5.0.2 1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialD2Ev@Base 5.0.2 1
+ (arch=amd64 i386)_ZN6QColorC1EPKc@Base 5.3.2
+ (arch=amd64 i386)_ZN6QColorC2EPKc@Base 5.3.2
  _ZN7QSGNode15appendChildNodeEPS_@Base 5.0.2
  _ZN7QSGNode15removeChildNodeEPS_@Base 5.0.2
  _ZN7QSGNode16prependChildNodeEPS_@Base 5.0.2
@@ -2216,6 +2258,9 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN7QSGNodeD0Ev@Base 5.0.2
  _ZN7QSGNodeD1Ev@Base 5.0.2
  _ZN7QSGNodeD2Ev@Base 5.0.2
+ (arch=amd64 i386)_ZN9QGradientC1ERKS_@Base 5.3.2
+ (arch=amd64 i386)_ZN9QGradientC2ERKS_@Base 5.3.2
+ (arch=amd64 i386)_ZNK10QByteArray8containsEPKc@Base 5.3.2
  _ZNK10QQuickItem10childItemsEv@Base 5.0.2
  _ZNK10QQuickItem10mapToSceneERK7QPointF@Base 5.0.2
  _ZNK10QQuickItem10metaObjectEv@Base 5.0.2
@@ -2326,6 +2371,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZNK10QSGTexture18horizontalWrapModeEv@Base 5.0.2
  _ZNK10QSGTexture24normalizedTextureSubRectEv@Base 5.0.2
  _ZNK10QSGTexture9filteringEv@Base 5.0.2
+ (arch=amd64 i386)_ZNK10QTransform12isInvertibleEv@Base 5.3.2
  _ZNK11QQuickState10metaObjectEv@Base 5.0.2 1
  _ZNK11QQuickState10stateGroupEv@Base 5.0.2 1
  _ZNK11QQuickState11isWhenKnownEv@Base 5.0.2 1
@@ -2786,12 +2832,14 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZNK39QSGHiQSubPixelDistanceFieldTextMaterial4typeEv@Base 5.0.2 1
  _ZNK39QSGLoQSubPixelDistanceFieldTextMaterial12createShaderEv@Base 5.0.2 1
  _ZNK39QSGLoQSubPixelDistanceFieldTextMaterial4typeEv@Base 5.0.2 1
+ (optional=templinst|arch=i386)_ZNK3QV45Value2asINS_14QObjectWrapperEEEPT_v@Base 5.3.2
  _ZNK40QSGDistanceFieldShiftedStyleTextMaterial12createShaderEv@Base 5.0.2 1
  _ZNK40QSGDistanceFieldShiftedStyleTextMaterial4typeEv@Base 5.0.2 1
  _ZNK40QSGDistanceFieldShiftedStyleTextMaterial7compareEPK11QSGMaterial@Base 5.2.0~rc1 1
  _ZNK7QSGNode10childCountEv@Base 5.0.2
  _ZNK7QSGNode12childAtIndexEi@Base 5.0.2
  _ZNK7QSGNode16isSubtreeBlockedEv@Base 5.0.2
+ (optional=templinst|arch=amd64 i386|subst)_ZSt20get_temporary_bufferIP10QQuickItemESt4pairIPT_{ssize_t}E{ssize_t}@Base 5.3.2
  _ZTI10QQuickItem@Base 5.0.2
  _ZTI10QQuickText@Base 5.0.2 1
  _ZTI10QQuickView@Base 5.0.2
@@ -3195,6 +3243,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  (c++)"non-virtual thunk to QQuickAbstractAnimation::setTarget(QQmlProperty const&)@Base" 5.0.2
  (c++)"non-virtual thunk to QQuickAbstractAnimation::~QQuickAbstractAnimation()@Base" 5.0.2
  (c++)"non-virtual thunk to QQuickAnimationGroup::~QQuickAnimationGroup()@Base" 5.0.2
+ (c++|arch=amd64 i386)"non-virtual thunk to QQuickAnimator::~QQuickAnimator()@Base" 5.3.2
  (c++)"non-virtual thunk to QQuickAnimatorProxyJob::updateCurrentTime(int)@Base" 5.2.0~beta1
  (c++)"non-virtual thunk to QQuickAnimatorProxyJob::updateState(QAbstractAnimationJob::State, QAbstractAnimationJob::State)@Base" 5.2.0~beta1
  (c++)"non-virtual thunk to QQuickAnimatorProxyJob::~QQuickAnimatorProxyJob()@Base" 5.2.0~beta1
@@ -3206,6 +3255,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  (c++)"non-virtual thunk to QQuickColorAnimation::~QQuickColorAnimation()@Base" 5.0.2
  (c++)"non-virtual thunk to QQuickFlickable::componentComplete()@Base" 5.0.2
  (c++)"non-virtual thunk to QQuickFlickable::~QQuickFlickable()@Base" 5.0.2
+ (c++|arch=amd64 i386)"non-virtual thunk to QQuickFramebufferObject::~QQuickFramebufferObject()@Base" 5.3.2
  (c++)"non-virtual thunk to QQuickImageBase::componentComplete()@Base" 5.0.2
  (c++)"non-virtual thunk to QQuickImageBase::~QQuickImageBase()@Base" 5.0.2
  (c++)"non-virtual thunk to QQuickImplicitSizeItem::~QQuickImplicitSizeItem()@Base" 5.0.2
