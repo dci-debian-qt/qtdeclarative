@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 5.3.2 amd64 armel armhf hurd-i386 i386 kfreebsd-i386 mipsel powerpc s390x
+# SymbolsHelper-Confirmed: 5.3.2 amd64 armel armhf hurd-i386 i386 kfreebsd-i386 mips mipsel powerpc s390x sparc
 libQt5Qml.so.5 libqt5qml5 #MINVER#
 | libqt5qml5 #MINVER#, qtdeclarative-abi-5-3-2
  _Z10qmlContextPK7QObject@Base 5.0.2
@@ -15,7 +15,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _Z28QQml_removeValueTypeProviderP21QQmlValueTypeProvider@Base 5.1.0 1
  _Z31qmlAttachedPropertiesObjectByIdiPK7QObjectb@Base 5.0.2
  _Z9qmlEnginePK7QObject@Base 5.0.2
- (arch=!armhf !hurd-i386 !kfreebsd-i386 !mipsel)_ZN10QByteArray4dataEv@Base 5.3.2
+ (arch=!armhf !hurd-i386 !kfreebsd-i386 !mips !mipsel)_ZN10QByteArray4dataEv@Base 5.3.2
  (optional=inline|arch=amd64 hurd-i386 i386 kfreebsd-i386)_ZN10QByteArray7reserveEi@Base 5.0.2
  _ZN10QQmlBundle11addMetaLinkERK7QStringS2_RK10QByteArray@Base 5.0.2 1
  _ZN10QQmlBundle14isBundleHeaderEPKci@Base 5.0.2 1
@@ -689,7 +689,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN17QQmlPropertyCache14copyAndReserveEP10QQmlEngineiii@Base 5.0.2 1
  _ZN17QQmlPropertyCache16createMetaObjectEv@Base 5.0.2 1
  _ZN17QQmlPropertyCache16methodReturnTypeEP7QObjectRK16QQmlPropertyDataP10QByteArray@Base 5.0.2 1
- (optional=templinst|arch=mipsel powerpc s390x)_ZN17QQmlPropertyCache16setNamedPropertyI13QHashedStringEEvRKT_iP16QQmlPropertyDatab@Base 5.3.2
+ (optional=templinst|arch=mips mipsel powerpc s390x sparc)_ZN17QQmlPropertyCache16setNamedPropertyI13QHashedStringEEvRKT_iP16QQmlPropertyDatab@Base 5.3.2
  _ZN17QQmlPropertyCache19isDynamicMetaObjectEPK11QMetaObject@Base 5.0.2 1
  _ZN17QQmlPropertyCache19toMetaObjectBuilderER18QMetaObjectBuilder@Base 5.0.2 1
  _ZN17QQmlPropertyCache20methodParameterTypesEP7QObjectiR15QVarLengthArrayIiLi9EEP10QByteArray@Base 5.0.2 1
@@ -1776,7 +1776,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV46Object9constructEPNS_7ManagedEPNS_8CallDataE@Base 5.3.0 1
  _ZN3QV46Object9getLengthEPKNS_7ManagedE@Base 5.3.0 1
  _ZN3QV46Object9getLookupEPNS_7ManagedEPNS_6LookupE@Base 5.2.0~beta1 1
- (optional=gccinternal|arch=!alpha !arm64 !kfreebsd-amd64 !mips64el !ppc64 !ppc64el !s390x !sparc64)_ZN3QV46Object9push_backENS_8ValueRefE@Base 5.3.0
+ (optional=gccinternal|arch=!alpha !arm64 !kfreebsd-amd64 !mips64el !ppc64 !ppc64el !s390x !sparc !sparc64)_ZN3QV46Object9push_backENS_8ValueRefE@Base 5.3.0
  _ZN3QV46Object9setLookupEPNS_7ManagedEPNS_6LookupENS_8ValueRefE@Base 5.2.0~beta1 1
  _ZN3QV46ObjectC1EPNS_13InternalClassE@Base 5.2.0~beta1
  _ZN3QV46ObjectC1EPNS_15ExecutionEngineE@Base 5.2.0~beta1
@@ -2797,8 +2797,8 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN8QQmlTypeD1Ev@Base 5.0.2 1
  _ZN8QQmlTypeD2Ev@Base 5.0.2 1
  (optional=templinst|arch=ia64)_ZN8QVariant9fromValueIP9ListModelEES_RKT_@Base 5.2.0
- (arch=!armel !armhf !mipsel)_ZN9QBitArray6setBitEi@Base 5.3.2
- (arch=mipsel)_ZN9QBitArray6setBitEib@Base 5.3.2
+ (arch=!armel !armhf !mips !mipsel)_ZN9QBitArray6setBitEi@Base 5.3.2
+ (arch=mips mipsel)_ZN9QBitArray6setBitEib@Base 5.3.2
  (optional=gccinternal|arch=amd64 hurd-i386 i386 kfreebsd-i386)_ZN9QBitArray8clearBitEi@Base 5.0.2
  (arch=amd64 i386)_ZN9QHashData8willGrowEv@Base 5.3.2
  _ZN9QJSEngine10newQObjectEP7QObject@Base 5.0.2
@@ -3433,31 +3433,31 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (optional=templinst|arch=amd64 i386)_ZNSt6vectorItSaItEE19_M_emplace_back_auxIJtEEEvDpOT_@Base 5.3.2
  (optional=templinst|arch=!hurd-i386 !kfreebsd-i386)_ZNSt6vectorItSaItEE6insertEN9__gnu_cxx17__normal_iteratorIPtS1_EERKt@Base 5.3.2
  (optional=templinst|arch=armel armhf)_ZSt10__pop_heapIPN3QV42IR16LifeTimeIntervalEPFbRKS2_S5_EEvT_S8_S8_T0_@Base 5.3.2
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt11__push_heapIN5QListI4QUrlE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E14CompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt11__push_heapIN5QListI4QUrlE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E21DefaultCompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt11__push_heapIN5QListI5QPairI7QStringP16QQmlPropertyDataEE8iteratorE{qptrdiff}S5_PFbRKS5_S9_EEvT_T0_SD_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt11__push_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceI11QStringListE14CompareFunctorEEvT_T0_S9_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt11__push_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceI11QStringListE21DefaultCompareFunctorEEvT_T0_S9_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt11__push_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E14CompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt11__push_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E21DefaultCompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf mipsel powerpc)_ZSt11__push_heapIN5QListIdE8iteratorEidN12QQmlSequenceIS1_E14CompareFunctorEEvT_T0_S7_T1_T2_@Base 5.3.2
- (optional=templinst|arch=armel armhf mipsel powerpc)_ZSt11__push_heapIN5QListIdE8iteratorEidN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_T0_S7_T1_T2_@Base 5.3.2
- (optional=templinst|arch=powerpc s390x)_ZSt12partial_sortIPjEvT_S1_S1_@Base 5.3.2
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListI4QUrlE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E14CompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListI4QUrlE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E21DefaultCompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListI5QPairI7QStringP16QQmlPropertyDataEE8iteratorE{qptrdiff}S5_PFbRKS5_S9_EEvT_T0_SD_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceI11QStringListE14CompareFunctorEEvT_T0_S9_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceI11QStringListE21DefaultCompareFunctorEEvT_T0_S9_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E14CompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E21DefaultCompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_PFbRKS1_S5_EEvT_T0_S9_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListIbE8iteratorE{qptrdiff}bN12QQmlSequenceIS1_E14CompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListIbE8iteratorE{qptrdiff}bN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListIdE8iteratorE{qptrdiff}dN12QQmlSequenceIS1_E14CompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListIdE8iteratorE{qptrdiff}dN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt11__push_heapIN5QListI4QUrlE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E14CompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt11__push_heapIN5QListI4QUrlE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E21DefaultCompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt11__push_heapIN5QListI5QPairI7QStringP16QQmlPropertyDataEE8iteratorE{qptrdiff}S5_PFbRKS5_S9_EEvT_T0_SD_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt11__push_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceI11QStringListE14CompareFunctorEEvT_T0_S9_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt11__push_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceI11QStringListE21DefaultCompareFunctorEEvT_T0_S9_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt11__push_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E14CompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt11__push_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E21DefaultCompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf mips mipsel powerpc)_ZSt11__push_heapIN5QListIdE8iteratorEidN12QQmlSequenceIS1_E14CompareFunctorEEvT_T0_S7_T1_T2_@Base 5.3.2
+ (optional=templinst|arch=armel armhf mips mipsel powerpc)_ZSt11__push_heapIN5QListIdE8iteratorEidN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_T0_S7_T1_T2_@Base 5.3.2
+ (optional=templinst|arch=powerpc s390x sparc)_ZSt12partial_sortIPjEvT_S1_S1_@Base 5.3.2
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListI4QUrlE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E14CompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListI4QUrlE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E21DefaultCompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListI5QPairI7QStringP16QQmlPropertyDataEE8iteratorE{qptrdiff}S5_PFbRKS5_S9_EEvT_T0_SD_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceI11QStringListE14CompareFunctorEEvT_T0_S9_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceI11QStringListE21DefaultCompareFunctorEEvT_T0_S9_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E14CompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_N12QQmlSequenceIS2_E21DefaultCompareFunctorEEvT_T0_S8_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListI7QStringE8iteratorE{qptrdiff}S1_PFbRKS1_S5_EEvT_T0_S9_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListIbE8iteratorE{qptrdiff}bN12QQmlSequenceIS1_E14CompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListIbE8iteratorE{qptrdiff}bN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListIdE8iteratorE{qptrdiff}dN12QQmlSequenceIS1_E14CompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListIdE8iteratorE{qptrdiff}dN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
  (optional=templinst|arch=ia64)_ZSt13__adjust_heapIN5QListIiE8iteratorExiEvT_T0_S4_T1_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListIiE8iteratorE{qptrdiff}iN12QQmlSequenceIS1_E14CompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x|subst)_ZSt13__adjust_heapIN5QListIiE8iteratorE{qptrdiff}iN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListIiE8iteratorE{qptrdiff}iN12QQmlSequenceIS1_E14CompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x sparc|subst)_ZSt13__adjust_heapIN5QListIiE8iteratorE{qptrdiff}iN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_T0_S7_T1_T2_@Base 5.2.0 1
  (optional=templinst|arch=armhf)_ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIPN3JSC14ARMv7Assembler10LinkRecordESt6vectorIS4_SaIS4_EEEEiS4_PFbRKS4_SB_EEvT_T0_SF_T1_T2_@Base 5.3.2
  (optional=templinst|arch=!hurd-i386 !kfreebsd-i386|subst)_ZSt13__adjust_heapIPN3QV413MemoryManager4Data5ChunkE{ssize_t}S3_EvT_T0_S6_T1_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386|subst)_ZSt13__adjust_heapIPN3QV42IR16LifeTimeIntervalE{ssize_t}S2_PFbRKS2_S5_EEvT_T0_S9_T1_T2_@Base 5.3.2
@@ -3477,7 +3477,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt13__heap_selectIN5QListIiE8iteratorEN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_S6_S6_T0_@Base 5.3.2
  (optional=templinst|arch=armhf)_ZSt13__heap_selectIN9__gnu_cxx17__normal_iteratorIPN3JSC14ARMv7Assembler10LinkRecordESt6vectorIS4_SaIS4_EEEEPFbRKS4_SB_EEvT_SE_SE_T0_@Base 5.3.2
  (optional=templinst|arch=amd64 i386)_ZSt13__heap_selectIPN3QV413MemoryManager4Data5ChunkEEvT_S5_S5_@Base 5.3.2
- (optional=templinst|arch=mipsel powerpc s390x)_ZSt13__heap_selectIPN3QV42IR16LifeTimeIntervalEPFbRKS2_S5_EEvT_S8_S8_T0_@Base 5.3.2
+ (optional=templinst|arch=mips mipsel powerpc s390x sparc)_ZSt13__heap_selectIPN3QV42IR16LifeTimeIntervalEPFbRKS2_S5_EEvT_S8_S8_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt13__heap_selectIPN3QV45ValueE20ArrayElementLessThanEvT_S4_S4_T0_@Base 5.3.2
  (optional=templinst|arch=amd64 i386)_ZSt13move_backwardIPiS0_ET0_T_S2_S1_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt16__insertion_sortIN5QListI4QUrlE8iteratorEN12QQmlSequenceIS2_E14CompareFunctorEEvT_S7_T0_@Base 5.3.2
@@ -3533,7 +3533,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt19__move_median_firstIN5QListIiE8iteratorEN12QQmlSequenceIS1_E14CompareFunctorEEvT_S6_S6_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt19__move_median_firstIN5QListIiE8iteratorEN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_S6_S6_T0_@Base 5.3.2
  (optional=templinst|arch=armhf)_ZSt19__move_median_firstIN9__gnu_cxx17__normal_iteratorIPN3JSC14ARMv7Assembler10LinkRecordESt6vectorIS4_SaIS4_EEEEPFbRKS4_SB_EEvT_SE_SE_T0_@Base 5.3.2
- (optional=templinst|arch=armel armhf mipsel powerpc)_ZSt19__move_median_firstIPN3QV413MemoryManager4Data5ChunkEEvT_S5_S5_@Base 5.3.2
+ (optional=templinst|arch=armel armhf mips mipsel powerpc sparc)_ZSt19__move_median_firstIPN3QV413MemoryManager4Data5ChunkEEvT_S5_S5_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt19__move_median_firstIPN3QV42IR16LifeTimeIntervalEPFbRKS2_S5_EEvT_S8_S8_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt19__move_median_firstIPN3QV45ValueE20ArrayElementLessThanEvT_S4_S4_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt21__unguarded_partitionIN5QListI4QUrlE8iteratorES1_N12QQmlSequenceIS2_E14CompareFunctorEET_S7_S7_RKT0_T1_@Base 5.3.2
@@ -3550,12 +3550,13 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt21__unguarded_partitionIN5QListIdE8iteratorEdN12QQmlSequenceIS1_E21DefaultCompareFunctorEET_S6_S6_RKT0_T1_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt21__unguarded_partitionIN5QListIiE8iteratorEiN12QQmlSequenceIS1_E14CompareFunctorEET_S6_S6_RKT0_T1_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt21__unguarded_partitionIN5QListIiE8iteratorEiN12QQmlSequenceIS1_E21DefaultCompareFunctorEET_S6_S6_RKT0_T1_@Base 5.3.2
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListI4QUrlE8iteratorEN12QQmlSequenceIS2_E14CompareFunctorEEvT_S7_T0_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListI7QStringE8iteratorEN12QQmlSequenceI11QStringListE14CompareFunctorEEvT_S8_T0_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListI7QStringE8iteratorEN12QQmlSequenceIS2_E14CompareFunctorEEvT_S7_T0_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListIbE8iteratorEN12QQmlSequenceIS1_E14CompareFunctorEEvT_S6_T0_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListIdE8iteratorEN12QQmlSequenceIS1_E14CompareFunctorEEvT_S6_T0_@Base 5.2.0 1
- (optional=templinst|arch=armel armhf ia64 mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListIiE8iteratorEN12QQmlSequenceIS1_E14CompareFunctorEEvT_S6_T0_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListI4QUrlE8iteratorEN12QQmlSequenceIS2_E14CompareFunctorEEvT_S7_T0_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListI7QStringE8iteratorEN12QQmlSequenceI11QStringListE14CompareFunctorEEvT_S8_T0_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListI7QStringE8iteratorEN12QQmlSequenceIS2_E14CompareFunctorEEvT_S7_T0_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListIbE8iteratorEN12QQmlSequenceIS1_E14CompareFunctorEEvT_S6_T0_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListIdE8iteratorEN12QQmlSequenceIS1_E14CompareFunctorEEvT_S6_T0_@Base 5.2.0 1
+ (optional=templinst|arch=armel armhf ia64 mips mipsel powerpc s390x)_ZSt22__final_insertion_sortIN5QListIiE8iteratorEN12QQmlSequenceIS1_E14CompareFunctorEEvT_S6_T0_@Base 5.2.0 1
+ (optional=templinst|arch=sparc)_ZSt22__final_insertion_sortIPN3QV413MemoryManager4Data5ChunkEEvT_S5_@Base 5.3.2
  (optional=templinst|arch=s390x)_ZSt22__final_insertion_sortIPN3QV45ValueE20ArrayElementLessThanEvT_S4_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt25__unguarded_linear_insertIN5QListI4QUrlE8iteratorEN12QQmlSequenceIS2_E14CompareFunctorEEvT_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt25__unguarded_linear_insertIN5QListI4QUrlE8iteratorEN12QQmlSequenceIS2_E21DefaultCompareFunctorEEvT_T0_@Base 5.3.2
@@ -3572,13 +3573,13 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt25__unguarded_linear_insertIN5QListIiE8iteratorEN12QQmlSequenceIS1_E14CompareFunctorEEvT_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt25__unguarded_linear_insertIN5QListIiE8iteratorEN12QQmlSequenceIS1_E21DefaultCompareFunctorEEvT_T0_@Base 5.3.2
  (optional=templinst|arch=armhf)_ZSt25__unguarded_linear_insertIN9__gnu_cxx17__normal_iteratorIPN3JSC14ARMv7Assembler10LinkRecordESt6vectorIS4_SaIS4_EEEEPFbRKS4_SB_EEvT_T0_@Base 5.3.2
- (optional=templinst|arch=!hurd-i386 !kfreebsd-i386)_ZSt25__unguarded_linear_insertIPN3QV413MemoryManager4Data5ChunkEEvT_@Base 5.3.2
+ (optional=templinst|arch=!hurd-i386 !kfreebsd-i386 !sparc)_ZSt25__unguarded_linear_insertIPN3QV413MemoryManager4Data5ChunkEEvT_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt25__unguarded_linear_insertIPN3QV42IR16LifeTimeIntervalEPFbRKS2_S5_EEvT_T0_@Base 5.3.2
- (optional=templinst|arch=armel armhf mipsel powerpc)_ZSt25__unguarded_linear_insertIPN3QV45ValueE20ArrayElementLessThanEvT_T0_@Base 5.3.2
+ (optional=templinst|arch=armel armhf mips mipsel powerpc sparc)_ZSt25__unguarded_linear_insertIPN3QV45ValueE20ArrayElementLessThanEvT_T0_@Base 5.3.2
  (optional=templinst|arch=amd64)_ZSt4copyIN9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEEENS1_IPiS6_EEET0_T_SB_SA_@Base 5.3.2
- (optional=templinst|arch=ia64 mipsel powerpc s390x)_ZSt4moveIN9__gnu_cxx17__normal_iteratorIPN3JSC4Yarr11PatternTermESt6vectorIS4_SaIS4_EEEES9_ET0_T_SB_SA_@Base 5.2.0
+ (optional=templinst|arch=ia64 mips mipsel powerpc s390x)_ZSt4moveIN9__gnu_cxx17__normal_iteratorIPN3JSC4Yarr11PatternTermESt6vectorIS4_SaIS4_EEEES9_ET0_T_SB_SA_@Base 5.2.0
  (optional=templinst|arch=!hurd-i386 !kfreebsd-i386)_ZSt4sortIPjEvT_S1_@Base 5.3.2
- (optional=templinst|arch=!alpha !amd64 !arm64 !armel !armhf !hppa !ia64 !kfreebsd-amd64 !mips64el !mipsel !powerpc !ppc64 !ppc64el !s390x !sparc !sparc64)_ZSt4swapIN8QVariant7PrivateEEvRT_S3_@Base 5.0.2
+ (optional=templinst|arch=!alpha !amd64 !arm64 !armel !armhf !hppa !ia64 !kfreebsd-amd64 !mips !mips64el !mipsel !powerpc !ppc64 !ppc64el !s390x !sparc !sparc64)_ZSt4swapIN8QVariant7PrivateEEvRT_S3_@Base 5.0.2
  (optional=templinst|arch=!hurd-i386 !kfreebsd-i386)_ZSt6__findISt13_Bit_iteratorbET_S1_S1_RKT0_St26random_access_iterator_tag@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt9iter_swapIPN3QV42IR16LifeTimeIntervalES3_EvT_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !hurd-i386 !i386 !kfreebsd-i386)_ZSt9make_heapIN5QListI4QUrlE8iteratorEN12QQmlSequenceIS2_E14CompareFunctorEEvT_S7_T0_@Base 5.3.2

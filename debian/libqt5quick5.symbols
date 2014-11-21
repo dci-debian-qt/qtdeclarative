@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 5.3.2 amd64 armel armhf i386 mipsel powerpc s390x
+# SymbolsHelper-Confirmed: 5.3.2 amd64 armel armhf i386 mipsel powerpc s390x sparc
 libQt5Quick.so.5 libqt5quick5 #MINVER#
 | libqt5quick5 #MINVER#, qtdeclarative-abi-5-3-2
  _ZN10QQuickItem10classBeginEv@Base 5.0.2
@@ -2237,8 +2237,8 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialD0Ev@Base 5.0.2 1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialD1Ev@Base 5.0.2 1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialD2Ev@Base 5.0.2 1
- (arch=amd64 armel armhf i386 mipsel powerpc)_ZN6QColorC1EPKc@Base 5.3.2
- (arch=amd64 armel armhf i386 mipsel powerpc)_ZN6QColorC2EPKc@Base 5.3.2
+ (arch=amd64 armel armhf i386 mipsel powerpc sparc)_ZN6QColorC1EPKc@Base 5.3.2
+ (arch=amd64 armel armhf i386 mipsel powerpc sparc)_ZN6QColorC2EPKc@Base 5.3.2
  _ZN7QSGNode15appendChildNodeEPS_@Base 5.0.2
  _ZN7QSGNode15removeChildNodeEPS_@Base 5.0.2
  _ZN7QSGNode16prependChildNodeEPS_@Base 5.0.2
@@ -2883,7 +2883,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  (optional=templinst|arch=!amd64 !i386)_ZSt21__inplace_stable_sortIN5QListIP10QQuickItemE8iteratorEPFbS2_S2_EEvT_S7_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !i386)_ZSt21__inplace_stable_sortIPPN16QSGBatchRenderer5BatchEPFbS2_S2_EEvT_S6_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !i386)_ZSt21__move_merge_adaptiveIPP10QQuickItemN5QListIS1_E8iteratorES5_PFbS1_S1_EEvT_S8_T0_S9_T1_T2_@Base 5.3.2
- (optional=templinst|arch=armel armhf mipsel)_ZSt21__unguarded_partitionIN5QListI5QPairIi6UpdateEE8iteratorES3_ET_S6_S6_RKT0_@Base 5.3.2
+ (optional=templinst|arch=armel armhf mipsel sparc)_ZSt21__unguarded_partitionIN5QListI5QPairIi6UpdateEE8iteratorES3_ET_S6_S6_RKT0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !i386)_ZSt21__unguarded_partitionIN5QListIPN21QQuickTextEditPrivate4NodeEE8iteratorES3_PFbS3_S3_EET_S8_S8_RKT0_T1_@Base 5.3.2
  (optional=templinst|arch=!amd64 !i386)_ZSt22__final_insertion_sortIN5QListIPN21QQuickTextEditPrivate4NodeEE8iteratorEPFbS3_S3_EEvT_S8_T0_@Base 5.3.2
  (optional=templinst|arch=!amd64 !i386)_ZSt22__merge_without_bufferIN5QListIP10QQuickItemE8iteratorEiPFbS2_S2_EEvT_S7_S7_T0_S8_T1_@Base 5.3.2
