@@ -4,17 +4,21 @@
 #export DH_VERBOSE=1
 
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 
 export CFLAGS := $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
 export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
 export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
 export QT_SELECT := qt5
 
+# Skip tests on the archs they are known to be flaky with current configuration
+testskip_architectures := powerpc
+
 %:
 	dh $@ --parallel --with pkgkde_symbolshelper --dbg-package=qtdeclarative5-dbg
 
 override_dh_auto_configure:
-	qmake
+	qmake QT_BUILD_PARTS+=tests
 
 override_dh_auto_build-indep:
 	dh_auto_build -Smakefile -- html_docs
@@ -50,9 +54,22 @@ override_dh_install:
 	dh_install --fail-missing
 
 override_dh_makeshlibs:
-	dh_makeshlibs -V
+	dh_makeshlibs
 	# Check for private symbols not marked as such. Be verbose.
 	pkgkde-mark-private-symbols debian/qtdeclarative5-private-dev/usr/include
 
-# Requires X so disabled for now
 override_dh_auto_test:
+	cp -a src/imports/qtquick2/qmldir qml/QtQuick.2
+	cp -a src/imports/folderlistmodel/qmldir qml/Qt/labs/folderlistmodel/
+	cp -a src/imports/settings/qmldir qml/Qt/labs/settings/
+	cp -a src/imports/window/qmldir qml/QtQuick/Window.2/
+	cp -a src/imports/models/qmldir qml/QtQml/Models.2/
+	cp -a src/imports/testlib/qmldir qml/QtTest
+	cp -a src/imports/testlib/TestCase.qml qml/QtTest
+	cp -a src/imports/testlib/SignalSpy.qml qml/QtTest
+	cp -a src/imports/testlib/testlogger.js qml/QtTest
+ifneq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(testskip_architectures)))
+ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
+	xvfb-run -a -s "-screen 0 1024x768x24" dh_auto_test -- QT_PLUGIN_PATH=$(CURDIR)/plugins LD_LIBRARY_PATH=$(CURDIR)/lib QML2_IMPORT_PATH=$(CURDIR)/qml
+endif
+endif
