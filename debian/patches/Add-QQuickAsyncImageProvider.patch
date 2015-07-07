@@ -675,7 +675,7 @@ index 2066d1e..810629c 100644
          mutex.unlock();
      }
      reply->deleteLater();
-@@ -487,6 +479,32 @@ void QQuickPixmapReader::networkRequestDone(QNetworkReply *reply)
+@@ -487,6 +479,34 @@ void QQuickPixmapReader::networkRequestDone(QNetworkReply *reply)
      threadObject->processJobs();
  }
  
@@ -697,6 +697,8 @@ index 2066d1e..810629c 100644
 +        mutex.lock();
 +        if (!cancelled.contains(job))
 +            job->postReply(error, errorString, t ? t->textureSize() : QSize(), t);
++        else
++            delete t;
 +        mutex.unlock();
 +    }
 +    response->deleteLater();
