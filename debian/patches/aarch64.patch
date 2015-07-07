@@ -1,0 +1,19 @@
+Index: b/src/3rdparty/masm/wtf/Platform.h
+===================================================================
+--- a/src/3rdparty/masm/wtf/Platform.h
++++ b/src/3rdparty/masm/wtf/Platform.h
+@@ -166,6 +166,14 @@
+ #define WTF_CPU_X86_64 1
+ #endif
+ 
++/* CPU(ARM64) - AArch64 */
++#if defined(__aarch64__)
++#define WTF_CPU_ARM64 1
++#if defined(__AARCH64BE__)
++#define WTF_CPU_BIG_ENDIAN 1
++#endif
++#endif
++
+ /* CPU(ARM) - ARM, any version*/
+ #define WTF_ARM_ARCH_AT_LEAST(N) (CPU(ARM) && WTF_ARM_ARCH_VERSION >= N)
+ 

@@ -1,0 +1,72 @@
+diff -ruN a/tests/auto/qml/qmlmin/tst_qmlmin.cpp b/tests/auto/qml/qmlmin/tst_qmlmin.cpp
+--- a/tests/auto/qml/qmlmin/tst_qmlmin.cpp	2013-11-21 01:16:04.000000000 +0500
++++ b/tests/auto/qml/qmlmin/tst_qmlmin.cpp	2013-12-21 14:55:25.614708078 +0500
+@@ -75,7 +75,7 @@
+ 
+ void tst_qmlmin::initTestCase()
+ {
+-    qmlminPath = QLibraryInfo::location(QLibraryInfo::BinariesPath) + QLatin1String("/qmlmin");
++    qmlminPath = QLatin1String("../../../../bin") + QLatin1String("/qmlmin");
+ #ifdef Q_OS_WIN
+     qmlminPath += QLatin1String(".exe");
+ #endif
+diff -ruN a/tests/auto/qml/qmlplugindump/tst_qmlplugindump.cpp b/tests/auto/qml/qmlplugindump/tst_qmlplugindump.cpp
+--- a/tests/auto/qml/qmlplugindump/tst_qmlplugindump.cpp	2013-11-21 01:16:05.000000000 +0500
++++ b/tests/auto/qml/qmlplugindump/tst_qmlplugindump.cpp	2013-12-21 14:55:28.574708157 +0500
+@@ -66,7 +66,7 @@
+ 
+ void tst_qmlplugindump::initTestCase()
+ {
+-    qmlplugindumpPath = QLibraryInfo::location(QLibraryInfo::BinariesPath);
++    qmlplugindumpPath = QLatin1String("../../../../bin");
+ 
+ #if defined(Q_OS_WIN)
+     qmlplugindumpPath += QLatin1String("/qmlplugindump.exe");
+diff -ruN a/tests/auto/qml/debugger/qqmldebugjs/tst_qqmldebugjs.cpp b/tests/auto/qml/debugger/qqmldebugjs/tst_qqmldebugjs.cpp
+--- a/tests/auto/qml/debugger/qqmldebugjs/tst_qqmldebugjs.cpp	2013-12-08 22:10:16.000000000 +0500
++++ b/tests/auto/qml/debugger/qqmldebugjs/tst_qqmldebugjs.cpp	2014-01-03 12:20:08.520795476 +0500
+@@ -833,7 +833,7 @@
+ bool tst_QQmlDebugJS::init(const QString &qmlFile, bool blockMode)
+ {
+     connection = new QQmlDebugConnection();
+-    process = new QQmlDebugProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qmlscene", this);
++    process = new QQmlDebugProcess(QLatin1String("../../../../../bin") + "/qmlscene", this);
+     client = new QJSDebugClient(connection);
+ 
+     if (blockMode)
+diff -ruN a/tests/auto/qml/debugger/qqmlenginedebuginspectorintegrationtest/tst_qqmlenginedebuginspectorintegration.cpp b/tests/auto/qml/debugger/qqmlenginedebuginspectorintegrationtest/tst_qqmlenginedebuginspectorintegration.cpp
+--- a/tests/auto/qml/debugger/qqmlenginedebuginspectorintegrationtest/tst_qqmlenginedebuginspectorintegration.cpp	2013-12-08 22:10:16.000000000 +0500
++++ b/tests/auto/qml/debugger/qqmlenginedebuginspectorintegrationtest/tst_qqmlenginedebuginspectorintegration.cpp	2014-01-03 12:21:06.904797040 +0500
+@@ -108,7 +108,7 @@
+     const QString argument = "-qmljsdebugger=port:" STR_PORT_FROM "," STR_PORT_TO ",block";
+ 
+     // ### Still using qmlscene because of QTBUG-33376
+-    m_process = new QQmlDebugProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath)
++    m_process = new QQmlDebugProcess(QLatin1String("../../../../../bin")
+                                      + "/qmlscene", this);
+     m_process->start(QStringList() << argument << testFile("qtquick2.qml"));
+     QVERIFY2(m_process->waitForSessionStart(),
+diff -ruN a/tests/auto/qml/debugger/qqmlinspector/tst_qqmlinspector.cpp b/tests/auto/qml/debugger/qqmlinspector/tst_qqmlinspector.cpp
+--- a/tests/auto/qml/debugger/qqmlinspector/tst_qqmlinspector.cpp	2013-12-08 22:10:16.000000000 +0500
++++ b/tests/auto/qml/debugger/qqmlinspector/tst_qqmlinspector.cpp	2014-01-03 12:23:24.248800718 +0500
+@@ -90,7 +90,7 @@
+     const QString argument = "-qmljsdebugger=port:" STR_PORT_FROM "," STR_PORT_TO ",block";
+ 
+     // ### This should be using qml instead of qmlscene, but can't because of QTBUG-33376 (same as the XFAIL testcase)
+-    m_process = new QQmlDebugProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qmlscene", this);
++    m_process = new QQmlDebugProcess(QLatin1String("../../../../../bin") + "/qmlscene", this);
+     m_process->start(QStringList() << argument << testFile("qtquick2.qml"));
+     QVERIFY2(m_process->waitForSessionStart(),
+              "Could not launch application, or did not get 'Waiting for connection'.");
+diff -ruN a/tests/auto/qml/debugger/qqmlprofilerservice/tst_qqmlprofilerservice.cpp b/tests/auto/qml/debugger/qqmlprofilerservice/tst_qqmlprofilerservice.cpp
+--- a/tests/auto/qml/debugger/qqmlprofilerservice/tst_qqmlprofilerservice.cpp	2013-12-08 22:10:16.000000000 +0500
++++ b/tests/auto/qml/debugger/qqmlprofilerservice/tst_qqmlprofilerservice.cpp	2014-01-03 12:22:18.392798954 +0500
+@@ -298,7 +298,7 @@
+ void tst_QQmlProfilerService::connect(bool block, const QString &testFile)
+ {
+     // ### Still using qmlscene due to QTBUG-33377
+-    const QString executable = QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qmlscene";
++    const QString executable = QLatin1String("../../../../../bin") + "/qmlscene";
+     QStringList arguments;
+     if (block)
+         arguments << QString("-qmljsdebugger=port:" STR_PORT_FROM "," STR_PORT_TO ",block");

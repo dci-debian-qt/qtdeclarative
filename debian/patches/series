@@ -1,1 +1,9 @@
+fix_binary_location_for_tests.patch
+disable_failing_tests.patch
+aarch64.patch
+ppc64el.patch
+QML-Compilation-unit-caching-and-JIT-changes.patch
 check_system_double-conversion.patch
+High-dpi-SVG-and-QQuickImageProvider-Images.patch
+Make-sure-we-stop-animators-if-they-are-yet-to-be-st.patch
+Add-QQuickAsyncImageProvider.patch
