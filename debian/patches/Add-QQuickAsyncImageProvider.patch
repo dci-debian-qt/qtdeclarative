@@ -696,7 +696,7 @@ index 2066d1e..810629c 100644
 +       }
 +        mutex.lock();
 +        if (!cancelled.contains(job))
-+            job->postReply(error, errorString, t->textureSize(), t);
++            job->postReply(error, errorString, t ? t->textureSize() : QSize(), t);
 +        mutex.unlock();
 +    }
 +    response->deleteLater();
