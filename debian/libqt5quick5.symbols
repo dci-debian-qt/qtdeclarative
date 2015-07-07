@@ -1,8 +1,8 @@
-# SymbolsHelper-Confirmed: 5.4.2 alpha armel ppc64 x32
-libQt5Quick.so.5 libqt5quick5 #MINVER#
-| libqt5quick5 #MINVER#, qtdeclarative-abi-5-4-1
+# SymbolsHelper-Confirmed: 5.4.0 amd64 arm64 armhf i386 powerpc ppc64el
+libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
+| libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#, qtdeclarative-abi-5-4-1
  _Z23qsgnode_set_descriptionP7QSGNodeRK7QString@Base 5.4.0
- (arch=alpha arm64 armel hppa powerpc ppc64 ppc64el s390x sparc sparc64)_ZN10QByteArray7reserveEi@Base 5.3.1
+ (arch=arm64 powerpc ppc64el)_ZN10QByteArray7reserveEi@Base 5.3.0
  _ZN10QQuickItem10classBeginEv@Base 5.0.2
  _ZN10QQuickItem10itemChangeENS_10ItemChangeERKNS_14ItemChangeDataE@Base 5.0.2
  _ZN10QQuickItem10resetWidthEv@Base 5.0.2
@@ -544,7 +544,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN14QQuickProfiler12sendMessagesExR5QListI10QByteArrayE@Base 5.3.0 1
  _ZN14QQuickProfiler14reportDataImplEv@Base 5.3.0 1
  _ZN14QQuickProfiler15featuresEnabledE@Base 5.4.0 1
- (arch=alpha amd64 arm64 hppa kfreebsd-amd64 ppc64 ppc64el s390x x32)_ZN14QQuickProfiler15sceneGraphFrameILN23QQmlProfilerDefinitions19SceneGraphFrameTypeE2EEEvxxxxx@Base 5.4.2 1
+ (optional=templinst|arch=amd64 arm64 ppc64el)_ZN14QQuickProfiler15sceneGraphFrameILN23QQmlProfilerDefinitions19SceneGraphFrameTypeE2EEEvxxxxx@Base 5.4.0 1
  _ZN14QQuickProfiler16staticMetaObjectE@Base 5.3.0 1
  _ZN14QQuickProfiler17stopProfilingImplEv@Base 5.3.0 1
  _ZN14QQuickProfiler18startProfilingImplEy@Base 5.4.0 1
@@ -590,7 +590,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN14QQuickTextEdit15geometryChangedERK6QRectFS2_@Base 5.0.2 1
  _ZN14QQuickTextEdit15hoverEnterEventEP11QHoverEvent@Base 5.2.0~beta1 1
  _ZN14QQuickTextEdit15hoverLeaveEventEP11QHoverEvent@Base 5.2.0~beta1 1
- _ZN14QQuickTextEdit15invalidateBlockERK10QTextBlock@Base 5.3.1 1
+ _ZN14QQuickTextEdit15invalidateBlockERK10QTextBlock@Base 5.3.2 1
  _ZN14QQuickTextEdit15keyReleaseEventEP9QKeyEvent@Base 5.0.2 1
  _ZN14QQuickTextEdit15mousePressEventEP11QMouseEvent@Base 5.0.2 1
  _ZN14QQuickTextEdit15readOnlyChangedEb@Base 5.0.2 1
@@ -1090,7 +1090,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN15QSGPlainTextureD0Ev@Base 5.0.2 1
  _ZN15QSGPlainTextureD1Ev@Base 5.0.2 1
  _ZN15QSGPlainTextureD2Ev@Base 5.0.2 1
- (optional=internal|arch=alpha arm64 hppa powerpc ppc64el s390x sparc64)_ZN16QCoreApplication9sendEventEP7QObjectP6QEvent@Base 5.3.2
+ (arch=!amd64 !armhf !i386)_ZN16QCoreApplication9sendEventEP7QObjectP6QEvent@Base 5.4.0
  _ZN16QQuickCloseEvent11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.1.0 1
  _ZN16QQuickCloseEvent11qt_metacastEPKc@Base 5.1.0 1
  _ZN16QQuickCloseEvent16staticMetaObjectE@Base 5.1.0 1
@@ -1523,7 +1523,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN19QQuickWindowPrivate15deliverKeyEventEP9QKeyEvent@Base 5.3.0 1
  _ZN19QQuickWindowPrivate15runAndClearJobsEP5QListIP9QRunnableE@Base 5.4.0 1
  _ZN19QQuickWindowPrivate15setFocusInScopeEP10QQuickItemS1_N2Qt11FocusReasonE6QFlagsINS_11FocusOptionEE@Base 5.1.0 1
- _ZN19QQuickWindowPrivate15setMouseGrabberEP10QQuickItem@Base 5.2.1 1
+ _ZN19QQuickWindowPrivate15setMouseGrabberEP10QQuickItem@Base 5.2.0+gitcb78684a 1
  _ZN19QQuickWindowPrivate15updateDirtyNodeEP10QQuickItem@Base 5.0.2 1
  _ZN19QQuickWindowPrivate16clearFocusObjectEv@Base 5.2.0~rc1 1
  _ZN19QQuickWindowPrivate16deliverDragEventEP17QQuickDragGrabberP10QQuickItemP14QDragMoveEvent@Base 5.0.2 1
@@ -2081,7 +2081,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN24QQuickAccessibleAttachedD1Ev@Base 5.0.2 1
  _ZN24QQuickAccessibleAttachedD2Ev@Base 5.0.2 1
  _ZN24QQuickOpacityAnimatorJob10initializeEP24QQuickAnimatorController@Base 5.2.0~beta1 1
- _ZN24QQuickOpacityAnimatorJob16nodeWasDestroyedEv@Base 5.3.1 1
+ _ZN24QQuickOpacityAnimatorJob16nodeWasDestroyedEv@Base 5.3.2 1
  _ZN24QQuickOpacityAnimatorJob17updateCurrentTimeEi@Base 5.2.0~beta1 1
  _ZN24QQuickOpacityAnimatorJob9writeBackEv@Base 5.2.0~beta1 1
  _ZN24QQuickOpacityAnimatorJobC1Ev@Base 5.2.0~beta1 1
@@ -2136,7 +2136,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZN24QQuickShaderEffectSourceD1Ev@Base 5.0.2 1
  _ZN24QQuickShaderEffectSourceD2Ev@Base 5.0.2 1
  _ZN24QQuickUniformAnimatorJob13afterNodeSyncEv@Base 5.2.0~beta1 1
- _ZN24QQuickUniformAnimatorJob16nodeWasDestroyedEv@Base 5.3.1 1
+ _ZN24QQuickUniformAnimatorJob16nodeWasDestroyedEv@Base 5.3.2 1
  _ZN24QQuickUniformAnimatorJob17updateCurrentTimeEi@Base 5.2.0~beta1 1
  _ZN24QQuickUniformAnimatorJob9setTargetEP10QQuickItem@Base 5.2.0~beta1 1
  _ZN24QQuickUniformAnimatorJob9writeBackEv@Base 5.2.0~beta1 1
@@ -2542,7 +2542,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER#
  _ZNK14QQuickTextEdit15isCursorVisibleEv@Base 5.0.2 1
  _ZNK14QQuickTextEdit16getFormattedTextEii@Base 5.0.2 1
  _ZNK14QQuickTextEdit16inputMethodHintsEv@Base 5.0.2 1
- _ZNK14QQuickTextEdit16inputMethodQueryEN2Qt16InputMethodQueryE8QVariant@Base 5.3.1 1
+ _ZNK14QQuickTextEdit16inputMethodQueryEN2Qt16InputMethodQueryE8QVariant@Base 5.3.2 1
  _ZNK14QQuickTextEdit16inputMethodQueryEN2Qt16InputMethodQueryE@Base 5.0.2 1
  _ZNK14QQuickTextEdit16selectByKeyboardEv@Base 5.1.0 1
  _ZNK14QQuickTextEdit17selectedTextColorEv@Base 5.0.2 1

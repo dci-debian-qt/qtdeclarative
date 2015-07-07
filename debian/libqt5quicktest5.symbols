@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 5.4.1 amd64
+# SymbolsHelper-Confirmed: 5.4.0 amd64 arm64 armhf i386 powerpc ppc64el
 libQt5QuickTest.so.5 libqt5quicktest5 #MINVER#
 | libqt5quicktest5 #MINVER#, qtdeclarative-abi-5-4-1
  _Z15quick_test_mainiPPcPKcS2_@Base 5.0.2
