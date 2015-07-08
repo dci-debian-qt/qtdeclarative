@@ -1,11 +1,11 @@
-qtdeclarative-opensource-src (5.4.2-1ubuntu2) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.4.2-1ubuntu2) wily; urgency=medium
 
   * debian/patches/Add-QQuickAsyncImageProvider.patch:
     - Fix segfault by importing https://codereview.qt-project.org/#/c/115522/
       and https://codereview.qt-project.org/#/c/120638/
       (LP: #1469611)
 
- -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 07 Jul 2015 11:51:53 +0000
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 08 Jul 2015 05:20:41 +0000
 
 qtdeclarative-opensource-src (5.4.2-1ubuntu1) wily; urgency=medium
 
