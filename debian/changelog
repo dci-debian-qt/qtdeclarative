@@ -9,6 +9,7 @@ qtdeclarative-opensource-src (5.5.0-0ubuntu1) UNRELEASED; urgency=medium
   * Rebase patches:
     - debian/patches/Add-QQuickAsyncImageProvider.patch
     - debian/patches/disable_failing_tests.patch
+  * Update .install files.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
 
