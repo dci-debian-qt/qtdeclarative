@@ -11,6 +11,7 @@ qtdeclarative-opensource-src (5.5.0-0ubuntu1) UNRELEASED; urgency=medium
     - debian/patches/disable_failing_tests.patch
   * Update .install files.
   * Skip tests also on ppc64el, they are flaky.
+  * Update symbols.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
 
