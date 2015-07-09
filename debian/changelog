@@ -13,6 +13,7 @@ qtdeclarative-opensource-src (5.5.0-0ubuntu1) UNRELEASED; urgency=medium
   * Skip tests also on ppc64el, they are flaky.
   * Update symbols and mark/unmark private ones.
   * Bump ABI version to 5-5-0.
+  * Bump build dependencies.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
 
