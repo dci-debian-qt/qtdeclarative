@@ -2,7 +2,7 @@
 libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
 | libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#, qtdeclarative-abi-5-5-0
  _Z23qsgnode_set_descriptionP7QSGNodeRK7QString@Base 5.4.0
- (arch=arm64 powerpc ppc64el)_ZN10QByteArray7reserveEi@Base 5.3.0
+ (optional=gccinternal)_ZN10QByteArray7reserveEi@Base 5.3.0
  _ZN10QQuickItem10classBeginEv@Base 5.0.2
  _ZN10QQuickItem10itemChangeENS_10ItemChangeERKNS_14ItemChangeDataE@Base 5.0.2
  _ZN10QQuickItem10resetWidthEv@Base 5.0.2
@@ -548,6 +548,8 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN14QQuickProfiler16staticMetaObjectE@Base 5.3.0 1
  _ZN14QQuickProfiler17stopProfilingImplEv@Base 5.3.0 1
  _ZN14QQuickProfiler18startProfilingImplEy@Base 5.4.0 1
+ (optional=templinst|arch=amd64 arm64)_ZN14QQuickProfiler15sceneGraphFrameILN23QQmlProfilerDefinitions19SceneGraphFrameTypeE2EEEvxxxxx@Base 5.4.0 1
+ (optional=templinst)_ZN14QQuickProfiler15sceneGraphFrameILN23QQmlProfilerDefinitions19SceneGraphFrameTypeE6EEEvxxxxx@Base 5.4.2
  (optional=templinst)_ZN14QQuickProfiler21reportSceneGraphFrameILN23QQmlProfilerDefinitions19SceneGraphFrameTypeE2ELb1EEEvy@Base 5.5.0 1
  _ZN14QQuickProfiler25registerAnimationCallbackEv@Base 5.3.0 1
  _ZN14QQuickProfiler8setTimerERK13QElapsedTimer@Base 5.3.0 1
@@ -1491,6 +1493,16 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN19QQuickImageProviderD0Ev@Base 5.0.2
  _ZN19QQuickImageProviderD1Ev@Base 5.0.2
  _ZN19QQuickImageProviderD2Ev@Base 5.0.2
+ (optional=gccinternal)_ZN19QQuickImageResponse11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.4.2
+ (optional=gccinternal)_ZN19QQuickImageResponse11qt_metacastEPKc@Base 5.4.2
+ (optional=gccinternal)_ZN19QQuickImageResponse16staticMetaObjectE@Base 5.4.2
+ (optional=gccinternal)_ZN19QQuickImageResponse6cancelEv@Base 5.4.2
+ (optional=gccinternal)_ZN19QQuickImageResponse8finishedEv@Base 5.4.2
+ (optional=gccinternal)_ZN19QQuickImageResponseC1Ev@Base 5.4.2
+ (optional=gccinternal)_ZN19QQuickImageResponseC2Ev@Base 5.4.2
+ (optional=gccinternal)_ZN19QQuickImageResponseD0Ev@Base 5.4.2
+ (optional=gccinternal)_ZN19QQuickImageResponseD1Ev@Base 5.4.2
+ (optional=gccinternal)_ZN19QQuickImageResponseD2Ev@Base 5.4.2
  _ZN19QQuickImageResponse11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.5.0
  _ZN19QQuickImageResponse11qt_metacastEPKc@Base 5.5.0
  _ZN19QQuickImageResponse16staticMetaObjectE@Base 5.5.0
@@ -2343,6 +2355,8 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialD0Ev@Base 5.0.2 1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialD1Ev@Base 5.0.2 1
  _ZN40QSGDistanceFieldShiftedStyleTextMaterialD2Ev@Base 5.0.2 1
+ (optional=gccinternal|arch=ppc64el)_ZN6QColorC1EPKc@Base 5.4.2
+ (optional=gccinternal|arch=ppc64el)_ZN6QColorC2EPKc@Base 5.4.2
  _ZN7QSGNode15appendChildNodeEPS_@Base 5.0.2
  _ZN7QSGNode15removeChildNodeEPS_@Base 5.0.2
  _ZN7QSGNode16prependChildNodeEPS_@Base 5.0.2
@@ -3298,10 +3312,10 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV11QSGMaterial@Base 5.0.2
  _ZTV11QSGRenderer@Base 5.0.2 1
  _ZTV11QSGRootNode@Base 5.0.2
- _ZTV12QQmlRefCount@Base 5.4.0 1
+ (optional=gccinternal)_ZTV12QQmlRefCount@Base 5.4.0 1
  _ZTV12QQuickWindow@Base 5.0.2
- _ZTV12QSGGlyphNode@Base 5.0.2 1
- _ZTV12QSGImageNode@Base 5.0.2 1
+ (optional=gccinternal)_ZTV12QSGGlyphNode@Base 5.0.2 1
+ (optional=gccinternal)_ZTV12QSGImageNode@Base 5.0.2 1
  _ZTV13QQuickAnchors@Base 5.0.2 1
  _ZTV13QSGNodeDumper@Base 5.0.2 1
  _ZTV13QSGRenderLoop@Base 5.1.0 1
@@ -3314,7 +3328,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV14QSGNodeUpdater@Base 5.0.2 1
  _ZTV14QSGNodeVisitor@Base 5.0.2
  _ZTV14QSGOpacityNode@Base 5.0.2
- _ZTV14QSGPainterNode@Base 5.0.2 1
+ (optional=gccinternal)_ZTV14QSGPainterNode@Base 5.0.2 1
  _ZTV15QQuickFlickable@Base 5.0.2 1
  _ZTV15QQuickImageBase@Base 5.0.2 1
  _ZTV15QQuickMouseArea@Base 5.0.2 1
@@ -3331,11 +3345,11 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV16QQuickStateGroup@Base 5.0.2 1
  _ZTV16QQuickTransition@Base 5.0.2 1
  _ZTV16QSGContextPlugin@Base 5.0.2 1
- _ZTV16QSGRectangleNode@Base 5.0.2 1
+ (optional=gccinternal)_ZTV16QSGRectangleNode@Base 5.0.2 1
  _ZTV16QSGRenderContext@Base 5.2.0~rc1 1
  _ZTV16QSGTransformNode@Base 5.0.2
  _ZTV16QSGVisitableNode@Base 5.4.0 1
- _ZTV17QFactoryInterface@Base 5.0.2
+ (optional=gccinternal)_ZTV17QFactoryInterface@Base 5.0.2
  _ZTV17QInputMethodEvent@Base 5.0.2
  _ZTV17QQuickAnimatorJob@Base 5.2.0~beta1 1
  _ZTV17QQuickItemPrivate@Base 5.0.2 1
@@ -3371,7 +3385,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV20QSGBasicGeometryNode@Base 5.0.2
  _ZTV20QSGFlatColorMaterial@Base 5.0.2
  _ZTV20QSGSimpleTextureNode@Base 5.0.2
- _ZTV20QTextObjectInterface@Base 5.0.2
+ (optional=gccinternal)_ZTV20QTextObjectInterface@Base 5.0.2
  _ZTV21QQuickDefaultClipNode@Base 5.2.0~beta1 1
  _ZTV21QQuickNumberAnimation@Base 5.0.2 1
  _ZTV21QQuickOpacityAnimator@Base 5.2.0~beta1 1
@@ -3408,13 +3422,13 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV26QAccessibleTextUpdateEvent@Base 5.0.2
  _ZTV26QQuickShaderEffectMaterial@Base 5.0.2 1
  _ZTV26QSGAbstractRendererPrivate@Base 5.4.0 1
- _ZTV26QSGContextFactoryInterface@Base 5.0.2
+ (optional=gccinternal)_ZTV26QSGContextFactoryInterface@Base 5.0.2
  _ZTV26QSGDistanceFieldGlyphCache@Base 5.0.2 1
  _ZTV27QAccessibleStateChangeEvent@Base 5.3.0
  _ZTV27QAccessibleValueChangeEvent@Base 5.0.2
  _ZTV27QQuickKeyNavigationAttached@Base 5.4.0 1
  _ZTV28QSGDistanceFieldTextMaterial@Base 5.0.2 1
- _ZTV29QSGDistanceFieldGlyphConsumer@Base 5.0.2 1
+ (optional=gccinternal)_ZTV29QSGDistanceFieldGlyphConsumer@Base 5.0.2 1
  _ZTV30QSGOpaqueTextureMaterialShader@Base 5.0.2 1
  _ZTV33QSGDefaultDistanceFieldGlyphCache@Base 5.0.2 1
  _ZTV34QSGDistanceFieldStyledTextMaterial@Base 5.0.2 1
@@ -3427,7 +3441,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV9QSGEngine@Base 5.4.0
  _ZTVN16QSGBatchRenderer8RendererE@Base 5.2.0~beta1 1
  _ZTVN23QQuickFramebufferObject8RendererE@Base 5.2.0~beta1 1
- _ZTVN9QV8Engine9DeletableE@Base 5.0.2 1
+ (optional=gccinternal)_ZTVN9QV8Engine9DeletableE@Base 5.0.2 1
  _ZZN8QQmlData4initEvE11initialized@Base 5.0.2 1
  _ZZZNK15QQuickXAnimator12propertyNameEvENKUlvE_clEvE15qstring_literal@Base 5.2.0~beta1 1
  _ZZZNK15QQuickYAnimator12propertyNameEvENKUlvE_clEvE15qstring_literal@Base 5.2.0~beta1 1

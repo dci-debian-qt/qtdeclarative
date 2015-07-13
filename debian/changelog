@@ -18,6 +18,13 @@ qtdeclarative-opensource-src (5.5.0-0ubuntu1) UNRELEASED; urgency=medium
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
 
+qtdeclarative-opensource-src (5.4.2-1ubuntu3) wily; urgency=medium
+
+  * Rebuild for GCC5 transition.
+  * Update symbols.
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Fri, 10 Jul 2015 09:24:02 +0300
+
 qtdeclarative-opensource-src (5.4.2-1ubuntu2) wily; urgency=medium
 
   * debian/patches/Add-QQuickAsyncImageProvider.patch:
