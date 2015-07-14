@@ -15,6 +15,7 @@ qtdeclarative-opensource-src (5.5.0-0ubuntu1) UNRELEASED; urgency=medium
   * Bump ABI version to 5-5-0.
   * Bump build dependencies.
   * Build dep on libqt5xcbqpa5 to be able to run the tests under xvfb.
+  * Update Vcs url:s to Debian git.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
 
