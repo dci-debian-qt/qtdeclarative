@@ -161,7 +161,7 @@ Index: qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qqmlirbuilder.cpp
  
      const int importSize = sizeof(QV4::CompiledData::Import) * output.imports.count();
 @@ -1527,7 +1532,6 @@ QV4::CompiledData::Unit *QmlUnitGenerato
-     memcpy(data, jsUnit, unitSize);
+     memset(data + unitSize, 0, totalSize - unitSize);
      if (jsUnit != compilationUnit->data)
          free(jsUnit);
 -    jsUnit = 0;
@@ -241,17 +241,17 @@ Index: qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qv4compileddata_p.h
 --- qtdeclarative-opensource-src-5.4.0.orig/src/qml/compiler/qv4compileddata_p.h
 +++ qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qv4compileddata_p.h
 @@ -594,6 +594,11 @@ struct Q_QML_PRIVATE_EXPORT CompilationU
-     QV4::InternalClass **runtimeClasses;
      QVector<QV4::Function *> runtimeFunctions;
+     mutable QQmlNullableValue<QUrl> m_url;
  
 +#ifdef ENABLE_UNIT_CACHE
 +    QVector<int> lookupTable;
 +    bool isRestored;
 +#endif
 +
-     QV4::Function *linkToEngine(QV4::ExecutionEngine *engine);
-     void unlink();
- 
+     // index is object index. This allows fast access to the
+     // property data when initializing bindings, avoiding expensive
+     // lookups by string (property name).
 Index: qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qv4isel_moth_p.h
 ===================================================================
 --- qtdeclarative-opensource-src-5.4.0.orig/src/qml/compiler/qv4isel_moth_p.h
@@ -273,8 +273,8 @@ Index: qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qv4isel_p.cpp
 --- qtdeclarative-opensource-src-5.4.0.orig/src/qml/compiler/qv4isel_p.cpp
 +++ qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qv4isel_p.cpp
 @@ -3,6 +3,12 @@
- ** Copyright (C) 2014 Digia Plc and/or its subsidiary(-ies).
- ** Contact: http://www.qt-project.org/legal
+ ** Copyright (C) 2015 The Qt Company Ltd.
+ ** Contact: http://www.qt.io/licensing/
  **
 +** Copyright (C) 2015 Nomovok Ltd. All rights reserved.
 +** Contact: info@nomovok.com
@@ -285,9 +285,10 @@ Index: qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qv4isel_p.cpp
  ** This file is part of the QtQml module of the Qt Toolkit.
  **
  ** $QT_BEGIN_LICENSE:LGPL21$
-@@ -41,6 +47,54 @@
+@@ -41,9 +47,65 @@
  
  #include <QString>
++#include <QDataStream>
  
 +#ifndef V4_UNIT_CACHE
 +#undef ENABLE_UNIT_CACHE
@@ -306,7 +307,6 @@ Index: qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qv4isel_p.cpp
 +#include <QStandardPaths>
 +#include <QDir>
 +#include <QFile>
-+#include <QDataStream>
 +#include <QBuffer>
 +#endif
 +
@@ -337,10 +337,6 @@ Index: qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qv4isel_p.cpp
 +    }
 +}
 +
- namespace {
- Q_GLOBAL_STATIC_WITH_ARGS(QTextStream, qout, (stderr, QIODevice::WriteOnly));
- #define qout *qout()
-@@ -49,6 +103,14 @@ Q_GLOBAL_STATIC_WITH_ARGS(QTextStream, q
  using namespace QV4;
  using namespace QV4::IR;
  
@@ -576,7 +572,7 @@ Index: qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qv4isel_p.cpp
 +
 +            int dummySize = -1; // Pass known value to trigger use of code buffer
 +            tmpUnit->codeRefs[i] = as->link(&dummySize);
-+            Q_ASSERT(dummySize == (int)codeRefLen);
++            //Q_ASSERT(dummySize == (int)codeRefLen);
 +
 +            delete as;
 +        }
@@ -730,7 +726,7 @@ Index: qtdeclarative-opensource-src-5.4.0/src/qml/jit/qv4assembler.cpp
 @@ -69,7 +69,15 @@ void CompilationUnit::linkBackendToEngin
  
          QV4::Function *runtimeFunction = new QV4::Function(engine, this, compiledFunction,
-                                                            (ReturnedValue (*)(QV4::ExecutionContext *, const uchar *)) codeRefs[i].code().executableAddress());
+                                                            (ReturnedValue (*)(QV4::ExecutionEngine *, const uchar *)) codeRefs[i].code().executableAddress());
 -        runtimeFunctions[i] = runtimeFunction;
 +
 +#if ENABLE_UNIT_CACHE
@@ -1087,11 +1083,11 @@ Index: qtdeclarative-opensource-src-5.4.0/src/qml/jsruntime/qv4functionobject.cp
 +++ qtdeclarative-opensource-src-5.4.0/src/qml/jsruntime/qv4functionobject.cpp
 @@ -226,6 +226,7 @@ ReturnedValue FunctionCtor::construct(Ma
  
-     QV4::Compiler::JSUnitGenerator jsGenerator(&module);
-     QScopedPointer<EvalInstructionSelection> isel(v4->iselFactory->create(QQmlEnginePrivate::get(v4), v4->executableAllocator, &module, &jsGenerator));
-+    isel->setEngine(QQmlEnginePrivate::get(v4));
-     QQmlRefPointer<QV4::CompiledData::CompilationUnit> compilationUnit = isel->compile();
-     QV4::Function *vmf = compilationUnit->linkToEngine(v4);
+     Compiler::JSUnitGenerator jsGenerator(&module);
+     QScopedPointer<EvalInstructionSelection> isel(scope.engine->iselFactory->create(QQmlEnginePrivate::get(scope.engine), scope.engine->executableAllocator, &module, &jsGenerator));
++    isel->setEngine(QQmlEnginePrivate::get(scope.engine));
+     QQmlRefPointer<CompiledData::CompilationUnit> compilationUnit = isel->compile();
+     Function *vmf = compilationUnit->linkToEngine(scope.engine);
  
 Index: qtdeclarative-opensource-src-5.4.0/src/qml/jsruntime/qv4qobjectwrapper.cpp
 ===================================================================
@@ -1133,37 +1129,25 @@ Index: qtdeclarative-opensource-src-5.4.0/src/qml/qml/qqmlengine.cpp
    activeObjectCreator(0),
    networkAccessManager(0), networkAccessManagerFactory(0), urlInterceptor(0),
    scarceResourcesRefCount(0), typeLoader(e), importDatabase(e), uniqueId(1),
--  incubatorCount(0), incubationController(0), mutex(QMutex::Recursive)
-+  incubatorCount(0), incubationController(0), mutex(QMutex::Recursive),
+-  incubatorCount(0), incubationController(0)
++  incubatorCount(0), incubationController(0),
 +  qmlCacheValid(0)
  {
-     useNewCompiler = true;
  }
+ 
 Index: qtdeclarative-opensource-src-5.4.0/src/qml/qml/qqmlengine_p.h
 ===================================================================
 --- qtdeclarative-opensource-src-5.4.0.orig/src/qml/qml/qqmlengine_p.h
 +++ qtdeclarative-opensource-src-5.4.0/src/qml/qml/qqmlengine_p.h
 @@ -263,6 +263,8 @@ public:
+ 
      mutable QMutex networkAccessManagerMutex;
-     mutable QMutex mutex;
  
 +    int qmlCacheValid;
 +
  private:
-     // Locker locks the QQmlEnginePrivate data structures for read and write, if necessary.
-     // Currently, locking is only necessary if the threaded loader is running concurrently.  If it is
-Index: qtdeclarative-opensource-src-5.4.0/src/qml/qml/qqmljavascriptexpression.cpp
-===================================================================
---- qtdeclarative-opensource-src-5.4.0.orig/src/qml/qml/qqmljavascriptexpression.cpp
-+++ qtdeclarative-opensource-src-5.4.0/src/qml/qml/qqmljavascriptexpression.cpp
-@@ -327,6 +327,7 @@ QV4::ReturnedValue QQmlJavaScriptExpress
- 
-     QV4::ScopedObject qmlScopeObject(scope, QV4::QmlContextWrapper::qmlScope(ep->v8engine(), ctxt, qmlScope));
-     QV4::Script script(v4, qmlScopeObject, code, filename, line);
-+
-     QV4::ScopedValue result(scope);
-     script.parse();
-     if (!v4->hasException)
+     // Must be called locked
+     QQmlPropertyCache *createCache(QQmlType *, int, QQmlError &error);
 Index: qtdeclarative-opensource-src-5.4.0/src/qml/compiler/qv4isel_moth.cpp
 ===================================================================
 --- qtdeclarative-opensource-src-5.4.0.orig/src/qml/compiler/qv4isel_moth.cpp
