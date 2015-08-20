@@ -21,6 +21,13 @@ qtdeclarative-opensource-src (5.5.0-0ubuntu1) UNRELEASED; urgency=medium
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
 
+qtdeclarative-opensource-src (5.4.2-1ubuntu5) wily; urgency=medium
+
+  * debian/patches/Don-t-change-the-currentItem-after-a-viewport-resize.patch:
+    - Fix ListView's currentIndex changing when view is resized (LP: #1433442)
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 13 Aug 2015 12:30:49 +0300
+
 qtdeclarative-opensource-src (5.4.2-1ubuntu4) wily; urgency=medium
 
   * Rebuild for GCC5 transition.
