@@ -21,6 +21,14 @@ qtdeclarative-opensource-src (5.5.0-0ubuntu1) UNRELEASED; urgency=medium
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
 
+qtdeclarative-opensource-src (5.4.2-1ubuntu6) wily; urgency=medium
+
+  * debian/patches/Fix-memory-leak-when-QQuickPixmapReply-Event-is-dele.patch
+    debian/patches/Fix-memory-leak-when-using-async-image-providers.patch:
+    - Fix memory leaks (LP: #1484914)
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 01 Sep 2015 12:02:43 +0000
+
 qtdeclarative-opensource-src (5.4.2-1ubuntu5) wily; urgency=medium
 
   * debian/patches/Don-t-change-the-currentItem-after-a-viewport-resize.patch:
