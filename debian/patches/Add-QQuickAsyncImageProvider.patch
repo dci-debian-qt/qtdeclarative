@@ -1,0 +1,1145 @@
+From f9c1b6e9c7ad3fbceef32590c5b7b6a9719fd453 Mon Sep 17 00:00:00 2001
+From: Albert Astals Cid <albert.astals@canonical.com>
+Date: Fri, 13 Mar 2015 17:29:57 +0100
+Subject: [PATCH] Add QQuickAsyncImageProvider
+
+It allows for providers to implement threading on their side
+
+Change-Id: I34042b213ce7697a3e39470387357d733e15723c
+Reviewed-by: Gunnar Sletta <gunnar@sletta.org>
+---
+ .../ImageResponseProviderCore/qmldir               |   2 +
+ .../doc/src/imageresponseprovider.qdoc             |  35 +++
+ .../imageresponseprovider-example.qml              |  48 ++++
+ .../imageresponseprovider.cpp                      | 123 ++++++++++
+ .../imageresponseprovider.pro                      |  15 ++
+ .../imageresponseprovider.qmlproject               |  14 ++
+ examples/quick/quick.pro                           |   1 +
+ src/qml/qml/qqmlengine.cpp                         |   4 +
+ src/qml/qml/qqmlengine.h                           |   4 +-
+ src/quick/util/qquickimageprovider.cpp             | 124 +++++++++-
+ src/quick/util/qquickimageprovider.h               |  32 +++
+ src/quick/util/qquickpixmapcache.cpp               | 271 +++++++++++++--------
+ .../tst_qquickimageprovider.cpp                    |  98 ++++++++
+ 13 files changed, 673 insertions(+), 98 deletions(-)
+ create mode 100644 examples/quick/imageresponseprovider/ImageResponseProviderCore/qmldir
+ create mode 100644 examples/quick/imageresponseprovider/doc/src/imageresponseprovider.qdoc
+ create mode 100644 examples/quick/imageresponseprovider/imageresponseprovider-example.qml
+ create mode 100644 examples/quick/imageresponseprovider/imageresponseprovider.cpp
+ create mode 100644 examples/quick/imageresponseprovider/imageresponseprovider.pro
+ create mode 100644 examples/quick/imageresponseprovider/imageresponseprovider.qmlproject
+
+diff --git a/examples/quick/imageresponseprovider/ImageResponseProviderCore/qmldir b/examples/quick/imageresponseprovider/ImageResponseProviderCore/qmldir
+new file mode 100644
+index 0000000..3a5821b
+--- /dev/null
++++ b/examples/quick/imageresponseprovider/ImageResponseProviderCore/qmldir
+@@ -0,0 +1,2 @@
++plugin qmlimageresponseproviderplugin
++
+diff --git a/examples/quick/imageresponseprovider/doc/src/imageresponseprovider.qdoc b/examples/quick/imageresponseprovider/doc/src/imageresponseprovider.qdoc
+new file mode 100644
+index 0000000..afe1d40
+--- /dev/null
++++ b/examples/quick/imageresponseprovider/doc/src/imageresponseprovider.qdoc
+@@ -0,0 +1,35 @@
++/****************************************************************************
++**
++** Copyright (C) 2015 Canonical Limited and/or its subsidiary(-ies)
++** Contact: http://www.qt.io/licensing/
++**
++** This file is part of the documentation of the Qt Toolkit.
++**
++** $QT_BEGIN_LICENSE:FDL$
++** Commercial License Usage
++** Licensees holding valid commercial Qt licenses may use this file in
++** accordance with the commercial license agreement provided with the
++** Software or, alternatively, in accordance with the terms contained in
++** a written agreement between you and The Qt Company. For licensing terms
++** and conditions see http://www.qt.io/terms-conditions. For further
++** information use the contact form at http://www.qt.io/contact-us.
++**
++** GNU Free Documentation License Usage
++** Alternatively, this file may be used under the terms of the GNU Free
++** Documentation License version 1.3 as published by the Free Software
++** Foundation and appearing in the file included in the packaging of
++** this file. Please review the following information to ensure
++** the GNU Free Documentation License version 1.3 requirements
++** will be met: http://www.gnu.org/copyleft/fdl.html.
++** $QT_END_LICENSE$
++**
++****************************************************************************/
++
++/*!
++    \title C++ Extensions: Image Response Provider Example
++    \example imageresponseprovider
++
++    This examples shows how to use QQuickImageProvider to serve images
++    asynchronously to QML image elements.
++*/
++
+diff --git a/examples/quick/imageresponseprovider/imageresponseprovider-example.qml b/examples/quick/imageresponseprovider/imageresponseprovider-example.qml
+new file mode 100644
+index 0000000..20c1e69
+--- /dev/null
++++ b/examples/quick/imageresponseprovider/imageresponseprovider-example.qml
+@@ -0,0 +1,48 @@
++/****************************************************************************
++**
++** Copyright (C) 2015 Canonical Limited and/or its subsidiary(-ies)
++** Contact: http://www.qt.io/licensing/
++**
++** This file is part of the demonstration applications of the Qt Toolkit.
++**
++** $QT_BEGIN_LICENSE:BSD$
++** You may use this file under the terms of the BSD license as follows:
++**
++** "Redistribution and use in source and binary forms, with or without
++** modification, are permitted provided that the following conditions are
++** met:
++**   * Redistributions of source code must retain the above copyright
++**     notice, this list of conditions and the following disclaimer.
++**   * Redistributions in binary form must reproduce the above copyright
++**     notice, this list of conditions and the following disclaimer in
++**     the documentation and/or other materials provided with the
++**     distribution.
++**   * Neither the name of The Qt Company Ltd nor the names of its
++**     contributors may be used to endorse or promote products derived
++**     from this software without specific prior written permission.
++**
++**
++** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
++** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
++** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
++** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
++** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
++** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
++** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
++**
++** $QT_END_LICENSE$
++**
++****************************************************************************/
++
++import QtQuick 2.0
++import "ImageResponseProviderCore"
++
++Column {
++    Image { source: "image://async/slow" }
++    Image { source: "image://async/fast" }
++}
++
+diff --git a/examples/quick/imageresponseprovider/imageresponseprovider.cpp b/examples/quick/imageresponseprovider/imageresponseprovider.cpp
+new file mode 100644
+index 0000000..bdec291
+--- /dev/null
++++ b/examples/quick/imageresponseprovider/imageresponseprovider.cpp
+@@ -0,0 +1,123 @@
++/****************************************************************************
++**
++** Copyright (C) 2015 Canonical Limited and/or its subsidiary(-ies)
++** Contact: http://www.qt.io/licensing/
++**
++** This file is part of the demonstration applications of the Qt Toolkit.
++**
++** $QT_BEGIN_LICENSE:BSD$
++** You may use this file under the terms of the BSD license as follows:
++**
++** "Redistribution and use in source and binary forms, with or without
++** modification, are permitted provided that the following conditions are
++** met:
++**   * Redistributions of source code must retain the above copyright
++**     notice, this list of conditions and the following disclaimer.
++**   * Redistributions in binary form must reproduce the above copyright
++**     notice, this list of conditions and the following disclaimer in
++**     the documentation and/or other materials provided with the
++**     distribution.
++**   * Neither the name of The Qt Company Ltd nor the names of its
++**     contributors may be used to endorse or promote products derived
++**     from this software without specific prior written permission.
++**
++**
++** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
++** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
++** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
++** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
++** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
++** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
++** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
++**
++** $QT_END_LICENSE$
++**
++****************************************************************************/
++
++
++#include <qqmlextensionplugin.h>
++
++#include <qqmlengine.h>
++#include <qquickimageprovider.h>
++#include <QDebug>
++#include <QImage>
++#include <QThreadPool>
++
++class AsyncImageResponse : public QQuickImageResponse, public QRunnable
++{
++    public:
++        AsyncImageResponse(const QString &id, const QSize &requestedSize)
++         : m_id(id), m_requestedSize(requestedSize), m_texture(0)
++        {
++            setAutoDelete(false);
++        }
++
++        QQuickTextureFactory *textureFactory() const
++        {
++            return m_texture;
++        }
++
++        void run()
++        {
++            QImage image(50, 50, QImage::Format_RGB32);
++            if (m_id == "slow") {
++                qDebug() << "Slow, red, sleeping for 5 seconds";
++                QThread::sleep(5);
++                image.fill(Qt::red);
++            } else {
++                qDebug() << "Fast, blue, sleeping for 1 second";
++                QThread::sleep(1);
++                image.fill(Qt::blue);
++            }
++            if (m_requestedSize.isValid())
++                image = image.scaled(m_requestedSize);
++            m_texture = QQuickTextureFactory::textureFactoryForImage(image);
++            emit finished();
++        }
++
++        QString m_id;
++        QSize m_requestedSize;
++        QQuickTextureFactory *m_texture;
++};
++
++class AsyncImageProvider : public QQuickAsyncImageProvider
++{
++public:
++    QQuickImageResponse *requestImageResponse(const QString &id, const QSize &requestedSize)
++    {
++        AsyncImageResponse *response = new AsyncImageResponse(id, requestedSize);
++        pool.start(response);
++        return response;
++    }
++
++private:
++    QThreadPool pool;
++};
++
++
++class ImageProviderExtensionPlugin : public QQmlExtensionPlugin
++{
++    Q_OBJECT
++    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
++public:
++    void registerTypes(const char *uri)
++    {
++        Q_UNUSED(uri);
++    }
++
++    void initializeEngine(QQmlEngine *engine, const char *uri)
++    {
++        Q_UNUSED(uri);
++        engine->addImageProvider("async", new AsyncImageProvider);
++    }
++
++};
++
++
++#define QQmlExtensionInterface_iid "org.qt-project.Qt.QQmlExtensionInterface"
++
++#include "imageresponseprovider.moc"
+diff --git a/examples/quick/imageresponseprovider/imageresponseprovider.pro b/examples/quick/imageresponseprovider/imageresponseprovider.pro
+new file mode 100644
+index 0000000..856ddde
+--- /dev/null
++++ b/examples/quick/imageresponseprovider/imageresponseprovider.pro
+@@ -0,0 +1,15 @@
++TEMPLATE = lib
++CONFIG += plugin
++QT += qml quick
++
++DESTDIR = ImageResponseProviderCore
++TARGET  = qmlimageresponseproviderplugin
++
++SOURCES += imageresponseprovider.cpp
++
++EXAMPLE_FILES = imageresponseprovider-example.qml
++
++target.path = $$[QT_INSTALL_EXAMPLES]/quick/imageresponseprovider/ImageResponseProviderCore
++qml.files = ImageResponseProviderCore/qmldir
++qml.path = $$[QT_INSTALL_EXAMPLES]/quick/imageresponseprovider/ImageResponseProviderCore
++INSTALLS = target qml
+diff --git a/examples/quick/imageresponseprovider/imageresponseprovider.qmlproject b/examples/quick/imageresponseprovider/imageresponseprovider.qmlproject
+new file mode 100644
+index 0000000..2bb4016
+--- /dev/null
++++ b/examples/quick/imageresponseprovider/imageresponseprovider.qmlproject
+@@ -0,0 +1,14 @@
++import QmlProject 1.0
++
++Project {
++    /* Include .qml, .js, and image files from current directory and subdirectories */
++    QmlFiles {
++        directory: "."
++    }
++    JavaScriptFiles {
++        directory: "."
++    }
++    ImageFiles {
++        directory: "."
++    }
++}
+diff --git a/examples/quick/quick.pro b/examples/quick/quick.pro
+index a412c53..c5ef461 100644
+--- a/examples/quick/quick.pro
++++ b/examples/quick/quick.pro
+@@ -20,6 +20,7 @@ SUBDIRS =   quick-accessibility \
+             tutorials \
+             customitems \
+             imageprovider \
++            imageresponseprovider \
+             window \
+             particles \
+             demos \
+diff --git a/src/qml/qml/qqmlengine.cpp b/src/qml/qml/qqmlengine.cpp
+index 92e98e3..96fb2f1 100644
+--- a/src/qml/qml/qqmlengine.cpp
++++ b/src/qml/qml/qqmlengine.cpp
+@@ -247,6 +247,10 @@ void QQmlEnginePrivate::activateDesignerMode()
+         The QQuickImageProvider::requestPixmap() method will be called for all image requests.
+     \value Texture The Image Provider provides QSGTextureProvider based images.
+         The QQuickImageProvider::requestTexture() method will be called for all image requests.
++    \value ImageResponse The Image provider provides QQuickTextureFactory based images.
++        Should only be used in QQuickAsyncImageProvider or its subclasses.
++        The QQuickAsyncImageProvider::requestImageResponse() method will be called for all image requests.
++        Since Qt 5.6
+     \omitvalue Invalid
+ */
+ 
+diff --git a/src/qml/qml/qqmlengine.h b/src/qml/qml/qqmlengine.h
+index df673c1..61a8842 100644
+--- a/src/qml/qml/qqmlengine.h
++++ b/src/qml/qml/qqmlengine.h
+@@ -52,7 +52,9 @@ public:
+         Image,
+         Pixmap,
+         Texture,
+-        Invalid
++        Invalid,
++        ImageResponse
++        // ### Qt6: reorder these, and give Invalid a fixed large value
+     };
+ 
+     enum Flag {
+diff --git a/src/quick/util/qquickimageprovider.cpp b/src/quick/util/qquickimageprovider.cpp
+index a231209..a2fe4c8 100644
+--- a/src/quick/util/qquickimageprovider.cpp
++++ b/src/quick/util/qquickimageprovider.cpp
+@@ -33,6 +33,9 @@
+ 
+ #include "qquickimageprovider.h"
+ 
++#include "qquickpixmapcache_p.h"
++#include <QtQuick/private/qsgcontext_p.h>
++
+ QT_BEGIN_NAMESPACE
+ 
+ class QQuickImageProviderPrivate
+@@ -95,6 +98,23 @@ QImage QQuickTextureFactory::image() const
+     return QImage();
+ }
+ 
++/*!
++    Returns a QQuickTextureFactory holding given the image.
++
++    \since 5.6
++ */
++
++QQuickTextureFactory *QQuickTextureFactory::textureFactoryForImage(const QImage &image)
++{
++    if (image.isNull())
++        return 0;
++    QQuickTextureFactory *texture = QSGContext::createTextureFactoryFromImage(image);
++    if (texture)
++        return texture;
++    return new QQuickDefaultTextureFactory(image);
++}
++
++
+ 
+ /*!
+     \fn QSGTexture *QQuickTextureFactory::createTexture(QQuickWindow *window) const
+@@ -118,6 +138,67 @@ QImage QQuickTextureFactory::image() const
+ 
+ 
+ /*!
++    \class QQuickImageResponse
++    \since 5.6
++    \brief The QQuickImageResponse class provides an interface for asynchronous image loading in QQuickAsyncImageProvider.
++    \inmodule QtQuick
++
++    The purpose of an image response is to provide a way for image provider jobs to be executed
++    in an asynchronous way.
++
++    Responses are deleted via \l deleteLater once the finished() signal has been emitted.
++    If you are using QRunnable as base for your QQuickImageResponse
++    ensure automatic deletion is disabled.
++
++    \sa QQuickImageProvider
++*/
++
++/*!
++    Constructs the image response
++*/
++QQuickImageResponse::QQuickImageResponse()
++{
++}
++
++/*!
++    Destructs the image response
++*/
++QQuickImageResponse::~QQuickImageResponse()
++{
++}
++
++/*!
++    Returns the error string for the job execution. An empty string means no error.
++*/
++QString QQuickImageResponse::errorString() const
++{
++    return QString();
++}
++
++/*!
++    This method is used to communicate that the response is no longer required by the engine.
++
++    It may be reimplemented to cancel a request in the provider side, however, it is not mandatory.
++*/
++void QQuickImageResponse::cancel()
++{
++}
++
++/*!
++    \fn void QQuickImageResponse::finished()
++
++    Signals that the job execution has finished (be it successfully, because an error happened or because it was cancelled).
++ */
++
++/*!
++    \fn QQuickTextureFactory *QQuickImageResponse::textureFactory() const
++
++    Returns the texture factory the job. You can use QQuickTextureFactory::textureFactoryForImage
++    if your provider works with QImage
++ */
++
++
++/*!
+     \class QQuickImageProvider
+     \since 5.0
+     \inmodule QtQuick
+@@ -213,7 +294,7 @@ QImage QQuickTextureFactory::image() const
+ 
+     To force asynchronous image loading, even for image sources that do not
+     have the \c asynchronous property set to \c true, you may pass the
+-    \c QQuickImageProvider::ForceAsynchronousImageLoading flag to the image
++    \c QQmlImageProviderBase::ForceAsynchronousImageLoading flag to the image
+     provider constructor. This ensures that all image requests for the
+     provider are handled in a separate thread.
+ 
+@@ -223,6 +304,12 @@ QImage QQuickTextureFactory::image() const
+     if \l {Image::}{asynchronous} is set to \c true, the value is ignored
+     and the image is loaded synchronously.
+ 
++    Asynchronous image loading for providers of type other than ImageResponse are
++    executed on a single thread per engine basis. That means that a slow image provider
++    will block the loading of any other request. To avoid that we suggest using QQuickAsyncImageProvider
++    and implement threading on the provider side via a \c QThreadPool or similar.
++    See the \l {imageresponseprovider}{Image Response Provider Example} for a complete implementation.
++
+ 
+     \section2 Image caching
+ 
+@@ -365,5 +452,40 @@ QQuickTextureFactory *QQuickImageProvider::requestTexture(const QString &id, QSi
+     return 0;
+ }
+ 
++/*!
++    \class QQuickAsyncImageProvider
++    \since 5.6
++    \inmodule QtQuick
++    \brief The QQuickAsyncImageProvider class provides an interface for for asynchronous control of QML image requests.
++
++    \sa QQuickImageProvider
++*/
++QQuickAsyncImageProvider::QQuickAsyncImageProvider()
++ : QQuickImageProvider(ImageResponse, ForceAsynchronousImageLoading)
++ , d(0) // just as a placeholder in case we need it for the future
++{
++}
++
++QQuickAsyncImageProvider::~QQuickAsyncImageProvider()
++{
++}
++
++/*!
++   \fn QQuickImageResponse *QQuickAsyncImageProvider::requestImageResponse(const QString &id, const QSize &requestedSize)
++
++    Implement this method to return the job that will provide the texture with \a id.
++
++    The \a id is the requested image source, with the "image:" scheme and
++    provider identifier removed. For example, if the image \l{Image::}{source}
++    was "image://myprovider/icons/home", the given \a id would be "icons/home".
++
++    The \a requestedSize corresponds to the \l {Image::sourceSize} requested by
++    an Image item. If \a requestedSize is a valid size, the image
++    returned should be of that size.
++
++    \note this method may be called by multiple threads, so ensure the
++    implementation of this method is reentrant.
++*/
++
+ QT_END_NAMESPACE
+ 
+diff --git a/src/quick/util/qquickimageprovider.h b/src/quick/util/qquickimageprovider.h
+index 095dd09..ea3f37c 100644
+--- a/src/quick/util/qquickimageprovider.h
++++ b/src/quick/util/qquickimageprovider.h
+@@ -43,6 +43,7 @@ QT_BEGIN_NAMESPACE
+ 
+ 
+ class QQuickImageProviderPrivate;
++class QQuickAsyncImageProviderPrivate;
+ class QSGTexture;
+ class QQuickWindow;
+ 
+@@ -56,6 +57,25 @@ public:
+     virtual QSize textureSize() const = 0;
+     virtual int textureByteCount() const = 0;
+     virtual QImage image() const;
++
++    static QQuickTextureFactory *textureFactoryForImage(const QImage &image);
++};
++
++class Q_QUICK_EXPORT QQuickImageResponse : public QObject
++{
++Q_OBJECT
++public:
++    QQuickImageResponse();
++    virtual ~QQuickImageResponse();
++
++    virtual QQuickTextureFactory *textureFactory() const = 0;
++    virtual QString errorString() const;
++
++public Q_SLOTS:
++    virtual void cancel();
++
++Q_SIGNALS:
++    void finished();
+ };
+ 
+ class Q_QUICK_EXPORT QQuickImageProvider : public QQmlImageProviderBase
+@@ -75,6 +95,18 @@ private:
+     QQuickImageProviderPrivate *d;
+ };
+ 
++class Q_QUICK_EXPORT QQuickAsyncImageProvider : public QQuickImageProvider
++{
++public:
++    QQuickAsyncImageProvider();
++    virtual ~QQuickAsyncImageProvider();
++
++    virtual QQuickImageResponse *requestImageResponse(const QString &id, const QSize &requestedSize) = 0;
++
++private:
++    QQuickAsyncImageProviderPrivate *d;
++};
++
+ QT_END_NAMESPACE
+ 
+ #endif // QQUICKIMAGEPROVIDER_H
+diff --git a/src/quick/util/qquickpixmapcache.cpp b/src/quick/util/qquickpixmapcache.cpp
+index 2066d1e..810629c 100644
+--- a/src/quick/util/qquickpixmapcache.cpp
++++ b/src/quick/util/qquickpixmapcache.cpp
+@@ -44,7 +44,6 @@
+ #include <qpa/qplatformintegration.h>
+ 
+ #include <QtQuick/private/qsgtexture_p.h>
+-#include <QtQuick/private/qsgcontext_p.h>
+ 
+ #include <QQuickWindow>
+ #include <QCoreApplication>
+@@ -67,7 +66,7 @@
+ 
+ #include <private/qquickprofiler_p.h>
+ 
+-#define IMAGEREQUEST_MAX_REQUEST_COUNT       8
++#define IMAGEREQUEST_MAX_NETWORK_REQUEST_COUNT 8
+ #define IMAGEREQUEST_MAX_REDIRECT_RECURSION 16
+ #define CACHE_EXPIRE_TIME 30
+ #define CACHE_REMOVAL_FRACTION 4
+@@ -115,16 +114,6 @@ QSGTexture *QQuickDefaultTextureFactory::createTexture(QQuickWindow *window) con
+     return t;
+ }
+ 
+-static QQuickTextureFactory *textureFactoryForImage(const QImage &image)
+-{
+-    if (image.isNull())
+-        return 0;
+-    QQuickTextureFactory *texture = QSGContext::createTextureFactoryFromImage(image);
+-    if (texture)
+-        return texture;
+-    return new QQuickDefaultTextureFactory(image);
+-}
+-
+ class QQuickPixmapReader;
+ class QQuickPixmapData;
+ class QQuickPixmapReply : public QObject
+@@ -179,6 +168,7 @@ public:
+     virtual bool event(QEvent *e);
+ private slots:
+     void networkRequestDone();
++    void asyncResponseFinished();
+ private:
+     QQuickPixmapReader *reader;
+ };
+@@ -203,8 +193,9 @@ protected:
+ private:
+     friend class QQuickPixmapReaderThreadObject;
+     void processJobs();
+-    void processJob(QQuickPixmapReply *, const QUrl &, const QSize &, AutoTransform);
++    void processJob(QQuickPixmapReply *, const QUrl &, const QString &, AutoTransform, QQuickImageProvider::ImageType, QQuickImageProvider *);
+     void networkRequestDone(QNetworkReply *);
++    void asyncResponseFinished(QQuickImageResponse *);
+ 
+     QList<QQuickPixmapReply*> jobs;
+     QList<QQuickPixmapReply*> cancelled;
+@@ -218,7 +209,8 @@ private:
+     QNetworkAccessManager *networkAccessManager();
+     QNetworkAccessManager *accessManager;
+ 
+-    QHash<QNetworkReply*,QQuickPixmapReply*> replies;
++    QHash<QNetworkReply*,QQuickPixmapReply*> networkJobs;
++    QHash<QQuickImageResponse*,QQuickPixmapReply*> asyncResponses;
+ 
+     static int replyDownloadProgress;
+     static int replyFinished;
+@@ -423,8 +415,8 @@ QQuickPixmapReader::~QQuickPixmapReader()
+         delete reply;
+     }
+     jobs.clear();
+-    QList<QQuickPixmapReply*> activeJobs = replies.values();
+-    foreach (QQuickPixmapReply *reply, activeJobs) {
++    QList<QQuickPixmapReply*> activeJobs = networkJobs.values() + asyncResponses.values();
++    foreach (QQuickPixmapReply *reply, activeJobs ) {
+         if (reply->loading) {
+             cancelled.append(reply);
+             reply->data = 0;
+@@ -439,7 +431,7 @@ QQuickPixmapReader::~QQuickPixmapReader()
+ 
+ void QQuickPixmapReader::networkRequestDone(QNetworkReply *reply)
+ {
+-    QQuickPixmapReply *job = replies.take(reply);
++    QQuickPixmapReply *job = networkJobs.take(reply);
+ 
+     if (job) {
+         job->redirectCount++;
+@@ -456,7 +448,7 @@ void QQuickPixmapReader::networkRequestDone(QNetworkReply *reply)
+                 QMetaObject::connect(reply, replyDownloadProgress, job, downloadProgress);
+                 QMetaObject::connect(reply, replyFinished, threadObject, threadNetworkRequestDone);
+ 
+-                replies.insert(reply, job);
++                networkJobs.insert(reply, job);
+                 return;
+             }
+         }
+@@ -478,7 +470,7 @@ void QQuickPixmapReader::networkRequestDone(QNetworkReply *reply)
+         // send completion event to the QQuickPixmapReply
+         mutex.lock();
+         if (!cancelled.contains(job))
+-            job->postReply(error, errorString, readSize, textureFactoryForImage(image));
++            job->postReply(error, errorString, readSize, QQuickTextureFactory::textureFactoryForImage(image));
+         mutex.unlock();
+     }
+     reply->deleteLater();
+@@ -487,6 +479,34 @@ void QQuickPixmapReader::networkRequestDone(QNetworkReply *reply)
+     threadObject->processJobs();
+ }
+ 
++void QQuickPixmapReader::asyncResponseFinished(QQuickImageResponse *response)
++{
++    QQuickPixmapReply *job = asyncResponses.take(response);
++
++    if (job) {
++        QQuickTextureFactory *t = 0;
++        QQuickPixmapReply::ReadError error = QQuickPixmapReply::NoError;
++        QString errorString;
++        QSize readSize;
++        if (!response->errorString().isEmpty()) {
++            error = QQuickPixmapReply::Loading;
++            errorString = response->errorString();
++        } else {
++            t = response->textureFactory();
++       }
++        mutex.lock();
++        if (!cancelled.contains(job))
++            job->postReply(error, errorString, t ? t->textureSize() : QSize(), t);
++        else
++            delete t;
++        mutex.unlock();
++    }
++    response->deleteLater();
++
++    // kick off event loop again incase we have dropped below max request count
++    threadObject->processJobs();
++}
++
+ QQuickPixmapReaderThreadObject::QQuickPixmapReaderThreadObject(QQuickPixmapReader *i)
+ : reader(i)
+ {
+@@ -513,6 +513,12 @@
+     reader->networkRequestDone(reply);
+ }
+ 
++void QQuickPixmapReaderThreadObject::asyncResponseFinished()
++{
++    QQuickImageResponse *response = static_cast<QQuickImageResponse *>(sender());
++    reader->asyncResponseFinished(response);
++}
++
+ void QQuickPixmapReader::processJobs()
+ {
+     QMutexLocker locker(&mutex);
+@@ -522,16 +522,22 @@
+             return; // Nothing else to do
+ 
+         // Clean cancelled jobs
+-        if (cancelled.count()) {
++        if (!cancelled.isEmpty()) {
+             for (int i = 0; i < cancelled.count(); ++i) {
+                 QQuickPixmapReply *job = cancelled.at(i);
+-                QNetworkReply *reply = replies.key(job, 0);
++                QNetworkReply *reply = networkJobs.key(job, 0);
+                 if (reply) {
+-                    replies.remove(reply);
++                    networkJobs.remove(reply);
+                     if (reply->isRunning()) {
+                         // cancel any jobs already started
+                         reply->close();
+                     }
++                } else {
++                    QQuickImageResponse *asyncResponse = asyncResponses.key(job);
++                    if (asyncResponse) {
++                        asyncResponses.remove(asyncResponse);
++                        asyncResponse->cancel();
++                    }
+                 }
+                 PIXMAP_PROFILE(pixmapStateChanged<QQuickProfiler::PixmapLoadingError>(job->url));
+                 // deleteLater, since not owned by this thread
+@@ -544,27 +550,33 @@
+             // Find a job we can use
+             bool usableJob = false;
+             for (int i = jobs.count() - 1; !usableJob && i >= 0; i--) {
+-                QQuickPixmapReply *runningJob = jobs[i];
+-                const QUrl url = runningJob->url;
++                QQuickPixmapReply *job = jobs[i];
++                const QUrl url = job->url;
++                QString localFile;
++                QQuickImageProvider::ImageType imageType = QQuickImageProvider::Invalid;
++                QQuickImageProvider *provider = 0;
+ 
+                 if (url.scheme() == QLatin1String("image")) {
++                    provider = static_cast<QQuickImageProvider *>(engine->imageProvider(imageProviderId(url)));
++                    if (provider)
++                        imageType = provider->imageType();
++
+                     usableJob = true;
+                 } else {
+-                    const QString localFile = QQmlFile::urlToLocalFileOrQrc(url);
+-                    usableJob = !localFile.isEmpty() || replies.count() < IMAGEREQUEST_MAX_REQUEST_COUNT;
++                    localFile = QQmlFile::urlToLocalFileOrQrc(url);
++                    usableJob = !localFile.isEmpty() || networkJobs.count() < IMAGEREQUEST_MAX_NETWORK_REQUEST_COUNT;
+                 }
+-
++ 
+                 if (usableJob) {
+                     jobs.removeAt(i);
+ 
+-                    runningJob->loading = true;
++                    job->loading = true;
+ 
+                     PIXMAP_PROFILE(pixmapStateChanged<QQuickProfiler::PixmapLoadingStarted>(url));
+ 
+-                    QSize requestSize = runningJob->requestSize;
+-                    AutoTransform autoTransform = runningJob->autoTransform;
++                    AutoTransform autoTransform = job->autoTransform;
+                     locker.unlock();
+-                    processJob(runningJob, url, requestSize, autoTransform);
++                    processJob(job, url, localFile, autoTransform, imageType, provider);
+                     locker.relock();
+                 }
+             }
+@@ -574,79 +586,97 @@
+     }
+ }
+ 
+-void QQuickPixmapReader::processJob(QQuickPixmapReply *runningJob, const QUrl &url,
+-                                    const QSize &requestSize, AutoTransform autoTransform)
++void QQuickPixmapReader::processJob(QQuickPixmapReply *runningJob, const QUrl &url, const QString &localFile,
++                                    AutoTransform autoTransform, QQuickImageProvider::ImageType imageType, QQuickImageProvider *provider)
+ {
+     // fetch
+     if (url.scheme() == QLatin1String("image")) {
+         // Use QQuickImageProvider
+         QSize readSize;
+ 
+-        QQuickImageProvider::ImageType imageType = QQuickImageProvider::Invalid;
+-        QQuickImageProvider *provider = static_cast<QQuickImageProvider *>(engine->imageProvider(imageProviderId(url)));
+-        if (provider)
+-            imageType = provider->imageType();
+-
+-        if (imageType == QQuickImageProvider::Invalid) {
+-            QQuickPixmapReply::ReadError errorCode = QQuickPixmapReply::Loading;
+-            QString errorStr = QQuickPixmap::tr("Invalid image provider: %1").arg(url.toString());
+-            QImage image;
+-            mutex.lock();
+-            if (!cancelled.contains(runningJob))
+-                runningJob->postReply(errorCode, errorStr, readSize, textureFactoryForImage(image));
+-            mutex.unlock();
+-        } else if (imageType == QQuickImageProvider::Image) {
+-            QImage image = provider->requestImage(imageId(url), &readSize, requestSize);
+-            QQuickPixmapReply::ReadError errorCode = QQuickPixmapReply::NoError;
+-            QString errorStr;
+-            if (image.isNull()) {
+-                errorCode = QQuickPixmapReply::Loading;
+-                errorStr = QQuickPixmap::tr("Failed to get image from provider: %1").arg(url.toString());
+-            }
+-            mutex.lock();
+-            if (!cancelled.contains(runningJob))
+-                runningJob->postReply(errorCode, errorStr, readSize, textureFactoryForImage(image));
+-            mutex.unlock();
+-        } else if (imageType == QQuickImageProvider::Pixmap) {
+-            const QPixmap pixmap = provider->requestPixmap(imageId(url), &readSize, requestSize);
+-            QQuickPixmapReply::ReadError errorCode = QQuickPixmapReply::NoError;
+-            QString errorStr;
+-            if (pixmap.isNull()) {
+-                errorCode = QQuickPixmapReply::Loading;
+-                errorStr = QQuickPixmap::tr("Failed to get image from provider: %1").arg(url.toString());
+-            }
+-            mutex.lock();
+-            if (!cancelled.contains(runningJob))
+-                runningJob->postReply(errorCode, errorStr, readSize, textureFactoryForImage(pixmap.toImage()));
+-            mutex.unlock();
+-        } else {
+-            QQuickTextureFactory *t = provider->requestTexture(imageId(url), &readSize, requestSize);
+-            QQuickPixmapReply::ReadError errorCode = QQuickPixmapReply::NoError;
+-            QString errorStr;
+-            if (!t) {
+-                errorCode = QQuickPixmapReply::Loading;
+-                errorStr = QQuickPixmap::tr("Failed to get texture from provider: %1").arg(url.toString());
+-            }
+-            mutex.lock();
+-            if (!cancelled.contains(runningJob))
+-                runningJob->postReply(errorCode, errorStr, readSize, t);
+-            else
+-                delete t;
+-            mutex.unlock();
++        switch (imageType) {
++            case QQuickImageProvider::Invalid:
++            {
++                QString errorStr = QQuickPixmap::tr("Invalid image provider: %1").arg(url.toString());
++                mutex.lock();
++                if (!cancelled.contains(runningJob))
++                    runningJob->postReply(QQuickPixmapReply::Loading, errorStr, readSize, 0);
++                mutex.unlock();
++                break;
++            }
+ 
++            case QQuickImageProvider::Image:
++            {
++                QImage image = provider->requestImage(imageId(url), &readSize, runningJob->requestSize);
++                QQuickPixmapReply::ReadError errorCode = QQuickPixmapReply::NoError;
++                QString errorStr;
++                if (image.isNull()) {
++                    errorCode = QQuickPixmapReply::Loading;
++                    errorStr = QQuickPixmap::tr("Failed to get image from provider: %1").arg(url.toString());
++                }
++                mutex.lock();
++                if (!cancelled.contains(runningJob))
++                    runningJob->postReply(errorCode, errorStr, readSize, QQuickTextureFactory::textureFactoryForImage(image));
++                mutex.unlock();
++                break;
++            }
++
++            case QQuickImageProvider::Pixmap:
++            {
++                const QPixmap pixmap = provider->requestPixmap(imageId(url), &readSize, runningJob->requestSize);
++                QQuickPixmapReply::ReadError errorCode = QQuickPixmapReply::NoError;
++                QString errorStr;
++                if (pixmap.isNull()) {
++                    errorCode = QQuickPixmapReply::Loading;
++                    errorStr = QQuickPixmap::tr("Failed to get image from provider: %1").arg(url.toString());
++                }
++                mutex.lock();
++                if (!cancelled.contains(runningJob))
++                    runningJob->postReply(errorCode, errorStr, readSize, QQuickTextureFactory::textureFactoryForImage(pixmap.toImage()));
++                mutex.unlock();
++                break;
++            }
++
++            case QQuickImageProvider::Texture:
++            {
++                QQuickTextureFactory *t = provider->requestTexture(imageId(url), &readSize, runningJob->requestSize);
++                QQuickPixmapReply::ReadError errorCode = QQuickPixmapReply::NoError;
++                QString errorStr;
++                if (!t) {
++                    errorCode = QQuickPixmapReply::Loading;
++                    errorStr = QQuickPixmap::tr("Failed to get texture from provider: %1").arg(url.toString());
++                }
++                mutex.lock();
++                if (!cancelled.contains(runningJob))
++                    runningJob->postReply(errorCode, errorStr, readSize, t);
++                else
++                    delete t;
++                mutex.unlock();
++                break;
++            }
++
++            case QQuickImageProvider::ImageResponse:
++            {
++                QQuickAsyncImageProvider *asyncProvider = static_cast<QQuickAsyncImageProvider*>(provider);
++                QQuickImageResponse *response = asyncProvider->requestImageResponse(imageId(url), runningJob->requestSize);
++
++                QObject::connect(response, SIGNAL(finished()), threadObject, SLOT(asyncResponseFinished()));
++
++                asyncResponses.insert(response, runningJob);
++                break;
++            }
+         }
+ 
+     } else {
+-        QString lf = QQmlFile::urlToLocalFileOrQrc(url);
+-        if (!lf.isEmpty()) {
++        if (!localFile.isEmpty()) {
+             // Image is local - load/decode immediately
+             QImage image;
+             QQuickPixmapReply::ReadError errorCode = QQuickPixmapReply::NoError;
+             QString errorStr;
+-            QFile f(lf);
++            QFile f(localFile);
+             QSize readSize;
+             if (f.open(QIODevice::ReadOnly)) {
+-                if (!readImage(url, &f, &image, &errorStr, &readSize, requestSize, autoTransform))
++                if (!readImage(url, &f, &image, &errorStr, &readSize, runningJob->requestSize, autoTransform))
+                     errorCode = QQuickPixmapReply::Loading;
+             } else {
+                 errorStr = QQuickPixmap::tr("Cannot open: %1").arg(url.toString());
+@@ -633,7 +709,7 @@ void QQuickPixmapReader::processJob(QQuickPixmapReply *runningJob, const QUrl &u
+             }
+             mutex.lock();
+             if (!cancelled.contains(runningJob))
+-                runningJob->postReply(errorCode, errorStr, readSize, textureFactoryForImage(image));
++                runningJob->postReply(errorCode, errorStr, readSize, QQuickTextureFactory::textureFactoryForImage(image));
+             mutex.unlock();
+         } else {
+             // Network resource
+@@ -644,7 +720,7 @@ void QQuickPixmapReader::processJob(QQuickPixmapReply *runningJob, const QUrl &u
+             QMetaObject::connect(reply, replyDownloadProgress, runningJob, downloadProgress);
+             QMetaObject::connect(reply, replyFinished, threadObject, threadNetworkRequestDone);
+ 
+-            replies.insert(reply, runningJob);
++            networkJobs.insert(reply, runningJob);
+         }
+     }
+ }
+@@ -736,8 +812,6 @@ inline uint qHash(const QQuickPixmapKey &key)
+     return qHash(*key.url) ^ (key.size->width()*7) ^ (key.size->height()*17) ^ (key.autoTransform * 0x5c5c5c5c);
+ }
+ 
+-class QSGContext;
+-
+ class QQuickPixmapStore : public QObject
+ {
+     Q_OBJECT
+@@ -1044,7 +1118,7 @@ static QQuickPixmapData* createPixmapDataSync(QQuickPixmap *declarativePixmap, Q
+                 QImage image = provider->requestImage(imageId(url), &readSize, requestSize);
+                 if (!image.isNull()) {
+                     *ok = true;
+-                    return new QQuickPixmapData(declarativePixmap, url, textureFactoryForImage(image), readSize, requestSize, autoTransform, UsePluginDefault);
++                    return new QQuickPixmapData(declarativePixmap, url, QQuickTextureFactory::textureFactoryForImage(image), readSize, requestSize, autoTransform, UsePluginDefault);
+                 }
+             }
+             case QQuickImageProvider::Pixmap:
+@@ -1052,9 +1126,14 @@ static QQuickPixmapData* createPixmapDataSync(QQuickPixmap *declarativePixmap, Q
+                 QPixmap pixmap = provider->requestPixmap(imageId(url), &readSize, requestSize);
+                 if (!pixmap.isNull()) {
+                     *ok = true;
+-                    return new QQuickPixmapData(declarativePixmap, url, textureFactoryForImage(pixmap.toImage()), readSize, requestSize, autoTransform, UsePluginDefault);
++                    return new QQuickPixmapData(declarativePixmap, url, QQuickTextureFactory::textureFactoryForImage(pixmap.toImage()), readSize, requestSize, autoTransform, UsePluginDefault);
+                 }
+             }
++            case QQuickImageProvider::ImageResponse:
++            {
++                // Fall through, ImageResponse providers never get here
++                Q_ASSERT(imageType != QQuickImageProvider::ImageResponse && "Sync call to ImageResponse provider");
++            }
+         }
+ 
+         // provider has bad image type, or provider returned null image
+@@ -1075,7 +1154,7 @@ static QQuickPixmapData* createPixmapDataSync(QQuickPixmap *declarativePixmap, Q
+         AutoTransform appliedTransform = autoTransform;
+         if (readImage(url, &f, &image, &errorString, &readSize, requestSize, appliedTransform)) {
+             *ok = true;
+-            return new QQuickPixmapData(declarativePixmap, url, textureFactoryForImage(image), readSize, requestSize, autoTransform, appliedTransform);
++            return new QQuickPixmapData(declarativePixmap, url, QQuickTextureFactory::textureFactoryForImage(image), readSize, requestSize, autoTransform, appliedTransform);
+         }
+         errorString = QQuickPixmap::tr("Invalid image data: %1").arg(url.toString());
+ 
+@@ -1204,7 +1283,7 @@ void QQuickPixmap::setImage(const QImage &p)
+     clear();
+ 
+     if (!p.isNull())
+-        d = new QQuickPixmapData(this, textureFactoryForImage(p));
++        d = new QQuickPixmapData(this, QQuickTextureFactory::textureFactoryForImage(p));
+ }
+ 
+ void QQuickPixmap::setPixmap(const QQuickPixmap &other)
+diff --git a/tests/auto/quick/qquickimageprovider/tst_qquickimageprovider.cpp b/tests/auto/quick/qquickimageprovider/tst_qquickimageprovider.cpp
+index dae46b5..80406be 100644
+--- a/tests/auto/quick/qquickimageprovider/tst_qquickimageprovider.cpp
++++ b/tests/auto/quick/qquickimageprovider/tst_qquickimageprovider.cpp
+@@ -37,6 +37,7 @@
+ #include <private/qquickimage_p.h>
+ #include <QImageReader>
+ #include <QWaitCondition>
++#include <QThreadPool>
+ 
+ Q_DECLARE_METATYPE(QQuickImageProvider*);
+ 
+@@ -68,6 +69,8 @@ private slots:
+ 
+     void threadTest();
+ 
++    void asyncTextureTest();
++
+ private:
+     QString newImageFileName() const;
+     void fillRequestTestsData(const QString &id);
+@@ -457,6 +460,101 @@ void tst_qquickimageprovider::threadTest()
+     }
+ }
+ 
++class TestImageResponse : public QQuickImageResponse, public QRunnable
++{
++    public:
++        TestImageResponse(QMutex *lock, QWaitCondition *condition, bool *ok, const QString &id, const QSize &requestedSize)
++         : m_lock(lock), m_condition(condition), m_ok(ok), m_id(id), m_requestedSize(requestedSize), m_texture(0)
++        {
++            setAutoDelete(false);
++        }
++
++        QQuickTextureFactory *textureFactory() const
++        {
++            return m_texture;
++        }
++
++        void run()
++        {
++            m_lock->lock();
++            if (!(*m_ok)) {
++                m_condition->wait(m_lock);
++            }
++            m_lock->unlock();
++            QImage image(50, 50, QImage::Format_RGB32);
++            image.fill(QColor(m_id).rgb());
++            if (m_requestedSize.isValid())
++                image = image.scaled(m_requestedSize);
++            m_texture = QQuickTextureFactory::textureFactoryForImage(image);
++            emit finished();
++        }
++
++        QMutex *m_lock;
++        QWaitCondition *m_condition;
++        bool *m_ok;
++        QString m_id;
++        QSize m_requestedSize;
++        QQuickTextureFactory *m_texture;
++};
++
++class TestAsyncProvider : public QQuickAsyncImageProvider
++{
++    public:
++        TestAsyncProvider() : ok(false)
++        {
++            pool.setMaxThreadCount(4);
++        }
++
++        ~TestAsyncProvider() {}
++
++        QQuickImageResponse *requestImageResponse(const QString &id, const QSize &requestedSize)
++        {
++            TestImageResponse *response = new TestImageResponse(&lock, &condition, &ok, id, requestedSize);
++            pool.start(response);
++            return response;
++        }
++
++        QThreadPool pool;
++        QMutex lock;
++        QWaitCondition condition;
++        bool ok;
++};
++
++
++void tst_qquickimageprovider::asyncTextureTest()
++{
++    QQmlEngine engine;
++
++    TestAsyncProvider *provider = new TestAsyncProvider;
++
++    engine.addImageProvider("test_async", provider);
++    QVERIFY(engine.imageProvider("test_async") != 0);
++
++    QString componentStr = "import QtQuick 2.0\nItem { \n"
++            "Image { source: \"image://test_async/blue\"; }\n"
++            "Image { source: \"image://test_async/red\"; }\n"
++            "Image { source: \"image://test_async/green\";  }\n"
++            "Image { source: \"image://test_async/yellow\";  }\n"
++            " }";
++    QQmlComponent component(&engine);
++    component.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
++    QObject *obj = component.create();
++    //MUST not deadlock
++    QVERIFY(obj != 0);
++    QList<QQuickImage *> images = obj->findChildren<QQuickImage *>();
++    QCOMPARE(images.count(), 4);
++
++    QTRY_VERIFY(provider->pool.activeThreadCount() == 4);
++    foreach (QQuickImage *img, images) {
++        QTRY_VERIFY(img->status() == QQuickImage::Loading);
++    }
++    provider->ok = true;
++    provider->condition.wakeAll();
++    foreach (QQuickImage *img, images) {
++        QTRY_VERIFY(img->status() == QQuickImage::Ready);
++    }
++}
++
+ 
+ QTEST_MAIN(tst_qquickimageprovider)
+ 
+-- 
+2.1.4
+

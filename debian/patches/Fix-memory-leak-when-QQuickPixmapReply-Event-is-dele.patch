@@ -1,0 +1,55 @@
+From 16916560c13bf4c096461426c37eccbc8841a13c Mon Sep 17 00:00:00 2001
+From: Albert Astals Cid <albert.astals@canonical.com>
+Date: Fri, 14 Aug 2015 15:51:43 +0200
+Subject: [PATCH] Fix memory leak when QQuickPixmapReply::Event is delete
+ before being used
+
+It can happen that QQuickPixmapReply::postReply is called, and before
+QQuickPixmapReply::event is called the object gets deleted. That means that
+the texture factory will never be deleted.
+
+To fix that we delete it in the destructor of QQuickPixmapReply::Event and set
+it to 0 in QQuickPixmapReply::event after assigning to the next data structure
+that will take care of it
+
+Change-Id: Ibea62f5a10a53cca586de7c5f03f00aabfb88b2e
+Reviewed-by: Robin Burchell <robin.burchell@viroteck.net>
+---
+ src/quick/util/qquickpixmapcache.cpp | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/src/quick/util/qquickpixmapcache.cpp b/src/quick/util/qquickpixmapcache.cpp
+index ddf2ae2..a1c9205 100644
+--- a/src/quick/util/qquickpixmapcache.cpp
++++ b/src/quick/util/qquickpixmapcache.cpp
+@@ -148,6 +148,7 @@ public:
+     class Event : public QEvent {
+     public:
+         Event(ReadError, const QString &, const QSize &, QQuickTextureFactory *factory);
++        ~Event();
+ 
+         ReadError error;
+         QString errorString;
+@@ -339,6 +340,11 @@ QQuickPixmapReply::Event::Event(ReadError e, const QString &s, const QSize &iSiz
+ {
+ }
+ 
++QQuickPixmapReply::Event::~Event()
++{
++    delete textureFactory;
++}
++
+ QNetworkAccessManager *QQuickPixmapReader::networkAccessManager()
+ {
+     if (!accessManager) {
+@@ -965,6 +971,7 @@ bool QQuickPixmapReply::event(QEvent *event)
+             data->pixmapStatus = (de->error == NoError) ? QQuickPixmap::Ready : QQuickPixmap::Error;
+             if (data->pixmapStatus == QQuickPixmap::Ready) {
+                 data->textureFactory = de->textureFactory;
++                de->textureFactory = 0;
+                 data->implicitSize = de->implicitSize;
+                 PIXMAP_PROFILE(pixmapLoadingFinished(data->url,
+                         data->textureFactory != 0 && data->textureFactory->textureSize().isValid() ?
+-- 
+2.5.0
+

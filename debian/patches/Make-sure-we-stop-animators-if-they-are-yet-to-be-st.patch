@@ -1,0 +1,31 @@
+From 327ddb7488805241fb48c20ec8628c630224f4ce Mon Sep 17 00:00:00 2001
+From: Gunnar Sletta <gunnar.sletta@jollamobile.com>
+Date: Wed, 8 Apr 2015 09:27:44 +0200
+Subject: [PATCH] Make sure we stop animators if they are yet to be started.
+
+Change-Id: I311e66c64a79581739f80e124fd58da2aaded549
+Task-number: QTBUG-45220
+Reviewed-by: Michael Brasser <michael.brasser@live.com>
+---
+ src/quick/util/qquickanimatorjob.cpp | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/src/quick/util/qquickanimatorjob.cpp b/src/quick/util/qquickanimatorjob.cpp
+index 8b617e5..016f41d 100644
+--- a/src/quick/util/qquickanimatorjob.cpp
++++ b/src/quick/util/qquickanimatorjob.cpp
+@@ -126,9 +126,8 @@ void QQuickAnimatorProxyJob::updateState(QAbstractAnimationJob::State newState,
+             m_controller->startJob(this, m_job);
+     } else if (newState == Stopped) {
+         syncBackCurrentValues();
+-        if (m_internalState == State_Starting)
+-            m_internalState = State_Stopped;
+-        else if (m_controller) {
++        m_internalState = State_Stopped;
++        if (m_controller) {
+             m_controller->stopJob(this, m_job);
+         }
+     }
+-- 
+2.1.4
+

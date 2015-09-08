@@ -1,14 +1,14 @@
-# SymbolsHelper-Confirmed: 5.4.1 amd64
-libQt5QuickWidgets.so.5 libqt5quickwidgets5 #MINVER#
-| libqt5quickwidgets5 #MINVER#, qtdeclarative-abi-5-4-1
+# SymbolsHelper-Confirmed: 5.4.0 amd64 arm64 armhf i386 powerpc ppc64el
+libQt5QuickWidgets.so.5 libqt5quickwidgets5 #MINVER# | libqt5quickwidgets5-gles #MINVER#
+| libqt5quickwidgets5 #MINVER# | libqt5quickwidgets5-gles #MINVER#, qtdeclarative-abi-5-5-0
  _ZN12QQuickWidget10setContentERK4QUrlP13QQmlComponentP7QObject@Base 5.3.0
  _ZN12QQuickWidget10timerEventEP11QTimerEvent@Base 5.3.0
  _ZN12QQuickWidget10wheelEventEP11QWheelEvent@Base 5.3.0
  _ZN12QQuickWidget11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.3.0
  _ZN12QQuickWidget11qt_metacastEPKc@Base 5.3.0
  _ZN12QQuickWidget11resizeEventEP12QResizeEvent@Base 5.3.0
- _ZN12QQuickWidget12focusInEventEP11QFocusEvent@Base 5.3.1
- _ZN12QQuickWidget13focusOutEventEP11QFocusEvent@Base 5.3.1
+ _ZN12QQuickWidget12focusInEventEP11QFocusEvent@Base 5.4.0
+ _ZN12QQuickWidget13focusOutEventEP11QFocusEvent@Base 5.4.0
  _ZN12QQuickWidget13keyPressEventEP9QKeyEvent@Base 5.3.0
  _ZN12QQuickWidget13setClearColorERK6QColor@Base 5.4.0
  _ZN12QQuickWidget13setResizeModeENS_10ResizeModeE@Base 5.3.0
