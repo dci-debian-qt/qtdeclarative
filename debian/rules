@@ -82,6 +82,6 @@ override_dh_auto_test:
 	cp -a src/imports/testlib/testlogger.js qml/QtTest
 ifneq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(testskip_architectures)))
 ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
-	xvfb-run -a -s "-screen 0 1024x768x24" dh_auto_test -- QT_PLUGIN_PATH=$(CURDIR)/plugins LD_LIBRARY_PATH=$(CURDIR)/lib QML2_IMPORT_PATH=$(CURDIR)/qml
+	xvfb-run -a -s "-screen 0 1024x768x24 +extension RANDR +extension RENDER +extension GLX" dh_auto_test -- QT_PLUGIN_PATH=$(CURDIR)/plugins LD_LIBRARY_PATH=$(CURDIR)/lib QML2_IMPORT_PATH=$(CURDIR)/qml
 endif
 endif
