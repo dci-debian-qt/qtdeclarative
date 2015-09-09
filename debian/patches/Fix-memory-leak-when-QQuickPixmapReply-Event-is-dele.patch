@@ -25,7 +25,7 @@ index ddf2ae2..a1c9205 100644
 @@ -148,6 +148,7 @@ public:
      class Event : public QEvent {
      public:
-         Event(ReadError, const QString &, const QSize &, QQuickTextureFactory *factory);
+         Event(ReadError, const QString &, const QSize &, AutoTransform, QQuickTextureFactory *factory);
 +        ~Event();
  
          ReadError error;
@@ -48,8 +48,8 @@ index ddf2ae2..a1c9205 100644
                  data->textureFactory = de->textureFactory;
 +                de->textureFactory = 0;
                  data->implicitSize = de->implicitSize;
+                 data->appliedTransform = de->autoTransform;
                  PIXMAP_PROFILE(pixmapLoadingFinished(data->url,
-                         data->textureFactory != 0 && data->textureFactory->textureSize().isValid() ?
 -- 
 2.5.0
 
