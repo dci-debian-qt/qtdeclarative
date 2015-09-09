@@ -5,6 +5,9 @@ Don-t-change-the-currentItem-after-a-viewport-resize.patch
 Fix-memory-leak-when-using-async-image-providers.patch
 Fix-memory-leak-when-QQuickPixmapReply-Event-is-dele.patch
 
+# Debian patches
+check_system_double-conversion.patch
+
 # Ubuntu patches
 fix_binary_location_for_tests.patch
 disable_failing_tests.patch

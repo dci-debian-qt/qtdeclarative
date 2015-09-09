@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.5.0-0ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.5.0-2ubuntu1) UNRELEASED; urgency=medium
 
   * New upstream release.
   * Remove patches no longer needed:
@@ -20,6 +20,53 @@ qtdeclarative-opensource-src (5.5.0-0ubuntu1) UNRELEASED; urgency=medium
   * Update Vcs url:s to Debian git.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
+
+qtdeclarative-opensource-src (5.5.0-2) experimental; urgency=medium
+
+  * Update symbols files with buildds’ logs.
+  * Symlink duplicate private headers in QtQml and QtQmlDevTools directories.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 22 Aug 2015 11:38:09 +0300
+
+qtdeclarative-opensource-src (5.5.0-1) experimental; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * New upstream release.
+  * Bump Qt build-dependencies to 5.5.0.
+  * Drop avoid_calling_potentially_pure-virtual_method.patch, applied upstream.
+  * Refresh check_system_double-conversion.patch.
+  * Update debian/copyright for the new version.
+  * Update symbols file for 5.5.0. There are some missing non-private symbols,
+    but they are not exposed in public APIs.
+  * Bump ABI version to 5-5-0.
+  * Mark new private symbols.
+
+  [ Timo Jyrinki ]
+  * Update .install files.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 15 Aug 2015 17:05:06 +0300
+
+qtdeclarative-opensource-src (5.4.2-6) unstable; urgency=medium
+
+  * Update symbols files with buildds' logs.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 06 Aug 2015 12:13:38 -0300
+
+qtdeclarative-opensource-src (5.4.2-5) unstable; urgency=medium
+
+  * Update symbols files with current build log against gcc5.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Wed, 05 Aug 2015 18:17:46 -0300
+
+qtdeclarative-opensource-src (5.4.2-4) unstable; urgency=medium
+
+  * Backport avoid_calling_potentially_pure-virtual_method.patch to avoid
+    crashes. Thanks Diane for the hint!
+  * Update symbols files with buildds' logs.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Fri, 24 Jul 2015 14:08:32 -0300
+
+qtdeclarative-opensource-src (5.4.2-3) unstable; urgency=medium
 
 qtdeclarative-opensource-src (5.4.2-1ubuntu6) wily; urgency=medium
 
