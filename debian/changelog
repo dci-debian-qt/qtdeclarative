@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.5.0-2ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.5.1-2ubuntu1) UNRELEASED; urgency=medium
 
   * New upstream release.
   * Remove patches no longer needed:
@@ -20,6 +20,24 @@ qtdeclarative-opensource-src (5.5.0-2ubuntu1) UNRELEASED; urgency=medium
   * Update Vcs url:s to Debian git.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
+
+qtdeclarative-opensource-src (5.5.1-2) experimental; urgency=medium
+
+  * Update symbols files with buildds' logs.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Sat, 17 Oct 2015 09:14:01 -0300
+
+qtdeclarative-opensource-src (5.5.1-1) experimental; urgency=medium
+
+  * New upstream release.
+    - Bump Qt build dependencies.
+  * Update symbols files with buildds' logs.
+  * Update symbols files with current build log.
+  * Do not ship empty directories.
+  * Add two lintian overrides for examples/quick/canvas/tiger/tiger.js. It is
+    not a minified javascript and is the preferred source of modification.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Fri, 16 Oct 2015 16:04:03 -0300
 
 qtdeclarative-opensource-src (5.5.0-2) experimental; urgency=medium
 
