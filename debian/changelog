@@ -11,6 +11,8 @@ qtdeclarative-opensource-src (5.5.1-2ubuntu1) UNRELEASED; urgency=medium
     - debian/patches/disable_failing_tests.patch
     - debian/patches/QML-Compilation-unit-caching-and-JIT-changes.patch
       (LP: #1437320)
+  * Drop upstreamed patches:
+    - debian/patches/Fix-memory-leak-when-QQuickPixmapReply-Event-is-dele.patch
   * Update .install files.
   * Skip tests also on ppc64el, they are flaky.
   * Update symbols and mark/unmark private ones.
