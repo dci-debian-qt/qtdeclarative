@@ -3,6 +3,7 @@ Make-sure-we-stop-animators-if-they-are-yet-to-be-st.patch
 Add-QQuickAsyncImageProvider.patch
 Don-t-change-the-currentItem-after-a-viewport-resize.patch
 Fix-memory-leak-when-using-async-image-providers.patch
+qmlplugindump-Don-t-try-to-import-Qt.test.qtestroot.patch
 
 # Debian patches
 check_system_double-conversion.patch

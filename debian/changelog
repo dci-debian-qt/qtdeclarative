@@ -20,6 +20,8 @@ qtdeclarative-opensource-src (5.5.1-2ubuntu1) UNRELEASED; urgency=medium
   * Bump build dependencies.
   * Build dep on libqt5xcbqpa5 to be able to run the tests under xvfb.
   * Update Vcs url:s to Debian git.
+  * Add qmlplugindump-Don-t-try-to-import-Qt.test.qtestroot.patch
+    (LP: #1473976)
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
 
