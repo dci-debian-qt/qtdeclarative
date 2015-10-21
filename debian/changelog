@@ -1,6 +1,6 @@
 qtdeclarative-opensource-src (5.5.1-2ubuntu1) UNRELEASED; urgency=medium
 
-  * New upstream release.
+  * New upstream release. (LP: #1502883)
   * Remove patches no longer needed:
     - debian/patches/High-dpi-SVG-and-QQuickImageProvider-Images.patch
     - debian/patches/aarch64.patch
