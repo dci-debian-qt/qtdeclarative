@@ -101,6 +101,15 @@ qtdeclarative-opensource-src (5.4.2-2) unstable; urgency=medium
 
  -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 23 Jun 2015 10:40:41 -0300
 
+qtdeclarative-opensource-src (5.4.2-1ubuntu7) xenial; urgency=medium
+
+  * debian/patches/Don-t-make-currentIndex-skip-an-extra-item-on-remova.patch:
+    - Fix jumping several scopes on unstarring (LP: #1508260)
+  * debian/patches/Image-fix-crash-when-switching-between-multiple-scre.patch:
+    - Fix a crasher when switching between multiple screens.
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Fri, 13 Nov 2015 08:06:56 +0000
+
 qtdeclarative-opensource-src (5.4.2-1ubuntu6) wily; urgency=medium
 
   * debian/patches/Fix-memory-leak-when-QQuickPixmapReply-Event-is-dele.patch

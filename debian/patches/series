@@ -4,6 +4,8 @@ Add-QQuickAsyncImageProvider.patch
 Don-t-change-the-currentItem-after-a-viewport-resize.patch
 Fix-memory-leak-when-using-async-image-providers.patch
 qmlplugindump-Don-t-try-to-import-Qt.test.qtestroot.patch
+Don-t-make-currentIndex-skip-an-extra-item-on-remova.patch
+Image-fix-crash-when-switching-between-multiple-scre.patch
 
 # Debian patches
 check_system_double-conversion.patch

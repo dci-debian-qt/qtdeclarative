@@ -1,0 +1,154 @@
+From be6e2e10bd608e76a4c910353ce032aea7e6f2df Mon Sep 17 00:00:00 2001
+From: Alberto Mardegan <alberto.mardegan@canonical.com>
+Date: Tue, 10 Nov 2015 15:42:23 +0200
+Subject: [PATCH] Don't make currentIndex skip an extra item on removal
+
+Improve the logic for determining the desired viewport position, which
+got partially broken with 134d980a7fcf61c5440019bcfb3fdfc39c3f5f3c.
+Let's not alter topItem and bottomItem if their index appears to be
+correct.
+
+Task-number: QTBUG-49330
+Change-Id: Ib1c88de51be28cbb0afb1741440adb03ae8ebd87
+---
+ src/quick/items/qquickgridview.cpp                 |  4 +--
+ src/quick/items/qquicklistview.cpp                 |  4 +--
+ .../snapOneItemCurrentIndexRemoveAnimation.qml     | 39 ++++++++++++++++++++++
+ .../quick/qquicklistview/tst_qquicklistview.cpp    | 27 +++++++++++++++
+ 4 files changed, 70 insertions(+), 4 deletions(-)
+ create mode 100644 tests/auto/quick/qquicklistview/data/snapOneItemCurrentIndexRemoveAnimation.qml
+
+diff --git a/src/quick/items/qquickgridview.cpp b/src/quick/items/qquickgridview.cpp
+index 3ac9c6e..65d7362 100644
+--- a/src/quick/items/qquickgridview.cpp
++++ b/src/quick/items/qquickgridview.cpp
+@@ -922,13 +922,13 @@ void QQuickGridViewPrivate::fixup(AxisData &data, qreal minExtent, qreal maxExte
+             tempPosition -= bias;
+         }
+         FxViewItem *topItem = snapItemAt(tempPosition+highlightRangeStart);
+-        if (strictHighlightRange && currentItem) {
++        if (strictHighlightRange && currentItem && (!topItem || topItem->index != currentIndex)) {
+             // StrictlyEnforceRange always keeps an item in range
+             updateHighlight();
+             topItem = currentItem;
+         }
+         FxViewItem *bottomItem = snapItemAt(tempPosition+highlightRangeEnd);
+-        if (strictHighlightRange && currentItem) {
++        if (strictHighlightRange && currentItem && (!bottomItem || bottomItem->index != currentIndex)) {
+             // StrictlyEnforceRange always keeps an item in range
+             updateHighlight();
+             bottomItem = currentItem;
+diff --git a/src/quick/items/qquicklistview.cpp b/src/quick/items/qquicklistview.cpp
+index 2958c0a..0211e9f 100644
+--- a/src/quick/items/qquicklistview.cpp
++++ b/src/quick/items/qquicklistview.cpp
+@@ -1479,13 +1479,13 @@ void QQuickListViewPrivate::fixup(AxisData &data, qreal minExtent, qreal maxExte
+             tempPosition -= bias;
+         }
+         FxViewItem *topItem = snapItemAt(tempPosition+highlightRangeStart);
+-        if (strictHighlightRange && currentItem) {
++        if (strictHighlightRange && currentItem && (!topItem || topItem->index != currentIndex)) {
+             // StrictlyEnforceRange always keeps an item in range
+             updateHighlight();
+             topItem = currentItem;
+         }
+         FxViewItem *bottomItem = snapItemAt(tempPosition+highlightRangeEnd);
+-        if (strictHighlightRange && currentItem) {
++        if (strictHighlightRange && currentItem && (!bottomItem || bottomItem->index != currentIndex)) {
+             // StrictlyEnforceRange always keeps an item in range
+             updateHighlight();
+             bottomItem = currentItem;
+diff --git a/tests/auto/quick/qquicklistview/data/snapOneItemCurrentIndexRemoveAnimation.qml b/tests/auto/quick/qquicklistview/data/snapOneItemCurrentIndexRemoveAnimation.qml
+new file mode 100644
+index 0000000..215467f
+--- /dev/null
++++ b/tests/auto/quick/qquicklistview/data/snapOneItemCurrentIndexRemoveAnimation.qml
+@@ -0,0 +1,39 @@
++import QtQuick 2.4
++
++ListView {
++    id: root
++    height: 400
++    width: height
++    model: ListModel {
++        id: lmodel
++        ListElement { dummy: 0 }
++        ListElement { dummy: 0 }
++        ListElement { dummy: 0 }
++        ListElement { dummy: 0 }
++        ListElement { dummy: 0 }
++        ListElement { dummy: 0 }
++    }
++
++    function removeItemZero()
++    {
++        lmodel.remove(0);
++    }
++
++    orientation: ListView.Horizontal
++    snapMode: ListView.SnapOneItem
++    highlightRangeMode: ListView.StrictlyEnforceRange
++
++    property int transitionsRun: 0
++
++    removeDisplaced: Transition {
++        id: transition
++        PropertyAnimation { property: "x"; duration: 500 }
++        onRunningChanged: if (!running) transitionsRun++;
++    }
++
++    delegate: Text {
++        text: index + " of " + lmodel.count
++        width: root.width
++        height: root.height
++    }
++}
+\ No newline at end of file
+diff --git a/tests/auto/quick/qquicklistview/tst_qquicklistview.cpp b/tests/auto/quick/qquicklistview/tst_qquicklistview.cpp
+index e02c053..a5de266 100644
+--- a/tests/auto/quick/qquicklistview/tst_qquicklistview.cpp
++++ b/tests/auto/quick/qquicklistview/tst_qquicklistview.cpp
+@@ -182,6 +182,7 @@ private slots:
+     void snapOneItemResize_QTBUG_43555();
+     void snapOneItem_data();
+     void snapOneItem();
++    void snapOneItemCurrentIndexRemoveAnimation();
+ 
+     void QTBUG_9791();
+     void QTBUG_11105();
+@@ -5587,6 +5588,32 @@ void tst_QQuickListView::snapOneItem()
+     releaseView(window);
+ }
+ 
++void tst_QQuickListView::snapOneItemCurrentIndexRemoveAnimation()
++{
++    QQuickView *window = createView();
++
++    window->setSource(testFileUrl("snapOneItemCurrentIndexRemoveAnimation.qml"));
++    window->show();
++    QVERIFY(QTest::qWaitForWindowExposed(window));
++
++    QQuickListView *listview = qobject_cast<QQuickListView*>(window->rootObject());
++    QTRY_VERIFY(listview != 0);
++
++    QTRY_COMPARE(QQuickItemPrivate::get(listview)->polishScheduled, false);
++    QTRY_COMPARE(listview->currentIndex(), 0);
++    QSignalSpy currentIndexSpy(listview, SIGNAL(currentIndexChanged()));
++
++    QMetaObject::invokeMethod(window->rootObject(), "removeItemZero");
++    QTRY_COMPARE(listview->property("transitionsRun").toInt(), 1);
++
++    QTRY_COMPARE(QQuickItemPrivate::get(listview)->polishScheduled, false);
++
++    QCOMPARE(listview->currentIndex(), 0);
++    QCOMPARE(currentIndexSpy.count(), 0);
++
++    delete window;
++}
++
+ void tst_QQuickListView::attachedProperties_QTBUG_32836()
+ {
+     QQuickView *window = createView();
+-- 
+2.6.2
+
