@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.5.1-2ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.5.1-2ubuntu1) xenial; urgency=medium
 
   * New upstream release. (LP: #1502883)
   * Remove patches no longer needed:
@@ -23,7 +23,7 @@ qtdeclarative-opensource-src (5.5.1-2ubuntu1) UNRELEASED; urgency=medium
   * Add qmlplugindump-Don-t-try-to-import-Qt.test.qtestroot.patch
     (LP: #1473976)
 
- -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 09 Jul 2015 11:02:34 +0000
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 01 Dec 2015 08:12:31 +0000
 
 qtdeclarative-opensource-src (5.5.1-2) experimental; urgency=medium
 
