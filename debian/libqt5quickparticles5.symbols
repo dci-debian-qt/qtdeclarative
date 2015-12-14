@@ -5,4 +5,4 @@ libQt5QuickParticles.so.5 libqt5quickparticles5 #MINVER# | libqt5quickparticles5
  _ZN21QQuickParticlesModule12defineModuleEv@Base 5.0.2 1
  _ZTIN9QV8Engine9DeletableE@Base 5.0.2 1
  _ZTSN9QV8Engine9DeletableE@Base 5.0.2 1
- (optional=gccinternal)_ZTVN9QV8Engine9DeletableE@Base 5.0.2 1
+ (optional=gccinternal|arch=!s390x)_ZTVN9QV8Engine9DeletableE@Base 5.0.2 1
