@@ -1,6 +1,7 @@
 qtdeclarative-opensource-src (5.5.1-2ubuntu4) UNRELEASED; urgency=medium
 
-  * 
+  * debian/patches/Add-isTabFence-private-flag.patch:
+    - Tab should not leave dialog/popover/menu (LP: #1526208)
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 16 Dec 2015 14:05:33 +0000
 
