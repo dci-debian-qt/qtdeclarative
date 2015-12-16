@@ -6,6 +6,8 @@ Fix-memory-leak-when-using-async-image-providers.patch
 qmlplugindump-Don-t-try-to-import-Qt.test.qtestroot.patch
 Don-t-make-currentIndex-skip-an-extra-item-on-remova.patch
 Image-fix-crash-when-switching-between-multiple-scre.patch
+Flickable-avoid-perturbing-the-timeline-further-whil.patch
+MultiPointTouchArea-Fixed-released-duplication-on-mo.patch
 
 # Debian patches
 check_system_double-conversion.patch
