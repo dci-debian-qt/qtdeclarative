@@ -1,3 +1,9 @@
+qtdeclarative-opensource-src (5.5.1-2ubuntu4) UNRELEASED; urgency=medium
+
+  * 
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 16 Dec 2015 14:05:33 +0000
+
 qtdeclarative-opensource-src (5.5.1-2ubuntu3) xenial; urgency=medium
 
   * debian/patches/Flickable-avoid-perturbing-the-timeline-further-whil.patch:
