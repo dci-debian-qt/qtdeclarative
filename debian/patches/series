@@ -10,6 +10,7 @@ Flickable-avoid-perturbing-the-timeline-further-whil.patch
 MultiPointTouchArea-Fixed-released-duplication-on-mo.patch
 Add-isTabFence-private-flag.patch
 QQuickItem-fix-an-infinite-loop-nextItemInFocusChain.patch
+WIP-QQuickItem-fix-another-infinite-loop-in-nextItem.patch
 
 # Debian patches
 check_system_double-conversion.patch
