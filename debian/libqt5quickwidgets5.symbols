@@ -1,6 +1,15 @@
-# SymbolsHelper-Confirmed: 5.4.0 amd64 arm64 armhf i386 powerpc ppc64el
+# SymbolsHelper-Confirmed: 5.6.0~beta amd64 arm64 armhf i386 powerpc ppc64el s390x
 libQt5QuickWidgets.so.5 libqt5quickwidgets5 #MINVER# | libqt5quickwidgets5-gles #MINVER#
 | libqt5quickwidgets5 #MINVER# | libqt5quickwidgets5-gles #MINVER#, qtdeclarative-abi-5-6-0
+ Qt_5.0@Qt_5.0 5.6.0~beta
+ Qt_5.1@Qt_5.1 5.6.0~beta
+ Qt_5.2@Qt_5.2 5.6.0~beta
+ Qt_5.3@Qt_5.3 5.6.0~beta
+ Qt_5.4@Qt_5.4 5.6.0~beta
+ Qt_5.5@Qt_5.5 5.6.0~beta
+ Qt_5.6@Qt_5.6 5.6.0~beta
+ Qt_5@Qt_5 5.6.0~beta
+ Qt_5_PRIVATE_API@Qt_5_PRIVATE_API 5.6.0~beta
  _ZN12QQuickWidget10setContentERK4QUrlP13QQmlComponentP7QObject@Qt_5 5.3.0
  _ZN12QQuickWidget10timerEventEP11QTimerEvent@Qt_5 5.3.0
  _ZN12QQuickWidget10wheelEventEP11QWheelEvent@Qt_5 5.3.0
@@ -8,15 +17,15 @@ libQt5QuickWidgets.so.5 libqt5quickwidgets5 #MINVER# | libqt5quickwidgets5-gles 
  _ZN12QQuickWidget11qt_metacastEPKc@Qt_5 5.3.0
  _ZN12QQuickWidget11resizeEventEP12QResizeEvent@Qt_5 5.3.0
  _ZN12QQuickWidget12focusInEventEP11QFocusEvent@Qt_5 5.4.0
- (arch=s390x)_ZN12QQuickWidget13dragMoveEventEP14QDragMoveEvent@Qt_5 5.5.1
+ _ZN12QQuickWidget13dragMoveEventEP14QDragMoveEvent@Qt_5 5.6.0~beta
  _ZN12QQuickWidget13focusOutEventEP11QFocusEvent@Qt_5 5.4.0
  _ZN12QQuickWidget13keyPressEventEP9QKeyEvent@Qt_5 5.3.0
  _ZN12QQuickWidget13setClearColorERK6QColor@Qt_5 5.4.0
  _ZN12QQuickWidget13setResizeModeENS_10ResizeModeE@Qt_5 5.3.0
  _ZN12QQuickWidget13statusChangedENS_6StatusE@Qt_5 5.3.0
  _ZN12QQuickWidget13triggerUpdateEv@Qt_5 5.3.0
- (arch=s390x)_ZN12QQuickWidget14dragEnterEventEP15QDragEnterEvent@Qt_5 5.5.1
- (arch=s390x)_ZN12QQuickWidget14dragLeaveEventEP15QDragLeaveEvent@Qt_5 5.5.1
+ _ZN12QQuickWidget14dragEnterEventEP15QDragEnterEvent@Qt_5 5.6.0~beta
+ _ZN12QQuickWidget14dragLeaveEventEP15QDragLeaveEvent@Qt_5 5.6.0~beta
  _ZN12QQuickWidget14mouseMoveEventEP11QMouseEvent@Qt_5 5.3.0
  _ZN12QQuickWidget15continueExecuteEv@Qt_5 5.3.0
  _ZN12QQuickWidget15keyReleaseEventEP9QKeyEvent@Qt_5 5.3.0
@@ -28,7 +37,7 @@ libQt5QuickWidgets.so.5 libqt5quickwidgets5 #MINVER# | libqt5quickwidgets5-gles 
  _ZN12QQuickWidget23createFramebufferObjectEv@Qt_5 5.3.0
  _ZN12QQuickWidget24destroyFramebufferObjectEv@Qt_5 5.3.0
  _ZN12QQuickWidget5eventEP6QEvent@Qt_5 5.3.0
- (arch=s390x)_ZN12QQuickWidget9dropEventEP10QDropEvent@Qt_5 5.5.1
+ _ZN12QQuickWidget9dropEventEP10QDropEvent@Qt_5 5.6.0~beta
  _ZN12QQuickWidget9hideEventEP10QHideEvent@Qt_5 5.3.0
  _ZN12QQuickWidget9setFormatERK14QSurfaceFormat@Qt_5 5.3.0
  _ZN12QQuickWidget9setSourceERK4QUrl@Qt_5 5.3.0
@@ -46,7 +55,7 @@ libQt5QuickWidgets.so.5 libqt5quickwidgets5 #MINVER# | libqt5quickwidgets5-gles 
  _ZNK12QQuickWidget10resizeModeEv@Qt_5 5.3.0
  _ZNK12QQuickWidget10rootObjectEv@Qt_5 5.3.0
  _ZNK12QQuickWidget11initialSizeEv@Qt_5 5.3.0
- (arch=s390x)_ZNK12QQuickWidget11quickWindowEv@Qt_5 5.5.1
+ _ZNK12QQuickWidget11quickWindowEv@Qt_5 5.6.0~beta
  _ZNK12QQuickWidget11rootContextEv@Qt_5 5.3.0
  _ZNK12QQuickWidget15grabFramebufferEv@Qt_5 5.4.0
  _ZNK12QQuickWidget6engineEv@Qt_5 5.3.0
