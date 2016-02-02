@@ -1,3 +1,10 @@
+qtdeclarative-opensource-src (5.5.1-2ubuntu5) UNRELEASED; urgency=medium
+
+  * debian/patches/Don-t-check-for-revisions-when-assigning-to-grouped-.patch:
+    - Fix versioning (LP: #1389721)
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Mon, 01 Feb 2016 14:39:12 +0000
+
 qtdeclarative-opensource-src (5.5.1-2ubuntu4) xenial; urgency=medium
 
   * debian/patches/Add-isTabFence-private-flag.patch:

@@ -1,0 +1,209 @@
+From e9a6c1d4e30d6adb2190d52bebb7fecd2b539e82 Mon Sep 17 00:00:00 2001
+From: Lars Knoll <lars.knoll@theqtcompany.com>
+Date: Tue, 19 Jan 2016 15:37:26 +0100
+Subject: [PATCH] Don't check for revisions when assigning to grouped
+ properties
+
+This leads to wrong behavior in some cases, where we reject
+valid revisions, and there is probably no case, where this could
+lead to a conflict for the user of the API.
+
+Change-Id: I1614332cf4c07c6a227551612331dd69b2ae71f3
+Task-number: QTBUG-40043
+Reviewed-by: Simon Hausmann <simon.hausmann@theqtcompany.com>
+---
+ src/qml/compiler/qqmlirbuilder.cpp                      | 12 ++++++------
+ src/qml/compiler/qqmlirbuilder_p.h                      |  9 +++++++--
+ src/qml/compiler/qqmltypecompiler.cpp                   |  5 +++--
+ .../qml/qqmlecmascript/data/metaobjectRevision5.qml     | 12 ++++++++++++
+ tests/auto/qml/qqmlecmascript/testtypes.cpp             |  1 +
+ tests/auto/qml/qqmlecmascript/testtypes.h               | 17 +++++++++++++++++
+ tests/auto/qml/qqmlecmascript/tst_qqmlecmascript.cpp    |  9 +++++++++
+ 7 files changed, 55 insertions(+), 10 deletions(-)
+ create mode 100644 tests/auto/qml/qqmlecmascript/data/metaobjectRevision5.qml
+
+diff --git a/src/qml/compiler/qqmlirbuilder.cpp b/src/qml/compiler/qqmlirbuilder.cpp
+index 16c4cb2..791355a 100644
+--- a/src/qml/compiler/qqmlirbuilder.cpp
++++ b/src/qml/compiler/qqmlirbuilder.cpp
+@@ -1875,17 +1875,17 @@ QV4::IR::Expr *JSCodeGen::fallbackNameLookup(const QString &name, int line, int
+ 
+ #ifndef V4_BOOTSTRAP
+ 
+-QQmlPropertyData *PropertyResolver::property(const QString &name, bool *notInRevision, QObject *object, QQmlContextData *context)
++QQmlPropertyData *PropertyResolver::property(const QString &name, bool *notInRevision, RevisionCheck check)
+ {
+     if (notInRevision) *notInRevision = false;
+ 
+-    QQmlPropertyData *d = cache->property(name, object, context);
++    QQmlPropertyData *d = cache->property(name, 0, 0);
+ 
+     // Find the first property
+     while (d && d->isFunction())
+         d = cache->overrideData(d);
+ 
+-    if (d && !cache->isAllowedInRevision(d)) {
++    if (check != IgnoreRevision && d && !cache->isAllowedInRevision(d)) {
+         if (notInRevision) *notInRevision = true;
+         return 0;
+     } else {
+@@ -1894,11 +1894,11 @@ QQmlPropertyData *PropertyResolver::property(const QString &name, bool *notInRev
+ }
+ 
+ 
+-QQmlPropertyData *PropertyResolver::signal(const QString &name, bool *notInRevision, QObject *object, QQmlContextData *context)
++QQmlPropertyData *PropertyResolver::signal(const QString &name, bool *notInRevision)
+ {
+     if (notInRevision) *notInRevision = false;
+ 
+-    QQmlPropertyData *d = cache->property(name, object, context);
++    QQmlPropertyData *d = cache->property(name, 0, 0);
+     if (notInRevision) *notInRevision = false;
+ 
+     while (d && !(d->isFunction()))
+@@ -1914,7 +1914,7 @@ QQmlPropertyData *PropertyResolver::signal(const QString &name, bool *notInRevis
+     if (name.endsWith(QStringLiteral("Changed"))) {
+         QString propName = name.mid(0, name.length() - static_cast<int>(strlen("Changed")));
+ 
+-        d = property(propName, notInRevision, object, context);
++        d = property(propName, notInRevision);
+         if (d)
+             return cache->signal(d->notifyIndex);
+     }
+diff --git a/src/qml/compiler/qqmlirbuilder_p.h b/src/qml/compiler/qqmlirbuilder_p.h
+index 9a659f4..633a4cc 100644
+--- a/src/qml/compiler/qqmlirbuilder_p.h
++++ b/src/qml/compiler/qqmlirbuilder_p.h
+@@ -460,10 +460,15 @@ struct Q_QML_EXPORT PropertyResolver
+         return cache->property(index);
+     }
+ 
+-    QQmlPropertyData *property(const QString &name, bool *notInRevision = 0, QObject *object = 0, QQmlContextData *context = 0);
++    enum RevisionCheck {
++        CheckRevision,
++        IgnoreRevision
++    };
++
++    QQmlPropertyData *property(const QString &name, bool *notInRevision = 0, RevisionCheck check = CheckRevision);
+ 
+     // This code must match the semantics of QQmlPropertyPrivate::findSignalByName
+-    QQmlPropertyData *signal(const QString &name, bool *notInRevision, QObject *object = 0, QQmlContextData *context = 0);
++    QQmlPropertyData *signal(const QString &name, bool *notInRevision);
+ 
+     QQmlPropertyCache *cache;
+ };
+diff --git a/src/qml/compiler/qqmltypecompiler.cpp b/src/qml/compiler/qqmltypecompiler.cpp
+index cde7a2a..6fd15d1 100644
+--- a/src/qml/compiler/qqmltypecompiler.cpp
++++ b/src/qml/compiler/qqmltypecompiler.cpp
+@@ -1859,6 +1859,7 @@ bool QQmlPropertyValidator::validateObject(int objectIndex, const QV4::CompiledD
+         }
+ 
+         bool bindingToDefaultProperty = false;
++        bool isGroupProperty = instantiatingBinding && instantiatingBinding->type == QV4::CompiledData::Binding::Type_GroupProperty;
+ 
+         bool notInRevision = false;
+         QQmlPropertyData *pd = 0;
+@@ -1867,7 +1868,7 @@ bool QQmlPropertyValidator::validateObject(int objectIndex, const QV4::CompiledD
+                 || binding->flags & QV4::CompiledData::Binding::IsSignalHandlerObject)
+                 pd = propertyResolver.signal(name, &notInRevision);
+             else
+-                pd = propertyResolver.property(name, &notInRevision);
++                pd = propertyResolver.property(name, &notInRevision, isGroupProperty ? QmlIR::PropertyResolver::IgnoreRevision : QmlIR::PropertyResolver::CheckRevision);
+ 
+             if (notInRevision) {
+                 QString typeName = stringAt(obj->inheritedTypeNameIndex);
+@@ -1879,7 +1880,7 @@ bool QQmlPropertyValidator::validateObject(int objectIndex, const QV4::CompiledD
+                 }
+             }
+         } else {
+-           if (instantiatingBinding && instantiatingBinding->type == QV4::CompiledData::Binding::Type_GroupProperty)
++           if (isGroupProperty)
+                COMPILE_EXCEPTION(binding, tr("Cannot assign a value directly to a grouped property"));
+ 
+            pd = defaultProperty;
+diff --git a/tests/auto/qml/qqmlecmascript/data/metaobjectRevision5.qml b/tests/auto/qml/qqmlecmascript/data/metaobjectRevision5.qml
+new file mode 100644
+index 0000000..0493a7c
+--- /dev/null
++++ b/tests/auto/qml/qqmlecmascript/data/metaobjectRevision5.qml
+@@ -0,0 +1,12 @@
++import Qt.test 1.1
++import QtQuick 2.0
++
++MyItemUsingRevisionedObject {
++    property real test
++
++    revisioned.prop1: 10
++    revisioned.prop2: 1
++
++    Component.onCompleted: test = revisioned.prop1 + revisioned.prop2
++}
++
+diff --git a/tests/auto/qml/qqmlecmascript/testtypes.cpp b/tests/auto/qml/qqmlecmascript/testtypes.cpp
+index 285158a..b9e088d 100644
+--- a/tests/auto/qml/qqmlecmascript/testtypes.cpp
++++ b/tests/auto/qml/qqmlecmascript/testtypes.cpp
+@@ -452,6 +452,7 @@ void registerTypes()
+     qmlRegisterType<MyRevisionedSubclass>("Qt.test",1,0,"MyRevisionedSubclass");
+     // MyRevisionedSubclass 1.1 uses MyRevisionedClass revision 1
+     qmlRegisterType<MyRevisionedSubclass,1>("Qt.test",1,1,"MyRevisionedSubclass");
++    qmlRegisterType<MyItemUsingRevisionedObject>("Qt.test", 1, 0, "MyItemUsingRevisionedObject");
+ 
+ #ifndef QT_NO_WIDGETS
+     qmlRegisterExtendedType<QWidget,QWidgetDeclarativeUI>("Qt.test",1,0,"QWidget");
+diff --git a/tests/auto/qml/qqmlecmascript/testtypes.h b/tests/auto/qml/qqmlecmascript/testtypes.h
+index eb4a314..5603356 100644
+--- a/tests/auto/qml/qqmlecmascript/testtypes.h
++++ b/tests/auto/qml/qqmlecmascript/testtypes.h
+@@ -1084,10 +1084,27 @@ protected:
+     qreal m_p4;
+ };
+ 
++
++class MyItemUsingRevisionedObject : public QObject
++{
++    Q_OBJECT
++    Q_PROPERTY(MyRevisionedClass *revisioned READ revisioned)
++
++public:
++    MyItemUsingRevisionedObject() {
++        m_revisioned = new MyRevisionedClass;
++    }
++
++    MyRevisionedClass *revisioned() const { return m_revisioned; }
++private:
++    MyRevisionedClass *m_revisioned;
++};
++
+ QML_DECLARE_TYPE(MyRevisionedBaseClassRegistered)
+ QML_DECLARE_TYPE(MyRevisionedBaseClassUnregistered)
+ QML_DECLARE_TYPE(MyRevisionedClass)
+ QML_DECLARE_TYPE(MyRevisionedSubclass)
++QML_DECLARE_TYPE(MyItemUsingRevisionedObject)
+ Q_DECLARE_METATYPE(MyQmlObject::MyType)
+ 
+ 
+diff --git a/tests/auto/qml/qqmlecmascript/tst_qqmlecmascript.cpp b/tests/auto/qml/qqmlecmascript/tst_qqmlecmascript.cpp
+index b30dfcb..a208bf5 100644
+--- a/tests/auto/qml/qqmlecmascript/tst_qqmlecmascript.cpp
++++ b/tests/auto/qml/qqmlecmascript/tst_qqmlecmascript.cpp
+@@ -6578,6 +6578,15 @@ void tst_qqmlecmascript::revision()
+         QCOMPARE(object->property("test").toReal(), 11.);
+         delete object;
+     }
++
++    {
++        QQmlComponent component(&engine, testFileUrl("metaobjectRevision5.qml"));
++
++        QObject *object = component.create();
++        QVERIFY(object != 0);
++        QCOMPARE(object->property("test").toReal(), 11.);
++        delete object;
++    }
+ }
+ 
+ void tst_qqmlecmascript::realToInt()
+-- 
+2.7.0
+
