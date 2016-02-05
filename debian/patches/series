@@ -12,6 +12,7 @@ Add-isTabFence-private-flag.patch
 QQuickItem-fix-an-infinite-loop-nextItemInFocusChain.patch
 QQuickItem-fix-another-infinite-loop-in-nextItemInFo.patch
 Don-t-check-for-revisions-when-assigning-to-grouped-.patch
+qml-preserve-composite-singleton-types.patch
 
 # Debian patches
 check_system_double-conversion.patch
@@ -20,4 +21,3 @@ check_system_double-conversion.patch
 fix_binary_location_for_tests.patch
 disable_failing_tests.patch
 QML-Compilation-unit-caching-and-JIT-changes.patch
-qml-preserve-composite-singleton-types.patch
