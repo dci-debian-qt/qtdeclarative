@@ -20,3 +20,4 @@ check_system_double-conversion.patch
 fix_binary_location_for_tests.patch
 disable_failing_tests.patch
 QML-Compilation-unit-caching-and-JIT-changes.patch
+qml-preserve-composite-singleton-types.patch
