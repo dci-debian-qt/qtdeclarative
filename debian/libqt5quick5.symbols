@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 5.5.1 amd64 i386
+# SymbolsHelper-Confirmed: 5.5.1 amd64 arm64 armhf i386 powerpc ppc64el s390x
 libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
 | libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#, qtdeclarative-abi-5-5-0
  _Z23qsgnode_set_descriptionP7QSGNodeRK7QString@Base 5.4.0
@@ -1085,7 +1085,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN15QSGPlainTextureD0Ev@Base 5.0.2 1
  _ZN15QSGPlainTextureD1Ev@Base 5.0.2 1
  _ZN15QSGPlainTextureD2Ev@Base 5.0.2 1
- (optional=internal|arch=amd64 s390x)_ZN16QCoreApplication9sendEventEP7QObjectP6QEvent@Base 5.5.0
+ (optional=internal|arch=amd64 arm64 armhf powerpc ppc64el s390x)_ZN16QCoreApplication9sendEventEP7QObjectP6QEvent@Base 5.5.0
  _ZN16QQuickCloseEvent11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.1.0 1
  _ZN16QQuickCloseEvent11qt_metacastEPKc@Base 5.1.0 1
  _ZN16QQuickCloseEvent16staticMetaObjectE@Base 5.1.0 1
@@ -1256,6 +1256,8 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN17QQuickItemPrivate15transform_clearEP16QQmlListPropertyI15QQuickTransformE@Base 5.0.2 1
  _ZN17QQuickItemPrivate15transform_countEP16QQmlListPropertyI15QQuickTransformE@Base 5.0.2 1
  _ZN17QQuickItemPrivate15visibleChildrenEv@Base 5.0.2 1
+ _ZN17QQuickItemPrivate16nextTabChildItemEPK10QQuickItemi@Base 5.5.1
+ _ZN17QQuickItemPrivate16prevTabChildItemEPK10QQuickItemi@Base 5.5.1
  _ZN17QQuickItemPrivate16resources_appendEP16QQmlListPropertyI7QObjectEPS1_@Base 5.0.2 1
  _ZN17QQuickItemPrivate16transformChangedEv@Base 5.0.2 1
  _ZN17QQuickItemPrivate16transform_appendEP16QQmlListPropertyI15QQuickTransformEPS1_@Base 5.0.2 1
