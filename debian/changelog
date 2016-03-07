@@ -1,9 +1,26 @@
-qtdeclarative-opensource-src (5.6.0~beta-2ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.6.0~rc-1ubuntu1) UNRELEASED; urgency=medium
 
   * Merge with Debian.
   * Update symbols.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 26 Jan 2016 10:07:50 +0000
+
+qtdeclarative-opensource-src (5.6.0~rc-1) experimental; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * New upstream release candidate.
+  * Drop qml-model-qtqml-models2 transitional package. It has already been
+    transitional in jessie (and wheezy-backports).
+  * Bump Qt build-dependencies to 5.6.0~rc.
+  * Use recommended https URIs for Vcs fields.
+  * Update symbols files from buildds’ and current build logs.
+  * Bump Standards-Version to 3.9.7, no changes needed.
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Add qt5-qmltooling-plugins as a qtdeclarative5-dev dependency, it is
+    required by the CMake scripts (Closes: #812893).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 05 Mar 2016 16:41:54 +0300
 
 qtdeclarative-opensource-src (5.6.0~beta-2) experimental; urgency=medium
 
