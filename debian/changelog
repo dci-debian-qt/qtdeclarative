@@ -2,6 +2,19 @@ qtdeclarative-opensource-src (5.6.0~rc-1ubuntu1) UNRELEASED; urgency=medium
 
   * Merge with Debian.
   * Update symbols.
+  * Drop backported upstream patches now included:
+    - Add-QQuickAsyncImageProvider.patch
+    - Add-isTabFence-private-flag.patch
+    - Don-t-change-the-currentItem-after-a-viewport-resize.patch
+    - Don-t-make-currentIndex-skip-an-extra-item-on-remova.patch
+    - Fix-memory-leak-when-using-async-image-providers.patch
+    - Flickable-avoid-perturbing-the-timeline-further-whil.patch
+    - Image-fix-crash-when-switching-between-multiple-scre.patch
+    - Make-sure-we-stop-animators-if-they-are-yet-to-be-st.patch
+    - MultiPointTouchArea-Fixed-released-duplication-on-mo.patch
+    - QQuickItem-fix-an-infinite-loop-nextItemInFocusChain.patch
+    - WIP-QQuickItem-fix-another-infinite-loop-in-nextItem.patch
+    - qmlplugindump-Don-t-try-to-import-Qt.test.qtestroot.patch
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 26 Jan 2016 10:07:50 +0000
 

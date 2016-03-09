@@ -1,17 +1,3 @@
-# Backported patches
-Make-sure-we-stop-animators-if-they-are-yet-to-be-st.patch
-Add-QQuickAsyncImageProvider.patch
-Don-t-change-the-currentItem-after-a-viewport-resize.patch
-Fix-memory-leak-when-using-async-image-providers.patch
-qmlplugindump-Don-t-try-to-import-Qt.test.qtestroot.patch
-Don-t-make-currentIndex-skip-an-extra-item-on-remova.patch
-Image-fix-crash-when-switching-between-multiple-scre.patch
-Flickable-avoid-perturbing-the-timeline-further-whil.patch
-MultiPointTouchArea-Fixed-released-duplication-on-mo.patch
-Add-isTabFence-private-flag.patch
-QQuickItem-fix-an-infinite-loop-nextItemInFocusChain.patch
-WIP-QQuickItem-fix-another-infinite-loop-in-nextItem.patch
-
 # Debian patches
 check_system_double-conversion.patch
 
