@@ -15,6 +15,7 @@ qtdeclarative-opensource-src (5.6.0~rc-1ubuntu1) UNRELEASED; urgency=medium
     - QQuickItem-fix-an-infinite-loop-nextItemInFocusChain.patch
     - WIP-QQuickItem-fix-another-infinite-loop-in-nextItem.patch
     - qmlplugindump-Don-t-try-to-import-Qt.test.qtestroot.patch
+  * Refresh QML cache and test binary location patches to apply.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 26 Jan 2016 10:07:50 +0000
 
