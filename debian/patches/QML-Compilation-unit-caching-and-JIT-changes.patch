@@ -802,7 +802,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4cachedlinkdata_p.h
 ===================================================================
 --- /dev/null
 +++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4cachedlinkdata_p.h
-@@ -0,0 +1,188 @@
+@@ -0,0 +1,196 @@
 +/***************************************************************************
 +**
 +** Copyright (C) 2014 Nomovok Ltd. All rights reserved.
@@ -858,6 +858,8 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4cachedlinkdata_p.h
 +    // call
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(callGlobalLookup),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(callActivationProperty),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(callQmlScopeObjectProperty),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(callQmlContextObjectProperty),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(callProperty),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(callPropertyLookup),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(callElement),
@@ -881,12 +883,15 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4cachedlinkdata_p.h
 +    // typeof
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(typeofValue),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(typeofName),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(typeofScopeObjectProperty),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(typeofContextObjectProperty),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(typeofMember),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(typeofElement),
 +
 +    // delete
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(deleteElement),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(deleteMember),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(deleteMemberString),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(deleteName),
 +
 +    // exceptions & scopes
@@ -978,13 +983,16 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4cachedlinkdata_p.h
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(doubleToUInt),
 +
 +    // qml
-+    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlIdArray),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlIdObject),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlContext),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlImportedScripts),
-+    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlContextObject),
-+    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlScopeObject),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlSingleton),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlContextObjectProperty),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlScopeObjectProperty),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlAttachedProperty),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(getQmlQObjectProperty),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(setQmlScopeObjectProperty),
++    CACHED_LINK_TABLE_ENTRY_RUNTIME(setQmlContextObjectProperty),
 +    CACHED_LINK_TABLE_ENTRY_RUNTIME(setQmlQObjectProperty)
 +};
 +
