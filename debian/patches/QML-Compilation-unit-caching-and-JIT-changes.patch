@@ -779,8 +779,8 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4assembler_p.h
 +            QV4::Primitive vv = convertToValue(c);
 +            FPRegisterID scratchFp;
 +            scratchFp = target;
-+            move(TrustedImm32(vv.int_32), ReturnValueRegister);
-+            move(TrustedImm32(vv.tag), ScratchRegister);
++            move(TrustedImm32(vv.int_32()), ReturnValueRegister);
++            move(TrustedImm32(vv.tag()), ScratchRegister);
 +            moveIntsToDouble(ReturnValueRegister, ScratchRegister, target, scratchFp);
  #endif
              return target;
