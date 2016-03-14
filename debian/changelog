@@ -1,9 +1,5 @@
 qtdeclarative-opensource-src (5.5.1-2ubuntu5) UNRELEASED; urgency=medium
 
-  * debian/patches/Don-t-check-for-revisions-when-assigning-to-grouped-.patch:
-    - Fix versioning (LP: #1389721)
-  * debian/patches/qml-preserve-composite-singleton-types.patch:
-    - Fix broken qml type description files: (LP: #1541346)
   * Update symbols from build logs.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Mon, 01 Feb 2016 14:39:12 +0000
