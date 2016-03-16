@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.5.1-2ubuntu5) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.5.1-2ubuntu5) xenial; urgency=medium
 
   * Update symbols from build logs.
   * QQuickItemView-forceLayout-Also-call-layout-when-d-f.patch:
