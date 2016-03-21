@@ -15,10 +15,10 @@ libQt5QuickTest.so.5 libqt5quicktest5 #MINVER#
  _ZN14QuickTestEvent10mouseClickEP7QObjectddiii@Qt_5_PRIVATE_API 5.2.0 1
  _ZN14QuickTestEvent10mousePressEP7QObjectddiii@Qt_5_PRIVATE_API 5.2.0 1
  _ZN14QuickTestEvent10mouseWheelEP7QObjectddiiiii@Qt_5_PRIVATE_API 5.2.0 1
- _ZN14QuickTestEvent11eventWindowEP7QObject@Qt_5_PRIVATE_API 5.6.0~beta
+ _ZN14QuickTestEvent11eventWindowEP7QObject@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN14QuickTestEvent11qt_metacallEN11QMetaObject4CallEiPPv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN14QuickTestEvent11qt_metacastEPKc@Qt_5_PRIVATE_API 5.0.2 1
- _ZN14QuickTestEvent12activeWindowEv@Qt_5_PRIVATE_API 5.6.0~beta
+ _ZN14QuickTestEvent12activeWindowEv@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN14QuickTestEvent12keyClickCharERK7QStringii@Qt_5_PRIVATE_API 5.1.0 1
  _ZN14QuickTestEvent12keyPressCharERK7QStringii@Qt_5_PRIVATE_API 5.1.0 1
  _ZN14QuickTestEvent12mouseReleaseEP7QObjectddiii@Qt_5_PRIVATE_API 5.2.0 1
