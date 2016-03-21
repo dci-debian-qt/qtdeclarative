@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.6.0~rc-1ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.6.0-1ubuntu1) UNRELEASED; urgency=medium
 
   * Merge with Debian.
   * Update symbols.
@@ -19,6 +19,19 @@ qtdeclarative-opensource-src (5.6.0~rc-1ubuntu1) UNRELEASED; urgency=medium
   * Modify QML cache patch to Qt 5.6 changes. (LP: #1556824)
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 26 Jan 2016 10:07:50 +0000
+
+qtdeclarative-opensource-src (5.6.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Drop the no longer needed hack to fix wrong path in pkgconfig files.
+  * No longer need to remove empty directories, qdoc 5.6 does not create them.
+  * Revert debian/watch to track final releases again.
+  * Update symbols files from buildds’ logs.
+  * Bump Qt build-dependencies to 5.6.0.
+  * Update debian/source/lintian-overrides to include more JavaScript files
+    which Lintian wrongly considers sourceless and prebuilt.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 18 Mar 2016 17:04:55 +0100
 
 qtdeclarative-opensource-src (5.6.0~rc-1) experimental; urgency=medium
 
