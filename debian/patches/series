@@ -13,6 +13,7 @@ QQuickItem-fix-an-infinite-loop-nextItemInFocusChain.patch
 QQuickItem-fix-another-infinite-loop-in-nextItemInFo.patch
 QQuickItemView-forceLayout-Also-call-layout-when-d-f.patch
 qml-preserve-composite-singleton-types.patch
+Fix-crash-in-hasAtlasTexture.patch
 
 # Debian patches
 check_system_double-conversion.patch

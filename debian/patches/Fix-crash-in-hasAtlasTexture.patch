@@ -1,0 +1,47 @@
+From cef27bf90cbb8d4e6f36f6b77fa5efb361e01ad2 Mon Sep 17 00:00:00 2001
+From: Albert Astals Cid <albert.astals@canonical.com>
+Date: Tue, 29 Mar 2016 14:40:23 +0200
+Subject: [PATCH] Fix crash in hasAtlasTexture
+
+Check for the QSGTextureProvider not being 0 before asking for its texture,
+we are doing the same in the loop of QQuickShaderEffectMaterial::compare so
+it was forgotten to do it here.
+
+Valgrind trace of the crash i get without it
+==26317== Invalid read of size 8
+==26317==    at 0x652B73A: hasAtlasTexture(QVector<QSGTextureProvider*> const&) (qquickshadereffectnode.cpp:49)
+==26317==    by 0x652BABC: QQuickShaderEffectMaterial::compare(QSGMaterial const*) const (qquickshadereffectnode.cpp:396)
+==26317==    by 0x63D1BF6: QSGBatchRenderer::Renderer::prepareOpaqueBatches() (qsgbatchrenderer.cpp:1525)
+==26317==    by 0x63DE7A7: QSGBatchRenderer::Renderer::render() (qsgbatchrenderer.cpp:2611)
+==26317==    by 0x63E9D3E: QSGRenderer::renderScene(QSGBindable const&) (qsgrenderer.cpp:208)
+==26317==    by 0x63EA58A: QSGRenderer::renderScene(unsigned int) (qsgrenderer.cpp:168)
+==26317==    by 0x63FAA7D: QSGRenderContext::renderNextFrame(QSGRenderer*, unsigned int) (qsgcontext.cpp:558)
+==26317==    by 0x644540A: QQuickWindowPrivate::renderSceneGraph(QSize const&) (qquickwindow.cpp:383)
+==26317==    by 0x641541A: QSGGuiThreadRenderLoop::renderWindow(QQuickWindow*) (qsgrenderloop.cpp:378)
+==26317==    by 0x6416520: QSGGuiThreadRenderLoop::event(QEvent*) (qsgrenderloop.cpp:474)
+==26317==    by 0x605F488: QCoreApplication::notify(QObject*, QEvent*) (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==26317==    by 0x605F5BA: QCoreApplication::notifyInternal(QObject*, QEvent*) (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==26317==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+
+Change-Id: I3b07450438d98910fbbff9f8b7a3d9d851ed4e5d
+Reviewed-by: Michael Brasser <michael.brasser@live.com>
+---
+ src/quick/items/qquickshadereffectnode.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/quick/items/qquickshadereffectnode.cpp b/src/quick/items/qquickshadereffectnode.cpp
+index 954aa6c..95537fd 100644
+--- a/src/quick/items/qquickshadereffectnode.cpp
++++ b/src/quick/items/qquickshadereffectnode.cpp
+@@ -46,7 +46,7 @@ static bool hasAtlasTexture(const QVector<QSGTextureProvider *> &textureProvider
+ {
+     for (int i = 0; i < textureProviders.size(); ++i) {
+         QSGTextureProvider *t = textureProviders.at(i);
+-        if (t->texture() && t->texture()->isAtlasTexture())
++        if (t && t->texture() && t->texture()->isAtlasTexture())
+             return true;
+     }
+     return false;
+-- 
+2.7.4
+
