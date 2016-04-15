@@ -1,3 +1,7 @@
+# Backported patches
+QQuickItemView-forceLayout-Also-call-layout-when-d-f.patch
+Fix-crash-in-hasAtlasTexture.patch
+
 # Debian patches
 check_system_double-conversion.patch
 
