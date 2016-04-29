@@ -1,3 +1,11 @@
+qtdeclarative-opensource-src (5.5.1-2ubuntu7) UNRELEASED; urgency=medium
+
+  * debian/patches/QML-do-not-wrap-property-values-of-type-QVariant.patch:
+    - Make certain QVariant properties accessible from QML. A backport
+      from Qt 5.6.0. (LP: #1488364)
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Mon, 25 Apr 2016 13:18:58 +0000
+
 qtdeclarative-opensource-src (5.5.1-2ubuntu6) xenial; urgency=medium
 
   * debian/patches/Fix-crash-in-hasAtlasTexture.patch:
