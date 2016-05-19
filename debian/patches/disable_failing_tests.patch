@@ -1,7 +1,7 @@
 diff -urN qtdeclarative-opensource-src-5.5.0.old/tests/auto/auto.pro qtdeclarative-opensource-src-5.5.0/tests/auto/auto.pro
 --- qtdeclarative-opensource-src-5.5.0.old/tests/auto/auto.pro	2015-06-29 20:12:24.000000000 +0000
 +++ qtdeclarative-opensource-src-5.5.0/tests/auto/auto.pro	2015-07-08 07:34:54.694933159 +0000
-@@ -1,10 +1,10 @@
+@@ -1,15 +1,14 @@
  TEMPLATE=subdirs
  SUBDIRS=\
 -    qml \
@@ -15,6 +15,11 @@ diff -urN qtdeclarative-opensource-src-5.5.0.old/tests/auto/auto.pro qtdeclarati
      cmake \
      installed_cmake \
      toolsupport
+ 
+-qtHaveModule(widgets): SUBDIRS += quickwidgets
+ 
+ qmldevtools.CONFIG = host_build
+ 
 diff -urN qtdeclarative-opensource-src-5.5.0.old/tests/auto/qml/debugger/debugger.pro qtdeclarative-opensource-src-5.5.0/tests/auto/qml/debugger/debugger.pro
 --- qtdeclarative-opensource-src-5.5.0.old/tests/auto/qml/debugger/debugger.pro	2015-06-29 20:12:19.000000000 +0000
 +++ qtdeclarative-opensource-src-5.5.0/tests/auto/qml/debugger/debugger.pro	2015-07-08 07:35:10.794933489 +0000
