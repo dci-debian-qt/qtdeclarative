@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.5.1-2ubuntu7) xenial; urgency=medium
+qtdeclarative-opensource-src (5.5.1-2ubuntu7) yakkety; urgency=medium
 
   [ Timo Jyrinki ]
   * debian/patches/QML-do-not-wrap-property-values-of-type-QVariant.patch:
