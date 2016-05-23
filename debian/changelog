@@ -1,3 +1,10 @@
+qtdeclarative-opensource-src (5.5.1-2ubuntu8~2) yakkety; urgency=medium
+
+  * Rebuild for arm64 gles switch.
+  * Skip some widget tests that fail due to mesa software rendering shaders.
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Mon, 23 May 2016 05:56:56 +0000
+
 qtdeclarative-opensource-src (5.5.1-2ubuntu7) yakkety; urgency=medium
 
   [ Timo Jyrinki ]
