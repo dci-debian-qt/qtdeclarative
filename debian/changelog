@@ -1,3 +1,7 @@
+qtdeclarative-opensource-src (5.6.1-4~bpo8+1) UNRELEASED; urgency=medium
+
+ -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Tue, 05 Jul 2016 23:52:13 -0300
+
 qtdeclarative-opensource-src (5.6.1-4) unstable; urgency=medium
 
   * Backport qml_only_release_types_if_they_arent_referenced_anymore.patch,
