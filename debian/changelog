@@ -1,6 +1,8 @@
-qtdeclarative-opensource-src (5.6.1-4~bpo8+1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.6.1-4~bpo8+1) jessie-backports; urgency=medium
 
- -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Tue, 05 Jul 2016 23:52:13 -0300
+  * Upload to jessie-backports.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 07 Jul 2016 14:21:06 -0300
 
 qtdeclarative-opensource-src (5.6.1-4) unstable; urgency=medium
 
