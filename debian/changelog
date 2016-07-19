@@ -20,6 +20,7 @@ qtdeclarative-opensource-src (5.6.1-4ubuntu1) UNRELEASED; urgency=medium
   * Mark private symbols.
   * Update for Qt 5.6.1:
     - Drop debian/patches/Fix-crash-in-hasAtlasTexture.patch now in upstream.
+  * Add build dep on libqt5opengl5-dev to execute a test successfully
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 26 Jan 2016 10:07:50 +0000
 
