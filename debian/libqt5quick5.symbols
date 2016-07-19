@@ -3945,8 +3945,8 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  (c++)"non-virtual thunk to QQuickTextInput::~QQuickTextInput()@Qt_5_PRIVATE_API" 5.0.2
  (c++)"non-virtual thunk to QQuickVector3dAnimation::~QQuickVector3dAnimation()@Qt_5_PRIVATE_API" 5.0.2
  (c++)"non-virtual thunk to QQuickView::~QQuickView()@Qt_5" 5.0.2
- (c++)"non-virtual thunk to QQuickViewPrivate::itemGeometryChanged(QQuickItem*, QRectF const&, QRectF const&)@Qt_5_PRIVATE_API" 5.6.1 1
- (c++)"non-virtual thunk to QQuickViewPrivate::~QQuickViewPrivate()@Qt_5_PRIVATE_API" 5.6.1 1
+ (c++)"non-virtual thunk to QQuickViewPrivate::itemGeometryChanged(QQuickItem*, QRectF const&, QRectF const&)@Qt_5_PRIVATE_API" 5.6.1
+ (c++)"non-virtual thunk to QQuickViewPrivate::~QQuickViewPrivate()@Qt_5_PRIVATE_API" 5.6.1
  (c++)"non-virtual thunk to QQuickWindow::~QQuickWindow()@Qt_5" 5.0.2
  (c++)"non-virtual thunk to QQuickWindowQmlImpl::classBegin()@Qt_5_PRIVATE_API" 5.5.0
  (c++)"non-virtual thunk to QQuickWindowQmlImpl::componentComplete()@Qt_5_PRIVATE_API" 5.5.0
