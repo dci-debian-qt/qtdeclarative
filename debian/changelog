@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.6.0-1ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.6.1-4ubuntu1) UNRELEASED; urgency=medium
 
   * Merge with Debian.
   * Update symbols.
@@ -20,6 +20,43 @@ qtdeclarative-opensource-src (5.6.0-1ubuntu1) UNRELEASED; urgency=medium
   * Mark private symbols.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 26 Jan 2016 10:07:50 +0000
+
+qtdeclarative-opensource-src (5.6.1-5) UNRELEASED; urgency=medium
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Update symbols files with buildds' logs (Closes: #830817).
+
+ -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Wed, 13 Jul 2016 19:28:45 -0300
+
+qtdeclarative-opensource-src (5.6.1-4) unstable; urgency=medium
+
+  * Backport qml_only_release_types_if_they_arent_referenced_anymore.patch,
+    it solves a nasty crash.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 16 Jun 2016 10:45:18 -0300
+
+qtdeclarative-opensource-src (5.6.1-3) unstable; urgency=medium
+
+  * Update symbols files with buildd's logs so hurd can also be part of the
+    transition.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 14 Jun 2016 11:26:47 -0300
+
+qtdeclarative-opensource-src (5.6.1-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Mon, 13 Jun 2016 09:51:07 -0300
+
+qtdeclarative-opensource-src (5.6.1-1) experimental; urgency=medium
+
+  * New upstream release.
+    - Bump Qt build dependencies.
+  * Update symbols files with buildds' and current build log.
+  * Mark private symbols as such.
+  * Update Standards-Version to 3.9.8, no changes required.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 09 Jun 2016 18:12:03 -0300
 
 qtdeclarative-opensource-src (5.6.0-1) experimental; urgency=medium
 

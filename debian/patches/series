@@ -1,6 +1,7 @@
 # Backported patches
 QQuickItemView-forceLayout-Also-call-layout-when-d-f.patch
 Fix-crash-in-hasAtlasTexture.patch
+qml_only_release_types_if_they_arent_referenced_anymore.patch
 
 # Debian patches
 check_system_double-conversion.patch
