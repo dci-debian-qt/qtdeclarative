@@ -16,7 +16,7 @@ qtdeclarative-opensource-src (5.6.1-4ubuntu1) UNRELEASED; urgency=medium
     - WIP-QQuickItem-fix-another-infinite-loop-in-nextItem.patch
     - qmlplugindump-Don-t-try-to-import-Qt.test.qtestroot.patch
   * Refresh QML cache and test binary location patches to apply.
-  * Modify QML cache patch to Qt 5.6 changes. (LP: #1556824)
+  * Modify QML cache patch to Qt 5.6 and 5.6.1 changes. (LP: #1556824)
   * Mark private symbols.
   * Update for Qt 5.6.1:
     - Drop debian/patches/Fix-crash-in-hasAtlasTexture.patch now in upstream.

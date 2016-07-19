@@ -1137,9 +1137,9 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/qml/qqmlengine.cpp
 @@ -599,7 +599,8 @@ QQmlEnginePrivate::QQmlEnginePrivate(QQm
    activeObjectCreator(0),
    networkAccessManager(0), networkAccessManagerFactory(0), urlInterceptor(0),
-   scarceResourcesRefCount(0), typeLoader(e), importDatabase(e), uniqueId(1),
--  incubatorCount(0), incubationController(0)
-+  incubatorCount(0), incubationController(0),
+   scarceResourcesRefCount(0), importDatabase(e), typeLoader(e),
+-  uniqueId(1), incubatorCount(0), incubationController(0)
++  uniqueId(1), incubatorCount(0), incubationController(0),
 +  qmlCacheValid(0)
  {
  }
