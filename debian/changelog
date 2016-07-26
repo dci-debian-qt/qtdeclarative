@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.6.1-4ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.6.1-4ubuntu1~4) yakkety; urgency=medium
 
   * Merge with Debian.
   * Update symbols.
