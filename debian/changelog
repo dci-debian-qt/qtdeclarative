@@ -1,3 +1,13 @@
+qtdeclarative-opensource-src (5.6.1-4ubuntu2) yakkety; urgency=medium
+
+  * debian/patches/Flickable-fix-minXExtent-minYExtent-when-content-is-.patch:
+    - Fix flickable's widthRatio and heightRatio (LP: #1588238)
+  * debian/patches/QQuickWindow-Fill-out-timestamps-in-QHoverEvents-sen.patch:
+    - Fix relative mouse events (LP: #1597205)
+    - debian/libqt5quick5.symbols: Update symbols.
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 27 Jul 2016 12:11:13 +0000
+
 qtdeclarative-opensource-src (5.6.1-4ubuntu1~4) yakkety; urgency=medium
 
   * Merge with Debian.
