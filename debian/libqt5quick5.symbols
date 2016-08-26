@@ -9,7 +9,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  Qt_5.5@Qt_5.5 5.6.0~beta
  Qt_5.6@Qt_5.6 5.6.0~beta
  Qt_5@Qt_5 5.6.0~beta
- Qt_5_PRIVATE_API@Qt_5_PRIVATE_API 5.6.0~beta
+ Qt_5_PRIVATE_API@Qt_5_PRIVATE_API 5.6.0~beta 1
  _Z23qsgnode_set_descriptionP7QSGNodeRK7QString@Qt_5 5.4.0
  _ZN10QByteArray7reserveEi@Qt_5 5.6.0~beta
  _ZN10QQuickItem10classBeginEv@Qt_5 5.0.2
@@ -2414,17 +2414,17 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN24QQuickOpacityAnimatorJobC2Ev@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN24QQuickPaintedItemPrivateC1Ev@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN24QQuickPaintedItemPrivateC2Ev@Qt_5_PRIVATE_API 5.6.0~beta 1
- _ZN24QQuickShaderEffectCommon12updateShaderEP10QQuickItemN29QQuickShaderEffectMaterialKey10ShaderTypeE@Qt_5_PRIVATE_API 5.0.2
- _ZN24QQuickShaderEffectCommon12updateWindowEP12QQuickWindow@Qt_5_PRIVATE_API 5.0.2
+ _ZN24QQuickShaderEffectCommon12updateShaderEP10QQuickItemN29QQuickShaderEffectMaterialKey10ShaderTypeE@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN24QQuickShaderEffectCommon12updateWindowEP12QQuickWindow@Qt_5_PRIVATE_API 5.0.2 1
  _ZN24QQuickShaderEffectCommon14updateMaterialEP22QQuickShaderEffectNodeP26QQuickShaderEffectMaterialbbb@Qt_5_PRIVATE_API 5.0.2 1
- _ZN24QQuickShaderEffectCommon14updateParseLogEb@Qt_5_PRIVATE_API 5.0.2
- _ZN24QQuickShaderEffectCommon15propertyChangedEP10QQuickItemiPb@Qt_5_PRIVATE_API 5.0.2
- _ZN24QQuickShaderEffectCommon15sourceDestroyedEP7QObject@Qt_5_PRIVATE_API 5.0.2
- _ZN24QQuickShaderEffectCommon21lookThroughShaderCodeEP10QQuickItemN29QQuickShaderEffectMaterialKey10ShaderTypeERK10QByteArray@Qt_5_PRIVATE_API 5.0.2
- _ZN24QQuickShaderEffectCommon22connectPropertySignalsEP10QQuickItemN29QQuickShaderEffectMaterialKey10ShaderTypeE@Qt_5_PRIVATE_API 5.0.2
- _ZN24QQuickShaderEffectCommon25disconnectPropertySignalsEP10QQuickItemN29QQuickShaderEffectMaterialKey10ShaderTypeE@Qt_5_PRIVATE_API 5.0.2
- _ZN24QQuickShaderEffectCommonD1Ev@Qt_5_PRIVATE_API 5.0.2
- _ZN24QQuickShaderEffectCommonD2Ev@Qt_5_PRIVATE_API 5.0.2
+ _ZN24QQuickShaderEffectCommon14updateParseLogEb@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN24QQuickShaderEffectCommon15propertyChangedEP10QQuickItemiPb@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN24QQuickShaderEffectCommon15sourceDestroyedEP7QObject@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN24QQuickShaderEffectCommon21lookThroughShaderCodeEP10QQuickItemN29QQuickShaderEffectMaterialKey10ShaderTypeERK10QByteArray@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN24QQuickShaderEffectCommon22connectPropertySignalsEP10QQuickItemN29QQuickShaderEffectMaterialKey10ShaderTypeE@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN24QQuickShaderEffectCommon25disconnectPropertySignalsEP10QQuickItemN29QQuickShaderEffectMaterialKey10ShaderTypeE@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN24QQuickShaderEffectCommonD1Ev@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN24QQuickShaderEffectCommonD2Ev@Qt_5_PRIVATE_API 5.0.2 1
  _ZN24QQuickShaderEffectSource10itemChangeEN10QQuickItem10ItemChangeERKNS0_14ItemChangeDataE@Qt_5_PRIVATE_API 5.0.2 1
  _ZN24QQuickShaderEffectSource11liveChangedEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN24QQuickShaderEffectSource11qt_metacallEN11QMetaObject4CallEiPPv@Qt_5_PRIVATE_API 5.0.2 1
@@ -3449,7 +3449,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTI11QSGMaterial@Qt_5 5.0.2
  _ZTI11QSGRenderer@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI11QSGRootNode@Qt_5 5.0.2
- _ZTI12QQmlRefCount@Qt_5 5.4.0 1
+ _ZTI12QQmlRefCount@Qt_5 5.4.0
  _ZTI12QQuickSprite@Qt_5_PRIVATE_API 5.6.1 1
  _ZTI12QQuickWindow@Qt_5 5.0.2
  _ZTI12QSGGlyphNode@Qt_5_PRIVATE_API 5.0.2 1
@@ -3480,7 +3480,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTI15QSGGeometryNode@Qt_5 5.0.2
  _ZTI15QSGPlainTexture@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI16QOpenGLFunctions@Qt_5 5.0.2
- _ZTI16QQmlCustomParser@Qt_5 5.0.2 1
+ _ZTI16QQmlCustomParser@Qt_5 5.0.2
  _ZTI16QQuickCloseEvent@Qt_5_PRIVATE_API 5.1.0 1
  _ZTI16QQuickMouseEvent@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI16QQuickStateGroup@Qt_5_PRIVATE_API 5.0.2 1
@@ -3565,7 +3565,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTI26QQuickItemViewTransitioner@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTI26QQuickShaderEffectMaterial@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI26QSGAbstractRendererPrivate@Qt_5_PRIVATE_API 5.4.0 1
- _ZTI26QSGContextFactoryInterface@Qt_5_PRIVATE_API 5.0.2
+ _ZTI26QSGContextFactoryInterface@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI26QSGDistanceFieldGlyphCache@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI27QQuickKeyNavigationAttached@Qt_5_PRIVATE_API 5.4.0 1
  _ZTI28QSGDistanceFieldTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
@@ -3587,7 +3587,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTI9QSGEngine@Qt_5 5.4.0
  _ZTIN16QSGBatchRenderer8RendererE@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZTIN23QQuickFramebufferObject8RendererE@Qt_5_PRIVATE_API 5.2.0~beta1 1
- _ZTIN9QV8Engine9DeletableE@Qt_5 5.6.0~beta 1
+ _ZTIN9QV8Engine9DeletableE@Qt_5 5.6.0~beta
  _ZTS10QQuickItem@Qt_5 5.0.2
  _ZTS10QQuickText@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS10QQuickView@Qt_5 5.0.2
@@ -3601,7 +3601,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTS11QSGMaterial@Qt_5 5.0.2
  _ZTS11QSGRenderer@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS11QSGRootNode@Qt_5 5.0.2
- _ZTS12QQmlRefCount@Qt_5 5.4.0 1
+ _ZTS12QQmlRefCount@Qt_5 5.4.0
  _ZTS12QQuickSprite@Qt_5_PRIVATE_API 5.6.1 1
  _ZTS12QQuickWindow@Qt_5 5.0.2
  _ZTS12QSGGlyphNode@Qt_5_PRIVATE_API 5.0.2 1
@@ -3632,7 +3632,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTS15QSGGeometryNode@Qt_5 5.0.2
  _ZTS15QSGPlainTexture@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS16QOpenGLFunctions@Qt_5 5.0.2
- _ZTS16QQmlCustomParser@Qt_5 5.0.2 1
+ _ZTS16QQmlCustomParser@Qt_5 5.0.2
  _ZTS16QQuickCloseEvent@Qt_5_PRIVATE_API 5.1.0 1
  _ZTS16QQuickMouseEvent@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS16QQuickStateGroup@Qt_5_PRIVATE_API 5.0.2 1
@@ -3717,7 +3717,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTS26QQuickItemViewTransitioner@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTS26QQuickShaderEffectMaterial@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS26QSGAbstractRendererPrivate@Qt_5_PRIVATE_API 5.4.0 1
- _ZTS26QSGContextFactoryInterface@Qt_5_PRIVATE_API 5.0.2
+ _ZTS26QSGContextFactoryInterface@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS26QSGDistanceFieldGlyphCache@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS27QQuickKeyNavigationAttached@Qt_5_PRIVATE_API 5.4.0 1
  _ZTS28QSGDistanceFieldTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
@@ -3739,7 +3739,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTS9QSGEngine@Qt_5 5.4.0
  _ZTSN16QSGBatchRenderer8RendererE@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZTSN23QQuickFramebufferObject8RendererE@Qt_5_PRIVATE_API 5.2.0~beta1 1
- _ZTSN9QV8Engine9DeletableE@Qt_5 5.6.0~beta 1
+ _ZTSN9QV8Engine9DeletableE@Qt_5 5.6.0~beta
  _ZTV10QQuickItem@Qt_5 5.0.2
  _ZTV10QQuickText@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV10QQuickView@Qt_5 5.0.2
@@ -3779,7 +3779,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV15QSGDefaultLayer@Qt_5_PRIVATE_API 5.4.0 1
  _ZTV15QSGGeometryNode@Qt_5 5.0.2
  _ZTV15QSGPlainTexture@Qt_5_PRIVATE_API 5.0.2 1
- _ZTV16QQmlCustomParser@Qt_5 5.0.2 1
+ _ZTV16QQmlCustomParser@Qt_5 5.0.2
  _ZTV16QQuickCloseEvent@Qt_5_PRIVATE_API 5.1.0 1
  _ZTV16QQuickMouseEvent@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV16QQuickStateGroup@Qt_5_PRIVATE_API 5.0.2 1
@@ -3863,7 +3863,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV26QQuickItemViewTransitioner@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTV26QQuickShaderEffectMaterial@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV26QSGAbstractRendererPrivate@Qt_5_PRIVATE_API 5.4.0 1
- _ZTV26QSGContextFactoryInterface@Qt_5_PRIVATE_API 5.6.0~beta
+ _ZTV26QSGContextFactoryInterface@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTV26QSGDistanceFieldGlyphCache@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV27QQuickKeyNavigationAttached@Qt_5_PRIVATE_API 5.4.0 1
  _ZTV28QSGDistanceFieldTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
@@ -3894,60 +3894,60 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _Zls6QDebugPK15QSGGeometryNode@Qt_5 5.0.2
  _Zls6QDebugPK16QSGTransformNode@Qt_5 5.0.2
  _Zls6QDebugPK7QSGNode@Qt_5 5.0.2
- (c++)"non-virtual thunk to QQuickAbstractAnimation::classBegin()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickAbstractAnimation::componentComplete()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickAbstractAnimation::setTarget(QQmlProperty const&)@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickAbstractAnimation::~QQuickAbstractAnimation()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickAbstractAnimationPrivate::animationFinished(QAbstractAnimationJob*)@Qt_5_PRIVATE_API" 5.6.0~beta
- (c++)"non-virtual thunk to QQuickAnimationGroup::~QQuickAnimationGroup()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickAnimatorProxyJob::debugAnimation(QDebug) const@Qt_5_PRIVATE_API" 5.5.0
- (c++)"non-virtual thunk to QQuickAnimatorProxyJob::updateCurrentTime(int)@Qt_5_PRIVATE_API" 5.2.0~beta1
- (c++)"non-virtual thunk to QQuickAnimatorProxyJob::updateState(QAbstractAnimationJob::State, QAbstractAnimationJob::State)@Qt_5_PRIVATE_API" 5.2.0~beta1
- (c++)"non-virtual thunk to QQuickAnimatorProxyJob::~QQuickAnimatorProxyJob()@Qt_5_PRIVATE_API" 5.2.0~beta1
- (c++)"non-virtual thunk to QQuickBasePositioner::componentComplete()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickBasePositioner::~QQuickBasePositioner()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickBehavior::setTarget(QQmlProperty const&)@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickBehavior::write(QVariant const&)@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickBehavior::~QQuickBehavior()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickColorAnimation::~QQuickColorAnimation()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickFlickable::componentComplete()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickFlickable::~QQuickFlickable()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickImage::~QQuickImage()@Qt_5_PRIVATE_API" 5.6.0~beta
- (c++)"non-virtual thunk to QQuickImageBase::componentComplete()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickImageBase::~QQuickImageBase()@Qt_5_PRIVATE_API" 5.0.2
+ (c++)"non-virtual thunk to QQuickAbstractAnimation::classBegin()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickAbstractAnimation::componentComplete()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickAbstractAnimation::setTarget(QQmlProperty const&)@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickAbstractAnimation::~QQuickAbstractAnimation()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickAbstractAnimationPrivate::animationFinished(QAbstractAnimationJob*)@Qt_5_PRIVATE_API" 5.6.0~beta 1
+ (c++)"non-virtual thunk to QQuickAnimationGroup::~QQuickAnimationGroup()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickAnimatorProxyJob::debugAnimation(QDebug) const@Qt_5_PRIVATE_API" 5.5.0 1
+ (c++)"non-virtual thunk to QQuickAnimatorProxyJob::updateCurrentTime(int)@Qt_5_PRIVATE_API" 5.2.0~beta1 1
+ (c++)"non-virtual thunk to QQuickAnimatorProxyJob::updateState(QAbstractAnimationJob::State, QAbstractAnimationJob::State)@Qt_5_PRIVATE_API" 5.2.0~beta1 1
+ (c++)"non-virtual thunk to QQuickAnimatorProxyJob::~QQuickAnimatorProxyJob()@Qt_5_PRIVATE_API" 5.2.0~beta1 1
+ (c++)"non-virtual thunk to QQuickBasePositioner::componentComplete()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickBasePositioner::~QQuickBasePositioner()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickBehavior::setTarget(QQmlProperty const&)@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickBehavior::write(QVariant const&)@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickBehavior::~QQuickBehavior()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickColorAnimation::~QQuickColorAnimation()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickFlickable::componentComplete()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickFlickable::~QQuickFlickable()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickImage::~QQuickImage()@Qt_5_PRIVATE_API" 5.6.0~beta 1
+ (c++)"non-virtual thunk to QQuickImageBase::componentComplete()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickImageBase::~QQuickImageBase()@Qt_5_PRIVATE_API" 5.0.2 1
  (c++)"non-virtual thunk to QQuickItem::classBegin()@Qt_5" 5.0.2
  (c++)"non-virtual thunk to QQuickItem::componentComplete()@Qt_5" 5.0.2
  (c++)"non-virtual thunk to QQuickItem::~QQuickItem()@Qt_5" 5.0.2
- (c++)"non-virtual thunk to QQuickItemView::componentComplete()@Qt_5_PRIVATE_API" 5.6.0~beta
- (c++)"non-virtual thunk to QQuickItemView::~QQuickItemView()@Qt_5_PRIVATE_API" 5.6.0~beta
- (c++)"non-virtual thunk to QQuickKeyNavigationAttached::keyPressed(QKeyEvent*, bool)@Qt_5_PRIVATE_API" 5.4.0
- (c++)"non-virtual thunk to QQuickKeyNavigationAttached::keyReleased(QKeyEvent*, bool)@Qt_5_PRIVATE_API" 5.4.0
- (c++)"non-virtual thunk to QQuickMouseArea::~QQuickMouseArea()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickNumberAnimation::~QQuickNumberAnimation()@Qt_5_PRIVATE_API" 5.0.2
+ (c++)"non-virtual thunk to QQuickItemView::componentComplete()@Qt_5_PRIVATE_API" 5.6.0~beta 1
+ (c++)"non-virtual thunk to QQuickItemView::~QQuickItemView()@Qt_5_PRIVATE_API" 5.6.0~beta 1
+ (c++)"non-virtual thunk to QQuickKeyNavigationAttached::keyPressed(QKeyEvent*, bool)@Qt_5_PRIVATE_API" 5.4.0 1
+ (c++)"non-virtual thunk to QQuickKeyNavigationAttached::keyReleased(QKeyEvent*, bool)@Qt_5_PRIVATE_API" 5.4.0 1
+ (c++)"non-virtual thunk to QQuickMouseArea::~QQuickMouseArea()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickNumberAnimation::~QQuickNumberAnimation()@Qt_5_PRIVATE_API" 5.0.2 1
  (c++)"non-virtual thunk to QQuickPaintedItem::~QQuickPaintedItem()@Qt_5" 5.0.2
- (c++)"non-virtual thunk to QQuickParallelAnimation::~QQuickParallelAnimation()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickPauseAnimation::~QQuickPauseAnimation()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickPropertyAnimation::~QQuickPropertyAnimation()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickRotationAnimation::~QQuickRotationAnimation()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickShaderEffect::componentComplete()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickShaderEffect::~QQuickShaderEffect()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickShaderEffectNode::preprocess()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickShaderEffectNode::~QQuickShaderEffectNode()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickShaderEffectSource::itemGeometryChanged(QQuickItem*, QRectF const&, QRectF const&)@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickShaderEffectSource::~QQuickShaderEffectSource()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickStateGroup::classBegin()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickStateGroup::componentComplete()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickStateGroup::~QQuickStateGroup()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickText::componentComplete()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickText::~QQuickText()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickTextEdit::componentComplete()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickTextInput::componentComplete()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickTextInput::~QQuickTextInput()@Qt_5_PRIVATE_API" 5.0.2
- (c++)"non-virtual thunk to QQuickVector3dAnimation::~QQuickVector3dAnimation()@Qt_5_PRIVATE_API" 5.0.2
+ (c++)"non-virtual thunk to QQuickParallelAnimation::~QQuickParallelAnimation()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickPauseAnimation::~QQuickPauseAnimation()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickPropertyAnimation::~QQuickPropertyAnimation()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickRotationAnimation::~QQuickRotationAnimation()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickShaderEffect::componentComplete()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickShaderEffect::~QQuickShaderEffect()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickShaderEffectNode::preprocess()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickShaderEffectNode::~QQuickShaderEffectNode()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickShaderEffectSource::itemGeometryChanged(QQuickItem*, QRectF const&, QRectF const&)@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickShaderEffectSource::~QQuickShaderEffectSource()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickStateGroup::classBegin()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickStateGroup::componentComplete()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickStateGroup::~QQuickStateGroup()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickText::componentComplete()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickText::~QQuickText()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickTextEdit::componentComplete()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickTextInput::componentComplete()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickTextInput::~QQuickTextInput()@Qt_5_PRIVATE_API" 5.0.2 1
+ (c++)"non-virtual thunk to QQuickVector3dAnimation::~QQuickVector3dAnimation()@Qt_5_PRIVATE_API" 5.0.2 1
  (c++)"non-virtual thunk to QQuickView::~QQuickView()@Qt_5" 5.0.2
- (c++)"non-virtual thunk to QQuickViewPrivate::itemGeometryChanged(QQuickItem*, QRectF const&, QRectF const&)@Qt_5_PRIVATE_API" 5.6.1
- (c++)"non-virtual thunk to QQuickViewPrivate::~QQuickViewPrivate()@Qt_5_PRIVATE_API" 5.6.1
+ (c++)"non-virtual thunk to QQuickViewPrivate::itemGeometryChanged(QQuickItem*, QRectF const&, QRectF const&)@Qt_5_PRIVATE_API" 5.6.1 1
+ (c++)"non-virtual thunk to QQuickViewPrivate::~QQuickViewPrivate()@Qt_5_PRIVATE_API" 5.6.1 1
  (c++)"non-virtual thunk to QQuickWindow::~QQuickWindow()@Qt_5" 5.0.2
- (c++)"non-virtual thunk to QQuickWindowQmlImpl::classBegin()@Qt_5_PRIVATE_API" 5.5.0
- (c++)"non-virtual thunk to QQuickWindowQmlImpl::componentComplete()@Qt_5_PRIVATE_API" 5.5.0
- (c++)"non-virtual thunk to QSGContextPlugin::~QSGContextPlugin()@Qt_5_PRIVATE_API" 5.0.2
+ (c++)"non-virtual thunk to QQuickWindowQmlImpl::classBegin()@Qt_5_PRIVATE_API" 5.5.0 1
+ (c++)"non-virtual thunk to QQuickWindowQmlImpl::componentComplete()@Qt_5_PRIVATE_API" 5.5.0 1
+ (c++)"non-virtual thunk to QSGContextPlugin::~QSGContextPlugin()@Qt_5_PRIVATE_API" 5.0.2 1
