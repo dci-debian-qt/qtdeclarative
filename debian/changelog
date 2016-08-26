@@ -1,3 +1,43 @@
+qtdeclarative-opensource-src (5.7.0-2) experimental; urgency=medium
+
+  * Merge 5.6.1-5 from unstable; replace fix_engine_64bits_big_endian.diff
+    with a patch that got applied upstream.
+  * Update symbols files from buildds’ logs.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 21 Jul 2016 20:47:19 +0300
+
+qtdeclarative-opensource-src (5.7.0-1) experimental; urgency=medium
+
+  [ Harald Sitter ]
+  * New upstream release.
+  * Drop qml_only_release_types_if_they_arent_referenced_anymore.patch
+    (upstream)
+  * New package qml-module-qtquick-layouts (moved from qtquickcontrols)
+  * Update install files.
+  * qtdeclarative5-examples breaks/replaces qtquickcontrols5-examples because
+    of moved example files.
+  * qtdeclarative5-examples depends on the new layouts module
+
+  [ Dmitry Shachnev ]
+  * Drop check_system_double-conversion.patch and libdouble-conversion-dev
+    build-dependency, upstream no longer uses double-conversion.
+  * Bump Qt build-dependencies to 5.7.0.
+  * Update symbols files from amd64 and i386 build logs.
+  * Bump qtdeclarative-abi version to 5-7-0.
+  * Update debian/copyright.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 05 Jul 2016 15:53:55 +0300
+
+qtdeclarative-opensource-src (5.6.1-5) unstable; urgency=medium
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Update symbols files with buildds' logs (Closes: #830817).
+
+  [ Maximiliano Curia ]
+  * Add new patch: fix_engine_64bits_big_endian.diff
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 19 Jul 2016 12:09:46 -0300
+
 qtdeclarative-opensource-src (5.6.1-4ubuntu3) UNRELEASED; urgency=medium
 
   * debian/patches/Fix-visibility-of-properties-in-value-types.patch:
@@ -44,13 +84,6 @@ qtdeclarative-opensource-src (5.6.1-4ubuntu1~4) yakkety; urgency=medium
     - Fix a crasher affecting s390x (LP: #1567481) (LP: #1572496) (LP: #1567776)
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 26 Jan 2016 10:07:50 +0000
-
-qtdeclarative-opensource-src (5.6.1-5) UNRELEASED; urgency=medium
-
-  [ Lisandro Damián Nicanor Pérez Meyer ]
-  * Update symbols files with buildds' logs (Closes: #830817).
-
- -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Wed, 13 Jul 2016 19:28:45 -0300
 
 qtdeclarative-opensource-src (5.6.1-4) unstable; urgency=medium
 
