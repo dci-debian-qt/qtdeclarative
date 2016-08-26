@@ -1,20 +1,11 @@
 # Backported patches
-Make-sure-we-stop-animators-if-they-are-yet-to-be-st.patch
-Add-QQuickAsyncImageProvider.patch
-Don-t-change-the-currentItem-after-a-viewport-resize.patch
-Fix-memory-leak-when-using-async-image-providers.patch
-qmlplugindump-Don-t-try-to-import-Qt.test.qtestroot.patch
-Don-t-make-currentIndex-skip-an-extra-item-on-remova.patch
-Image-fix-crash-when-switching-between-multiple-scre.patch
-Flickable-avoid-perturbing-the-timeline-further-whil.patch
-MultiPointTouchArea-Fixed-released-duplication-on-mo.patch
-Add-isTabFence-private-flag.patch
-QQuickItem-fix-an-infinite-loop-nextItemInFocusChain.patch
-QQuickItem-fix-another-infinite-loop-in-nextItemInFo.patch
 QQuickItemView-forceLayout-Also-call-layout-when-d-f.patch
-qml-preserve-composite-singleton-types.patch
-Fix-crash-in-hasAtlasTexture.patch
-QML-do-not-wrap-property-values-of-type-QVariant.patch
+qml_only_release_types_if_they_arent_referenced_anymore.patch
+V4-Always-set-the-tag-when-boxing-a-pointer-in-QV4-V.patch
+Fix-QQmlEngine-crash-on-big-endian-64-bit-architectu.patch
+Flickable-fix-minXExtent-minYExtent-when-content-is-.patch
+QQuickWindow-Fill-out-timestamps-in-QHoverEvents-sen.patch
+Fix-visibility-of-properties-in-value-types.patch
 
 # Debian patches
 check_system_double-conversion.patch

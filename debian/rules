@@ -13,7 +13,7 @@ export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
 export QT_SELECT := qt5
 
 # Skip tests on the archs they are known to be flaky with current configuration
-testskip_architectures := powerpc ppc64el
+testskip_architectures := powerpc ppc64el s390x
 
 %:
 	dh $@ --parallel --with pkgkde_symbolshelper --dbg-package=qtdeclarative5-dbg
@@ -22,14 +22,10 @@ override_dh_auto_configure:
 	qmake QT_BUILD_PARTS+=tests
 
 override_dh_auto_build-indep:
-	dh_auto_build -Smakefile -- html_docs
+	dh_auto_build -- docs
 
 override_dh_auto_install-arch:
 	dh_auto_install
-
-	# Fix wrong path in pkgconfig files
-	find $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig -type f -name '*.pc' \
-	-exec sed -i -e 's/$(DEB_HOST_MULTIARCH)\/$(DEB_HOST_MULTIARCH)/$(DEB_HOST_MULTIARCH)/g' {} \;
 
 	# Remove libtool-like files
 	rm -f debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/*.la
@@ -49,12 +45,9 @@ override_dh_auto_install-arch:
 	\) -print0 | xargs -0 chmod a-x
 
 override_dh_auto_install-indep:
-	make INSTALL_ROOT=$(CURDIR)/debian/tmp install_html_docs
+	dh_auto_build -- INSTALL_ROOT=$(CURDIR)/debian/tmp install_docs
 
 override_dh_install:
-	# Remove empty directories.
-	find $(CURDIR)/debian/tmp -type d -empty -delete
-	# Install stuff.
 	dh_install --fail-missing
 
 override_dh_link:
@@ -69,9 +62,8 @@ override_dh_link:
 	done
 
 override_dh_makeshlibs:
+	# On Ubuntu no -V due to -gles twin packages
 	dh_makeshlibs
-	# Check for private symbols not marked as such. Be verbose.
-	pkgkde-mark-private-symbols debian/qtdeclarative5-private-dev/usr/include
 
 override_dh_auto_test:
 	cp -a src/imports/qtquick2/qmldir qml/QtQuick.2
