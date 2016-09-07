@@ -6,6 +6,10 @@ qtdeclarative-opensource-src (5.7.0-2ubuntu1) UNRELEASED; urgency=medium
   [ Timo Jyrinki ]
   * New upstream release.
   * Drop patches now in upstream.
+  * Rebase patches to apply to 5.7:
+    - debian/patches/Fix-visibility-of-properties-in-value-types.patch
+    - debian/patches/disable_failing_tests.patch
+    - debian/patches/fix_binary_location_for_tests.patch
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 07 Sep 2016 13:12:08 +0000
 

@@ -24,9 +24,9 @@ diff -urN qtdeclarative-opensource-src-5.5.0.old/tests/auto/qml/debugger/debugge
 --- qtdeclarative-opensource-src-5.5.0.old/tests/auto/qml/debugger/debugger.pro	2015-06-29 20:12:19.000000000 +0000
 +++ qtdeclarative-opensource-src-5.5.0/tests/auto/qml/debugger/debugger.pro	2015-07-08 07:35:10.794933489 +0000
 @@ -1,9 +1,9 @@
- TEMPLATE = subdirs
  
  PUBLICTESTS += \
+     qdebugmessageservice \
 -    qqmlenginedebugservice \
 +#    qqmlenginedebugservice \
      qqmldebugjs \

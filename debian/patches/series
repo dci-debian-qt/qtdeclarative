@@ -1,11 +1,11 @@
 # Backported patches
 fix_engine_64bits_big_endian.diff
 no_lifetime_dse.diff
-#Fix-visibility-of-properties-in-value-types.patch
+Fix-visibility-of-properties-in-value-types.patch
 
 # Debian patches
 
 # Ubuntu patches
-#fix_binary_location_for_tests.patch
-#disable_failing_tests.patch
+fix_binary_location_for_tests.patch
+disable_failing_tests.patch
 #QML-Compilation-unit-caching-and-JIT-changes.patch
