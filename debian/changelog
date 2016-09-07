@@ -59,13 +59,37 @@ qtdeclarative-opensource-src (5.6.1-5) unstable; urgency=medium
 
  -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 19 Jul 2016 12:09:46 -0300
 
-qtdeclarative-opensource-src (5.6.1-4ubuntu3) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.6.1-7ubuntu1) UNRELEASED; urgency=medium
 
   * debian/patches/Fix-visibility-of-properties-in-value-types.patch:
     - Fix compare() in QML (LP: #1610349)
   * Update symbols. 
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Mon, 22 Aug 2016 13:31:32 +0000
+
+qtdeclarative-opensource-src (5.6.1-7) unstable; urgency=medium
+
+  * Update libqt5qml5.symbols from buildds’ logs.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 30 Aug 2016 14:00:17 +0300
+
+qtdeclarative-opensource-src (5.6.1-6) unstable; urgency=medium
+
+  * Backport upstream change to fix crashes when compiled with GCC 6
+    (no_lifetime_dse.diff; see QTBUG-55482).
+  * Update symbols files from buildds’ logs.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 29 Aug 2016 21:30:47 +0300
+
+qtdeclarative-opensource-src (5.6.1-5) unstable; urgency=medium
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Update symbols files with buildds' logs (Closes: #830817).
+
+  [ Maximiliano Curia ]
+  * Add new patch: fix_engine_64bits_big_endian.diff
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 19 Jul 2016 12:09:46 -0300
 
 qtdeclarative-opensource-src (5.6.1-4ubuntu2) yakkety; urgency=medium
 
