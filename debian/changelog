@@ -10,6 +10,7 @@ qtdeclarative-opensource-src (5.7.0-2ubuntu1) UNRELEASED; urgency=medium
     - debian/patches/Fix-visibility-of-properties-in-value-types.patch
     - debian/patches/disable_failing_tests.patch
     - debian/patches/fix_binary_location_for_tests.patch
+  * Rebase QML cache patch for 5.7.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 07 Sep 2016 13:12:08 +0000
 
