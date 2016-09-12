@@ -1187,3 +1187,19 @@ Index: qtdeclarative-opensource-src-5.7.0/src/qml/jsruntime/qv4global_p.h
  #else
  #define ENABLE_YARR_JIT 0
  #define ENABLE_ASSEMBLER 0
+diff -urN qtdeclarative-opensource-src-5.7.0.old/src/3rdparty/masm/assembler/ARM64Assembler.h qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/ARM64Assembler.h
+--- qtdeclarative-opensource-src-5.7.0.old/src/3rdparty/masm/assembler/ARM64Assembler.h	2016-06-11 12:05:08.000000000 +0000
++++ qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/ARM64Assembler.h	2016-09-08 11:13:19.460760204 +0000
+@@ -570,6 +570,12 @@
+         ConditionInvalid
+     } Condition;
+ 
++    // Code inherited from the QMLC project
++    void appendData(char *data, int len)
++    {
++        return m_buffer.appendData(data, len);
++    }
++
+     static Condition invert(Condition cond)
+     {
+         return static_cast<Condition>(cond ^ 1);
