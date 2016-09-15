@@ -1693,7 +1693,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV46Object9constructEPKNS_7ManagedEPNS_8CallDataE@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN3QV46Object9getLengthEPKNS_7ManagedE@Qt_5_PRIVATE_API 5.3.0 1
  _ZN3QV46Object9getLookupEPKNS_7ManagedEPNS_6LookupE@Qt_5_PRIVATE_API 5.6.0~beta 1
- (arch=!arm64 !armel !armhf !hppa !mips !mipsel !powerpc !ppc64el !s390x)_ZN3QV46Object9push_backERKNS_5ValueE@Qt_5_PRIVATE_API 5.6.1 1
+ (optional=gccinternal|arch=!armel !hppa !mips !mipsel !s390x)_ZN3QV46Object9push_backERKNS_5ValueE@Qt_5_PRIVATE_API 5.6.1 1
  _ZN3QV46Object9setLookupEPNS_7ManagedEPNS_6LookupERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV46Script10precompileEPNS_2IR6ModuleEPNS_8Compiler15JSUnitGeneratorEPNS_15ExecutionEngineERK4QUrlRK7QStringP5QListI9QQmlErrorEPN6QQmlJS10DirectivesE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV46Script10qmlBindingEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
@@ -2905,7 +2905,9 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZNK9QV8Engine12illegalNamesEv@Qt_5_PRIVATE_API 5.0.2 1
  (optional=templinst|subst)_ZNKSt6vectorIbSaIbEE2atE{size_t}@Qt_5 5.5.0
  (optional=templinst)_ZNSt13_Bvector_baseISaIbEE13_M_deallocateEv@Qt_5 5.4.2
+ (optional=templinst|arch=amd64 arm64 armhf i386 powerpc ppc64el)_ZNSt6vectorIPKN3QV44Heap6StringESaIS4_EE12emplace_backIIS4_EEEvDpOT_@Qt_5_PRIVATE_API 5.6.1
  (optional=templinst)_ZNSt6vectorIPKN3QV44Heap6StringESaIS4_EE12emplace_backIJS4_EEEvDpOT_@Qt_5_PRIVATE_API 5.5.0 1
+ (optional=templinst|arch=amd64 arm64 armhf i386 powerpc ppc64el)_ZNSt6vectorIPKN3QV44Heap6StringESaIS4_EE19_M_emplace_back_auxIIS4_EEEvDpOT_@Qt_5_PRIVATE_API 5.6.1
  (optional=templinst)_ZNSt6vectorIPKN3QV44Heap6StringESaIS4_EE19_M_emplace_back_auxIJS4_EEEvDpOT_@Qt_5_PRIVATE_API 5.5.0 1
  (optional=templinst|subst)_ZNSt6vectorIS_IiSaIiEESaIS1_EE17_M_default_appendE{size_t}@Qt_5 5.4.2
  (optional=templinst|subst)_ZNSt6vectorIbSaIbEE13_M_reallocateE{size_t}@Qt_5 5.4.2
@@ -2914,9 +2916,12 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (subst)_ZNSt6vectorIbSaIbEE6resizeE{size_t}b@Qt_5 5.4.2
  (subst)_ZNSt6vectorIbSaIbEEC1E{size_t}RKbRKS0_@Qt_5 5.4.0
  (subst)_ZNSt6vectorIbSaIbEEC2E{size_t}RKbRKS0_@Qt_5 5.4.0
+ (optional=templinst|arch=amd64 armhf i386|subst)_ZNSt6vectorIcSaIcEE17_M_default_appendE{size_t}@Qt_5 5.6.1
+ (optional=templinst|arch=amd64 armhf i386)_ZNSt6vectorIcSaIcEE19_M_emplace_back_auxIIRKcEEEvDpOT_@Qt_5 5.6.1
  (optional=templinst|arch=amd64 armhf i386)_ZNSt6vectorIcSaIcEE19_M_emplace_back_auxIJRKcEEEvDpOT_@Qt_5 5.4.2
  (optional=templinst|subst)_ZNSt6vectorIiSaIiEE14_M_fill_assignE{size_t}RKi@Qt_5 5.4.0
  (optional=templinst|subst)_ZNSt6vectorIiSaIiEE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPiS1_EE{size_t}RKi@Qt_5 5.2.1
+ (optional=templinst|arch=amd64 arm64 armhf i386 powerpc ppc64el)_ZNSt6vectorIiSaIiEE19_M_emplace_back_auxIIiEEEvDpOT_@Qt_5 5.6.1
  (optional=templinst)_ZNSt6vectorIiSaIiEE19_M_emplace_back_auxIJiEEEvDpOT_@Qt_5 5.3.1
  (optional=templinst|subst)_ZNSt6vectorIiSaIiEE6resizeE{size_t}RKi@Qt_5 5.4.0
  (optional=templinst|subst)_ZNSt6vectorIiSaIiEE7reserveE{size_t}@Qt_5 5.2.1
@@ -3380,11 +3385,11 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZTV25QQmlDebugConnectorFactory@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTV25QQmlInterceptorMetaObject@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTV26QParallelAnimationGroupJob@Qt_5_PRIVATE_API 5.0.2 1
- _ZTV26QQmlAbstractUrlInterceptor@Qt_5 5.6.1
+ (optional=gccinternal)_ZTV26QQmlAbstractUrlInterceptor@Qt_5 5.6.1
  _ZTV27QAnimationJobChangeListener@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV27QQmlAbstractProfilerAdapter@Qt_5_PRIVATE_API 5.3.0 1
  _ZTV27QQmlFileSelectorInterceptor@Qt_5_PRIVATE_API 5.2.0~rc1 1
- _ZTV27QQmlTypesExtensionInterface@Qt_5 5.6.1
+ (optional=gccinternal)_ZTV27QQmlTypesExtensionInterface@Qt_5 5.6.1
  _ZTV28QContinuingAnimationGroupJob@Qt_5_PRIVATE_API 5.3.0 1
  _ZTV28QQmlApplicationEnginePrivate@Qt_5_PRIVATE_API 5.1.0 1
  _ZTV28QQmlPropertyValueInterceptor@Qt_5_PRIVATE_API 5.0.2 1
@@ -3395,9 +3400,9 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZTV9QV8Engine@Qt_5_PRIVATE_API 5.0.2 1
  _ZTVN14QQmlTypeLoader4BlobE@Qt_5_PRIVATE_API 5.0.2 1
  _ZTVN15QQmlContextData12ContextGuardE@Qt_5_PRIVATE_API 5.0.2 1
- _ZTVN17QQmlEnginePrivate9DeletableE@Qt_5_PRIVATE_API 5.6.1 1
+ (optional=gccinternal)_ZTVN17QQmlEnginePrivate9DeletableE@Qt_5_PRIVATE_API 5.6.1 1
  _ZTVN3QV412CompiledData15CompilationUnitE@Qt_5_PRIVATE_API 5.2.0~beta1 1
- _ZTVN3QV415EvalISelFactoryE@Qt_5_PRIVATE_API 5.6.1 1
+ (optional=gccinternal)_ZTVN3QV415EvalISelFactoryE@Qt_5_PRIVATE_API 5.6.1 1
  _ZTVN3QV424EvalInstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTVN3QV42IR9IRDecoderE@Qt_5_PRIVATE_API 5.3.0 1
  (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZTVN3QV43JIT11ISelFactoryE@Qt_5_PRIVATE_API 5.3.0 1
@@ -3405,7 +3410,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZTVN3QV44Moth11ISelFactoryE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTVN3QV44Moth20InstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTVN3QV49Debugging10V4Debugger13JavaScriptJobE@Qt_5_PRIVATE_API 5.6.0~beta 1
- _ZTVN3QV49Debugging10V4Debugger3JobE@Qt_5_PRIVATE_API 5.6.1 1
+ (optional=gccinternal)_ZTVN3QV49Debugging10V4Debugger3JobE@Qt_5_PRIVATE_API 5.6.1 1
  _ZTVN3QV49Debugging10V4DebuggerE@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTVN3QV49Debugging8DebuggerE@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTVN3QV49Profiling8ProfilerE@Qt_5_PRIVATE_API 5.3.0 1
@@ -3512,7 +3517,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZTVN6QQmlJS3AST9UiProgramE@Qt_5 5.3.0
  _ZTVN6QQmlJS7Codegen13ScanFunctionsE@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZTVN6QQmlJS7CodegenE@Qt_5_PRIVATE_API 5.2.0~beta1 1
- _ZTVN9QV8Engine9DeletableE@Qt_5_PRIVATE_API 5.6.1 1
+ (optional=gccinternal)_ZTVN9QV8Engine9DeletableE@Qt_5_PRIVATE_API 5.6.1 1
  _ZZN8QQmlData4initEvE11initialized@Qt_5_PRIVATE_API 5.0.2 1
  (optional=templinst)_ZZN9QMetaType17registerConverterI8QJSValue11QStringListPFS2_RKS1_EEEbT1_E1f@Qt_5 5.4.0
  (optional=templinst)_ZZN9QMetaType17registerConverterI8QJSValue4QMapI7QString8QVariantEPFS5_RKS1_EEEbT1_E1f@Qt_5 5.4.0
