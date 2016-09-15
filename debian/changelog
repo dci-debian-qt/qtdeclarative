@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.6.1-7ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.6.1-7ubuntu1~2) yakkety; urgency=medium
 
   * debian/patches/Fix-visibility-of-properties-in-value-types.patch:
     - Fix compare() in QML (LP: #1610349)
