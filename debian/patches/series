@@ -2,6 +2,7 @@
 fix_engine_64bits_big_endian.diff
 no_lifetime_dse.diff
 Fix-visibility-of-properties-in-value-types.patch
+Fix-V4-on-big-endian.patch
 
 # Debian patches
 
