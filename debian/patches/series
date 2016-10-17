@@ -11,6 +11,7 @@ Flickable-fix-minXExtent-minYExtent-when-content-is-.patch
 QQuickWindow-Fill-out-timestamps-in-QHoverEvents-sen.patch
 Fix-visibility-of-properties-in-value-types.patch
 Revert-Remove-this-piece-of-code.patch
+V4-Fix-usage-of-QV4-Value-tags-types.patch
 
 # Debian patches
 check_system_double-conversion.patch
