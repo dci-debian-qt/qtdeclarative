@@ -2,15 +2,15 @@
 QQuickItemView-forceLayout-Also-call-layout-when-d-f.patch
 qml_only_release_types_if_they_arent_referenced_anymore.patch
 no_lifetime_dse.diff
-fix-V4-on-big-endian.patch
 V4-Always-set-the-tag-when-boxing-a-pointer-in-QV4-V.patch
 Fix-QQmlEngine-crash-on-big-endian-64-bit-architectu.patch
+Add-a-facility-to-version-type-information-for-debug.patch
+V4-Free-up-2-address-bits-in-64bit-mode.patch
+fix-V4-on-big-endian.patch
 Flickable-fix-minXExtent-minYExtent-when-content-is-.patch
 QQuickWindow-Fill-out-timestamps-in-QHoverEvents-sen.patch
 Fix-visibility-of-properties-in-value-types.patch
 Revert-Remove-this-piece-of-code.patch
-Add-a-facility-to-version-type-information-for-debug.patch
-V4-Free-up-2-address-bits-in-64bit-mode.patch
 
 # Debian patches
 check_system_double-conversion.patch
