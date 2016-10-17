@@ -9,6 +9,8 @@ QQuickWindow-Fill-out-timestamps-in-QHoverEvents-sen.patch
 Fix-visibility-of-properties-in-value-types.patch
 Fix-V4-on-big-endian.patch
 Revert-Remove-this-piece-of-code.patch
+Add-a-facility-to-version-type-information-for-debug.patch
+V4-Free-up-2-address-bits-in-64bit-mode.patch
 
 # Debian patches
 check_system_double-conversion.patch
