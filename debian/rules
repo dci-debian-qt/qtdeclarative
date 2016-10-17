@@ -4,6 +4,8 @@
 #export DH_VERBOSE=1
 
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+DEB_HOST_SERIES ?= $(shell lsb_release -c -s)
 PRIVATE_HEADERS = debian/qtdeclarative5-private-dev/usr/include/$(DEB_HOST_MULTIARCH)/qt5
 
 export CFLAGS := $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
@@ -68,6 +70,7 @@ override_dh_makeshlibs:
 	dh_makeshlibs
 
 override_dh_auto_test-arch:
+ifneq ("$(DEB_HOST_ARCH)$(DEB_HOST_SERIES)","ppc64elxenial")
 	$(MAKE) install -Csrc/imports INSTALL_ROOT=$(CURDIR)/test_root
 	mkdir -p $(CURDIR)/.local/share/QtProject/tst_qqmlengine
 	xvfb-run -a \
@@ -75,5 +78,6 @@ override_dh_auto_test-arch:
 	         dh_auto_test --max-parallel=1 -- -k -Ctests/auto \
 	         QML2_IMPORT_PATH=$(CURDIR)/test_root/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/qml \
 	         HOME=$(CURDIR) LD_LIBRARY_PATH=$(CURDIR)/lib
+endif
 
 override_dh_auto_test-indep:
