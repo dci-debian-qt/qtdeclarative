@@ -1,9 +1,18 @@
-qtdeclarative-opensource-src (5.6.1-11ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.6.2-0ubuntu1) UNRELEASED; urgency=medium
 
   * Update symbols.
   * Merge with Debian 5.6.1-11 changes.
   * Use fix-V4-on-big-endian.patch version from upstream 5.6 branch.
   * Skip certain failing tests on i386 and ppc64el tests on xenial.
+  * New usptream version 5.6.2.
+  * Drop patches merged upstream:
+    - qml_only_release_types_if_they_arent_referenced_anymore.patch
+    - no_lifetime_dse.diff
+    - V4-Always-set-the-tag-when-boxing-a-pointer-in-QV4-V.patch
+    - Fix-QQmlEngine-crash-on-big-endian-64-bit-architectu.patch
+    - Flickable-fix-minXExtent-minYExtent-when-content-is-.patch
+    - QQuickWindow-Fill-out-timestamps-in-QHoverEvents-sen.patch
+    - Revert-Remove-this-piece-of-code.patch
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 06 Oct 2016 14:39:07 +0000
 

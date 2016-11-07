@@ -93,13 +93,13 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 --- a/.qmake.conf
 +++ b/.qmake.conf
 @@ -2,4 +2,7 @@ load(qt_build_config)
- CONFIG += qt_example_installs
+ load(qt_build_config)
  CONFIG += warning_clean
  
 +QMAKE_CXXFLAGS += -DTESTBINDIR=\\\"$$PWD/bin\\\"
 +QMAKE_CXXFLAGS += -DTESTEXAMPLEDIR=\\\"$$PWD/examples\\\"
 +
- MODULE_VERSION = 5.6.1
+ MODULE_VERSION = 5.6.2
 --- a/tests/auto/qml/debugger/qqmlenginedebuginspectorintegrationtest/tst_qqmlenginedebuginspectorintegration.cpp
 +++ b/tests/auto/qml/debugger/qqmlenginedebuginspectorintegrationtest/tst_qqmlenginedebuginspectorintegration.cpp
 @@ -102,8 +102,7 @@ void tst_QQmlEngineDebugInspectorIntegra
