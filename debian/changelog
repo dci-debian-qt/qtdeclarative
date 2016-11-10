@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.7.0-2ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.7.1~20161021-5ubuntu1) UNRELEASED; urgency=medium
 
   [ Dmitry Shachnev ]
   * Merge 5.6.1-7 from unstable.
@@ -14,6 +14,100 @@ qtdeclarative-opensource-src (5.7.0-2ubuntu1) UNRELEASED; urgency=medium
   * Update symbols and mark private ones.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 07 Sep 2016 13:12:08 +0000
+
+qtdeclarative-opensource-src (5.7.1~20161021-5) unstable; urgency=medium
+
+  * Revert upstream commit c9ffed92a0dee0ae, which broke Qt Quick Controls.
+    Update the symbols files accordingly. Closes: #843250.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 06 Nov 2016 17:01:42 +0300
+
+qtdeclarative-opensource-src (5.7.1~20161021-4) unstable; urgency=medium
+
+  * Update symbols files with buildds' logs.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 03 Nov 2016 11:51:14 -0300
+
+qtdeclarative-opensource-src (5.7.1~20161021-3) unstable; urgency=medium
+
+  * Update symbols files from buildds’ logs.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 01 Nov 2016 14:53:44 +0300
+
+qtdeclarative-opensource-src (5.7.1~20161021-2) experimental; urgency=medium
+
+  * Make tests non-fatal. We enabled test on the 5.7 round and discovered
+    that some of them where failing. As Dmitry Shachnev discovered this is no
+    regresion from 5.6 and we need to get 5.7 into testing before the
+    transition freeze we are making them non-fatal.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Sat, 29 Oct 2016 23:00:31 -0300
+
+qtdeclarative-opensource-src (5.7.1~20161021-1) experimental; urgency=medium
+
+  * New upstream snapshot.
+  * Drop the following patches, applied upstream:
+    - no_lifetime_dse.diff
+    - no_value_without_tag.diff
+    - fix_engine_64bits_big_endian.diff
+    - fix-V4-on-big-endian.patch
+    - use_49_address_bits.diff
+    - yarr_arm64.diff
+  * Refresh other patches.
+  * Bump Qt build-dependencies to 5.7.1~20161021.
+  * Update symbols files from buildds’ logs and from current amd64 build log.
+  * Update debian/copyright for file moves.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 25 Oct 2016 10:45:32 +0300
+
+qtdeclarative-opensource-src (5.7.0-7) experimental; urgency=medium
+
+  * Backport upstream patch to fix usage of QV4::Value tags/types
+    (fix_tags_types.diff).
+  * Re-enable qqmldebugjs test, it seems to pass now.
+  * Migrate to automatic dbgsym packages.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 18 Oct 2016 19:38:54 +0300
+
+qtdeclarative-opensource-src (5.7.0-6) experimental; urgency=medium
+
+  * Mark fix_tst_qqmlapplicationengine.diff as applied upstream.
+  * Update symbols files from buildds’ logs.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 14 Oct 2016 16:39:48 +0300
+
+qtdeclarative-opensource-src (5.7.0-5) experimental; urgency=medium
+
+  * Backport upstream patch to fix crashes on arm64 (yarr_arm64.diff).
+  * Update symbols files from buildds’ logs.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 07 Oct 2016 00:00:25 +0300
+
+qtdeclarative-opensource-src (5.7.0-4) experimental; urgency=medium
+
+  * Backport upstream patch to remove setTag() and setValue() methods, and
+    leave only setTagValue() (no_value_without_tag.diff). Without this patch
+    the current version of fix_engine_64bits_big_endian.diff did not make
+    any sense.
+  * Rebase fix_engine_64bits_big_endian.diff and fix-V4-on-big-endian.patch
+    on top of the above patch.
+  * Add a patch to make the qqmlapplicationengine test pass when JIT is not
+    available (fix_tst_qqmlapplicationengine.diff, forwarded upstream).
+  * Backport upstream patch to allow using 49 address bits in 64-bit mode
+    (use_49_address_bits.diff). This should fix issues on arm64.
+  * Update symbols files from amd64 build log.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 06 Oct 2016 08:27:43 +0300
+
+qtdeclarative-opensource-src (5.7.0-3) experimental; urgency=medium
+
+  * Merge 5.6.1-10 from unstable.
+  * Run make check with -k flag to get as much output as possible.
+  * Refresh the patches.
+  * Update symbols files from amd64 build log.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 02 Oct 2016 10:12:58 +0300
 
 qtdeclarative-opensource-src (5.7.0-2) experimental; urgency=medium
 
@@ -44,30 +138,6 @@ qtdeclarative-opensource-src (5.7.0-1) experimental; urgency=medium
   * Update debian/copyright.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Tue, 05 Jul 2016 15:53:55 +0300
-
-qtdeclarative-opensource-src (5.6.1-7) unstable; urgency=medium
-
-  * Update libqt5qml5.symbols from buildds’ logs.
-
- -- Dmitry Shachnev <mitya57@debian.org>  Tue, 30 Aug 2016 14:00:17 +0300
-
-qtdeclarative-opensource-src (5.6.1-6) unstable; urgency=medium
-
-  * Backport upstream change to fix crashes when compiled with GCC 6
-    (no_lifetime_dse.diff; see QTBUG-55482).
-  * Update symbols files from buildds’ logs.
-
- -- Dmitry Shachnev <mitya57@debian.org>  Mon, 29 Aug 2016 21:30:47 +0300
-
-qtdeclarative-opensource-src (5.6.1-5) unstable; urgency=medium
-
-  [ Lisandro Damián Nicanor Pérez Meyer ]
-  * Update symbols files with buildds' logs (Closes: #830817).
-
-  [ Maximiliano Curia ]
-  * Add new patch: fix_engine_64bits_big_endian.diff
-
- -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 19 Jul 2016 12:09:46 -0300
 
 qtdeclarative-opensource-src (5.6.2-0ubuntu1) UNRELEASED; urgency=medium
 
