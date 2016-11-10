@@ -5,6 +5,7 @@
 
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+DEB_HOST_SERIES ?= $(shell lsb_release -c -s)
 PRIVATE_HEADERS = debian/qtdeclarative5-private-dev/usr/include/$(DEB_HOST_MULTIARCH)/qt5
 
 export CFLAGS := $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
@@ -12,14 +13,17 @@ export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) $(shell dpkg-buildfla
 export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
 export QT_SELECT := qt5
 
-# Skip tests on the archs they are known to be flaky with current configuration
-testskip_architectures := powerpc ppc64el s390x
-
 %:
 	dh $@ --parallel --with pkgkde_symbolshelper --dbg-package=qtdeclarative5-dbg
 
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf $(CURDIR)/test_root
+	rm -rf $(CURDIR)/docs
+	rm -rf $(CURDIR)/.local
+
 override_dh_auto_configure:
-	qmake QT_BUILD_PARTS+=tests
+	qmake QT_BUILD_PARTS+=" tests"
 
 override_dh_auto_build-indep:
 	dh_auto_build -- docs
@@ -65,18 +69,15 @@ override_dh_makeshlibs:
 	# On Ubuntu no -V due to -gles twin packages
 	dh_makeshlibs
 
-override_dh_auto_test:
-	cp -a src/imports/qtquick2/qmldir qml/QtQuick.2
-	cp -a src/imports/folderlistmodel/qmldir qml/Qt/labs/folderlistmodel/
-	cp -a src/imports/settings/qmldir qml/Qt/labs/settings/
-	cp -a src/imports/window/qmldir qml/QtQuick/Window.2/
-	cp -a src/imports/models/qmldir qml/QtQml/Models.2/
-	cp -a src/imports/testlib/qmldir qml/QtTest
-	cp -a src/imports/testlib/TestCase.qml qml/QtTest
-	cp -a src/imports/testlib/SignalSpy.qml qml/QtTest
-	cp -a src/imports/testlib/testlogger.js qml/QtTest
-ifneq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(testskip_architectures)))
-ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
-	xvfb-run -a -s "-screen 0 1024x768x24 +extension RANDR +extension RENDER +extension GLX" dh_auto_test -- QT_PLUGIN_PATH=$(CURDIR)/plugins LD_LIBRARY_PATH=$(CURDIR)/lib QML2_IMPORT_PATH=$(CURDIR)/qml
+override_dh_auto_test-arch:
+ifneq ("$(DEB_HOST_ARCH)$(DEB_HOST_SERIES)","ppc64elxenial")
+	$(MAKE) install -Csrc/imports INSTALL_ROOT=$(CURDIR)/test_root
+	mkdir -p $(CURDIR)/.local/share/QtProject/tst_qqmlengine
+	xvfb-run -a \
+	         -s "-screen 0 1024x768x24 +extension RANDR +extension RENDER +extension GLX" \
+	         dh_auto_test --max-parallel=1 -- -k -Ctests/auto \
+	         QML2_IMPORT_PATH=$(CURDIR)/test_root/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/qml \
+	         HOME=$(CURDIR) LD_LIBRARY_PATH=$(CURDIR)/lib
 endif
-endif
+
+override_dh_auto_test-indep:

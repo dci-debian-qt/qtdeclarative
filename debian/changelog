@@ -69,6 +69,68 @@ qtdeclarative-opensource-src (5.6.1-5) unstable; urgency=medium
 
  -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 19 Jul 2016 12:09:46 -0300
 
+qtdeclarative-opensource-src (5.6.2-0ubuntu1) UNRELEASED; urgency=medium
+
+  * Update symbols.
+  * Merge with Debian 5.6.1-11 changes.
+  * Use fix-V4-on-big-endian.patch version from upstream 5.6 branch.
+  * Skip certain failing tests on i386 and ppc64el tests on xenial.
+  * New usptream version 5.6.2.
+  * Drop patches merged upstream:
+    - qml_only_release_types_if_they_arent_referenced_anymore.patch
+    - no_lifetime_dse.diff
+    - V4-Always-set-the-tag-when-boxing-a-pointer-in-QV4-V.patch
+    - Fix-QQmlEngine-crash-on-big-endian-64-bit-architectu.patch
+    - Flickable-fix-minXExtent-minYExtent-when-content-is-.patch
+    - QQuickWindow-Fill-out-timestamps-in-QHoverEvents-sen.patch
+    - Revert-Remove-this-piece-of-code.patch
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 06 Oct 2016 14:39:07 +0000
+
+qtdeclarative-opensource-src (5.6.1-11) unstable; urgency=medium
+
+  * Run make check with -k flag to get as much output as possible.
+  * Update fix-V4-on-big-endian.patch with a fix for 32-bit big endian
+    architectures.
+  * Drop fix_engine_64bits_big_endian.diff, now redundant.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 07 Oct 2016 10:03:28 +0300
+
+qtdeclarative-opensource-src (5.6.1-10) unstable; urgency=medium
+
+  * Do not use dbus-launch during tests running, not needed (and wrong).
+  * Drop useless build-dependency on libgl1-mesa-glx.
+  * Set LD_LIBRARY_PATH when running tests, to fix failures on buildds.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 29 Sep 2016 11:57:15 +0300
+
+qtdeclarative-opensource-src (5.6.1-9) unstable; urgency=medium
+
+  [ Sandro Knauß ]
+  * Backport upstream change to fix V4 on big-endian (Closes: #836412)
+    (fix-V4-on-big-endian.patch; see QTBUG-55730)
+    (refresh fix_engine_64bits_big_endian.diff)
+  * Enable auto tests.
+  * Create patch to disable tests, that fails with xvfb
+    disableopengltests.patch
+  * Create patch to run the tests against own build binaries
+    fix_test_remove_qlibraryinfo.patch
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 27 Sep 2016 21:02:13 -0300
+
+qtdeclarative-opensource-src (5.6.1-8) unstable; urgency=medium
+
+  * Update symbols files with buildds' logs (Closes: #836379).
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Sun, 11 Sep 2016 09:30:31 -0300
+
+qtdeclarative-opensource-src (5.6.1-7ubuntu2~1) yakkety; urgency=medium
+
+  * debian/patches/Revert-Remove-this-piece-of-code.patch:
+    - Cherry-pick from Qt 5.6.2 (LP: #1613670)
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Mon, 26 Sep 2016 13:13:20 +0000
+
 qtdeclarative-opensource-src (5.6.1-7ubuntu1~2) yakkety; urgency=medium
 
   * debian/patches/Fix-visibility-of-properties-in-value-types.patch:
