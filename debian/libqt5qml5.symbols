@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 5.7.0 amd64 armhf i386 powerpc ppc64el
+# SymbolsHelper-Confirmed: 5.7.1 amd64 arm64 armhf i386 powerpc ppc64el
 libQt5Qml.so.5 libqt5qml5 #MINVER#
 | libqt5qml5 #MINVER#, qtdeclarative-abi-5-7-0
  Qt_5.0@Qt_5.0 5.6.0~beta
@@ -1216,9 +1216,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV412CompiledData7Binding13escapedStringERK7QString@Qt_5_PRIVATE_API 5.4.0 1
  _ZN3QV412EvalFunction11static_vtblE@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN3QV412EvalFunction4callEPKNS_7ManagedEPNS_8CallDataE@Qt_5_PRIVATE_API 5.6.0~beta 1
- (optional=templinst|arch=armel armhf hppa hurd-i386 i386 kfreebsd-i386 m68k mips mipsel powerpc powerpcspe x32)_ZN3QV413MemoryManager11allocObjectINS_15BuiltinFunctionEPNS_16ExecutionContextEPNS_6StringEPFyPNS_11CallContextEEEEPNT_4DataET0_T1_T2_@Qt_5_PRIVATE_API 5.6.0~beta 1
  (optional=templinst|arch=alpha mips64el powerpcspe sparc64)_ZN3QV413MemoryManager11allocObjectINS_6ObjectEEEPNT_4DataEPNS_13InternalClassEPS2_@Qt_5_PRIVATE_API 5.6.0~beta 1
- (optional=templinst|arch=alpha armel armhf hppa hurd-i386 i386 kfreebsd-i386 m68k mips mips64el mipsel powerpc powerpcspe sh4 sparc64 x32)_ZN3QV413MemoryManager11allocObjectINS_6ObjectEEEPNT_4DataEv@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN3QV413MemoryManager12setGCBlockedEb@Qt_5_PRIVATE_API 5.2.0~beta1 1
  (subst)_ZN3QV413MemoryManager26growUnmanagedHeapSizeUsageE{size_t}@Qt_5_PRIVATE_API 5.5.1 1
  _ZN3QV413MemoryManager4markEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
@@ -1420,6 +1418,8 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV416ExecutionContext15newCatchContextEPNS_4Heap6StringEy@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN3QV416ExecutionContext18getPropertyAndBaseEPNS_6StringEPNS_5ValueE@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN3QV416ExecutionContext20createMutableBindingEPNS_6StringEb@Qt_5_PRIVATE_API 5.4.0 1
+ _ZN3QV416QmlSignalHandler11static_vtblE@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN3QV416QmlSignalHandler9initProtoEPNS_15ExecutionEngineE@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV417QmlContextWrapper11static_vtblE@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN3QV417QmlContextWrapper3getEPKNS_7ManagedEPNS_6StringEPb@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN3QV417QmlContextWrapper3putEPNS_7ManagedEPNS_6StringERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
@@ -1478,86 +1478,87 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV42IR9Optimizer3runEP17QQmlEnginePrivatebb@Qt_5_PRIVATE_API 5.4.0 1
  _ZN3QV42IR9OptimizerC1EPNS0_8FunctionE@Qt_5_PRIVATE_API 5.3.1 1
  _ZN3QV42IR9OptimizerC2EPNS0_8FunctionE@Qt_5_PRIVATE_API 5.3.1 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection10getElementEPNS_2IR4ExprES4_S4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection10loadRegexpEPNS_2IR6RegExpEPNS2_4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection10loadStringERK7QStringPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection10setElementEPNS_2IR4ExprES4_S4_@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection10swapValuesEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection10visitCJumpEPNS_2IR5CJumpE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection11convertTypeEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection11getPropertyEPNS_2IR4ExprERK7QStringS4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection11initClosureEPNS_2IR7ClosureEPNS2_4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection11setPropertyEPNS_2IR4ExprES4_RK7QString@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection12callPropertyEPNS_2IR4ExprERK7QStringPNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection13callSubscriptEPNS_2IR4ExprES4_PNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection14constructValueEPNS_2IR4ExprEPNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection14loadQmlContextEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.6.0~beta 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection14loadThisObjectEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection15prepareCallDataEPNS_2IR8ExprListEPNS2_4ExprE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection15visitCJumpEqualEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection16addConstantTableEP7QVectorINS_9PrimitiveEE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection16callBuiltinThrowEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection16loadQmlSingletonERK7QStringPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection16visitCJumpDoubleENS_2IR5AluOpEPNS2_4ExprES5_PNS2_10BasicBlockES7_@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection16visitCJumpSInt32ENS_2IR5AluOpEPNS2_4ExprES5_PNS2_10BasicBlockES7_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection16visitCJumpStrictEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection17constructPropertyEPNS_2IR4ExprERK7QStringPNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection17convertTypeToBoolEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection18backendCompileStepEv@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection18callBuiltinInvalidEPNS_2IR4NameEPNS2_8ExprListEPNS2_4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection18callBuiltinReThrowEv@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection18getQObjectPropertyEPNS_2IR4ExprEibbiS4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection18setQObjectPropertyEPNS_2IR4ExprES4_i@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection19callBuiltinPopScopeEv@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection19convertTypeSlowPathEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection19convertTypeToDoubleEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection19convertTypeToSInt32EPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection19convertTypeToUInt32EPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection20visitCJumpStrictBoolEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection21callBuiltinDeclareVarEbRK7QString@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection21callBuiltinDeleteNameERK7QStringPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection21callBuiltinTypeofNameERK7QStringPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection21getActivationPropertyEPKNS_2IR4NameEPNS2_4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection21getQmlContextPropertyEPNS_2IR4ExprENS2_6Member10MemberKindEiS4_@Qt_5_PRIVATE_API 5.6.0~beta 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection21setActivationPropertyEPNS_2IR4ExprERK7QString@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection21setQmlContextPropertyEPNS_2IR4ExprES4_NS2_6Member10MemberKindEi@Qt_5_PRIVATE_API 5.6.0~beta 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection22callBuiltinDefineArrayEPNS_2IR4ExprEPNS2_8ExprListE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection22callBuiltinDeleteValueEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection22callBuiltinTypeofValueEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection22callQmlContextPropertyEPNS_2IR4ExprENS2_6Member10MemberKindEiPNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.6.0~beta 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection22loadQmlImportedScriptsEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection22mutableCompilationUnitEv@Qt_5_PRIVATE_API 5.6.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection23callBuiltinDeleteMemberEPNS_2IR4ExprERK7QStringS4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection23callBuiltinTypeofMemberEPNS_2IR4ExprERK7QStringS4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection23visitCJumpNullUndefinedENS_2IR4TypeEPNS2_5BinopEPNS2_10BasicBlockES7_@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection24calculateRegistersToSaveERK7QVectorINS0_12RegisterInfoEE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection24callBuiltinPushWithScopeEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection24prepareVariableArgumentsEPNS_2IR8ExprListE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection25callBuiltinPushCatchScopeERK7QString@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection26callBuiltinDeleteSubscriptEPNS_2IR4ExprES4_S4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection26callBuiltinTypeofSubscriptEPNS_2IR4ExprES4_S4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection26callBuiltinUnwindExceptionEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection27constructActivationPropertyEPNS_2IR4NameEPNS2_8ExprListEPNS2_4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection29visitCJumpStrictNullUndefinedENS_2IR4TypeEPNS2_5BinopEPNS2_10BasicBlockES7_@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection30callBuiltinConvertThisToObjectEv@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection30callBuiltinDefineObjectLiteralEPNS_2IR4ExprEiPNS2_8ExprListES6_b@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection30callBuiltinSetupArgumentObjectEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection32callBuiltinForeachIteratorObjectEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection34callBuiltinForeachNextPropertynameEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection35callBuiltinTypeofQmlContextPropertyEPNS_2IR4ExprENS2_6Member10MemberKindEiS4_@Qt_5_PRIVATE_API 5.6.0~beta 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection3runEi@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection4unopENS_2IR5AluOpEPNS2_4ExprES5_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection5binopENS_2IR5AluOpEPNS2_4ExprES5_S5_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection8visitRetEPNS_2IR3RetE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection9callValueEPNS_2IR4ExprEPNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection9copyValueEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.4.0 1
- (arch=amd64 armhf i386)_ZN3QV43JIT20InstructionSelection9loadConstEPNS_2IR5ConstEPNS2_4ExprE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelection9visitJumpEPNS_2IR4JumpE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelectionC1EP17QQmlEnginePrivatePNS_19ExecutableAllocatorEPNS_2IR6ModuleEPNS_8Compiler15JSUnitGeneratorE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelectionC2EP17QQmlEnginePrivatePNS_19ExecutableAllocatorEPNS_2IR6ModuleEPNS_8Compiler15JSUnitGeneratorE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelectionD0Ev@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelectionD1Ev@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZN3QV43JIT20InstructionSelectionD2Ev@Qt_5_PRIVATE_API 5.3.0 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection10getElementEPNS_2IR4ExprES4_S4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection10loadRegexpEPNS_2IR6RegExpEPNS2_4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection10loadStringERK7QStringPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection10setElementEPNS_2IR4ExprES4_S4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection10swapValuesEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection10visitCJumpEPNS_2IR5CJumpE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection11convertTypeEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection11getPropertyEPNS_2IR4ExprERK7QStringS4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection11initClosureEPNS_2IR7ClosureEPNS2_4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection11setPropertyEPNS_2IR4ExprES4_RK7QString@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection12callPropertyEPNS_2IR4ExprERK7QStringPNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection13callSubscriptEPNS_2IR4ExprES4_PNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection14constructValueEPNS_2IR4ExprEPNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection14loadQmlContextEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection14loadThisObjectEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection15prepareCallDataEPNS_2IR8ExprListEPNS2_4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection15visitCJumpEqualEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection16addConstantTableEP7QVectorINS_9PrimitiveEE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection16callBuiltinThrowEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection16loadQmlSingletonERK7QStringPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection16visitCJumpDoubleENS_2IR5AluOpEPNS2_4ExprES5_PNS2_10BasicBlockES7_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection16visitCJumpSInt32ENS_2IR5AluOpEPNS2_4ExprES5_PNS2_10BasicBlockES7_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection16visitCJumpStrictEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection17constructPropertyEPNS_2IR4ExprERK7QStringPNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection17convertTypeToBoolEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection18backendCompileStepEv@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection18callBuiltinInvalidEPNS_2IR4NameEPNS2_8ExprListEPNS2_4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection18callBuiltinReThrowEv@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection18getQObjectPropertyEPNS_2IR4ExprEibbiS4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection18setQObjectPropertyEPNS_2IR4ExprES4_i@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection19callBuiltinPopScopeEv@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection19convertTypeSlowPathEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection19convertTypeToDoubleEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection19convertTypeToSInt32EPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection19convertTypeToUInt32EPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection20visitCJumpStrictBoolEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!powerpc !ppc64el)_ZN3QV43JIT20InstructionSelection20visitCJumpStrictNullEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection21callBuiltinDeclareVarEbRK7QString@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection21callBuiltinDeleteNameERK7QStringPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection21callBuiltinTypeofNameERK7QStringPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection21getActivationPropertyEPKNS_2IR4NameEPNS2_4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection21getQmlContextPropertyEPNS_2IR4ExprENS2_6Member10MemberKindEiS4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection21setActivationPropertyEPNS_2IR4ExprERK7QString@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection21setQmlContextPropertyEPNS_2IR4ExprES4_NS2_6Member10MemberKindEi@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection22callBuiltinDefineArrayEPNS_2IR4ExprEPNS2_8ExprListE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection22callBuiltinDeleteValueEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection22callBuiltinTypeofValueEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection22callQmlContextPropertyEPNS_2IR4ExprENS2_6Member10MemberKindEiPNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection22loadQmlImportedScriptsEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection22mutableCompilationUnitEv@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection23callBuiltinDeleteMemberEPNS_2IR4ExprERK7QStringS4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection23callBuiltinTypeofMemberEPNS_2IR4ExprERK7QStringS4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection23visitCJumpNullUndefinedENS_2IR4TypeEPNS2_5BinopEPNS2_10BasicBlockES7_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection24calculateRegistersToSaveERK7QVectorINS0_12RegisterInfoEE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection24callBuiltinPushWithScopeEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection24prepareVariableArgumentsEPNS_2IR8ExprListE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection25callBuiltinPushCatchScopeERK7QString@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!powerpc !ppc64el)_ZN3QV43JIT20InstructionSelection25visitCJumpStrictUndefinedEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection26callBuiltinDeleteSubscriptEPNS_2IR4ExprES4_S4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection26callBuiltinTypeofSubscriptEPNS_2IR4ExprES4_S4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection26callBuiltinUnwindExceptionEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection27constructActivationPropertyEPNS_2IR4NameEPNS2_8ExprListEPNS2_4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection30callBuiltinConvertThisToObjectEv@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection30callBuiltinDefineObjectLiteralEPNS_2IR4ExprEiPNS2_8ExprListES6_b@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection30callBuiltinSetupArgumentObjectEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection32callBuiltinForeachIteratorObjectEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection34callBuiltinForeachNextPropertynameEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection35callBuiltinTypeofQmlContextPropertyEPNS_2IR4ExprENS2_6Member10MemberKindEiS4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection3runEi@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection4unopENS_2IR5AluOpEPNS2_4ExprES5_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection5binopENS_2IR5AluOpEPNS2_4ExprES5_S5_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection8visitRetEPNS_2IR3RetE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection9callValueEPNS_2IR4ExprEPNS2_8ExprListES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection9copyValueEPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection9loadConstEPNS_2IR5ConstEPNS2_4ExprE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection9visitJumpEPNS_2IR4JumpE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelectionC1EP17QQmlEnginePrivatePNS_19ExecutableAllocatorEPNS_2IR6ModuleEPNS_8Compiler15JSUnitGeneratorE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelectionC2EP17QQmlEnginePrivatePNS_19ExecutableAllocatorEPNS_2IR6ModuleEPNS_8Compiler15JSUnitGeneratorE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelectionD0Ev@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelectionD1Ev@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelectionD2Ev@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV44Heap11ArrayBufferC1ERK10QByteArray@Qt_5_PRIVATE_API 5.6.0~beta 1
  (subst)_ZN3QV44Heap11ArrayBufferC1E{size_t}@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN3QV44Heap11ArrayBufferC2ERK10QByteArray@Qt_5_PRIVATE_API 5.6.0~beta 1
@@ -1691,7 +1692,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV46Object22defineReadonlyPropertyEPNS_6StringERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV46Object22defineReadonlyPropertyERK7QStringRKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV46Object22internalDeletePropertyEPNS_6StringE@Qt_5_PRIVATE_API 5.4.0 1
- (arch=!amd64 !i386)_ZN3QV46Object23setArrayLengthUncheckedEj@Qt_5_PRIVATE_API 5.7.0 1
+ _ZN3QV46Object23setArrayLengthUncheckedEj@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV46Object29internalDeleteIndexedPropertyEj@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN3QV46Object3getEPKNS_7ManagedEPNS_6StringEPb@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN3QV46Object3putEPNS_15ExecutionEngineERK7QStringRKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
@@ -1703,7 +1704,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV46Object9constructEPKNS_7ManagedEPNS_8CallDataE@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN3QV46Object9getLengthEPKNS_7ManagedE@Qt_5_PRIVATE_API 5.3.0 1
  _ZN3QV46Object9getLookupEPKNS_7ManagedEPNS_6LookupE@Qt_5_PRIVATE_API 5.6.0~beta 1
- (arch=!arm64 !armel !armhf !hppa !mips !mipsel !powerpc !ppc64el !s390x)_ZN3QV46Object9push_backERKNS_5ValueE@Qt_5_PRIVATE_API 5.6.1 1
+ (arch=!arm64 !armel !hppa !mips !mipsel !ppc64el !s390x)_ZN3QV46Object9push_backERKNS_5ValueE@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV46Object9setLookupEPNS_7ManagedEPNS_6LookupERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV46Script10precompileEPNS_2IR6ModuleEPNS_8Compiler15JSUnitGeneratorEPNS_15ExecutionEngineERK4QUrlRK7QStringP5QListI9QQmlErrorEPN6QQmlJS10DirectivesE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV46Script10qmlBindingEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
@@ -1724,7 +1725,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV46String9isEqualToEPNS_7ManagedES2_@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN3QV47Managed11static_vtblE@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN3QV47Managed9isEqualToEPS0_S1_@Qt_5_PRIVATE_API 5.2.0~beta1 1
- (arch=amd64 armhf i386)_ZN3QV47Runtime10complementERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV47Runtime10complementERKNS_5ValueE@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV47Runtime10declareVarEPNS_15ExecutionEngineEbi@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime10deleteNameEPNS_15ExecutionEngineEi@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime10getElementEPNS_15ExecutionEngineERKNS_5ValueES5_@Qt_5_PRIVATE_API 5.5.0 1
@@ -1757,7 +1758,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV47Runtime14strictNotEqualERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime14throwExceptionEPNS_15ExecutionEngineERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime15compareLessThanERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
- (arch=amd64 armhf i386)_ZN3QV47Runtime15compareNotEqualERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV47Runtime15compareNotEqualERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV47Runtime15foreachIteratorEPNS_15ExecutionEngineERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime15getQmlSingletonEPNS_13NoThrowEngineEi@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime15unwindExceptionEPNS_15ExecutionEngineE@Qt_5_PRIVATE_API 5.5.0 1
@@ -1767,12 +1768,12 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV47Runtime17constructPropertyEPNS_15ExecutionEngineEiPNS_8CallDataE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime18callPropertyLookupEPNS_15ExecutionEngineEjPNS_8CallDataE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime18compareGreaterThanERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
- (arch=amd64 armhf i386)_ZN3QV47Runtime18compareStrictEqualERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV47Runtime18compareStrictEqualERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV47Runtime18deleteMemberStringEPNS_15ExecutionEngineERKNS_5ValueEPNS_6StringE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime19compareGreaterEqualERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime19convertThisToObjectEPNS_15ExecutionEngineE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime20setupArgumentsObjectEPNS_15ExecutionEngineE@Qt_5_PRIVATE_API 5.5.0 1
- (arch=amd64 armhf i386)_ZN3QV47Runtime21compareStrictNotEqualERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV47Runtime21compareStrictNotEqualERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV47Runtime21constructGlobalLookupEPNS_15ExecutionEngineEjPNS_8CallDataE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime21getActivationPropertyEPNS_15ExecutionEngineEi@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime21getQmlImportedScriptsEPNS_13NoThrowEngineE@Qt_5_PRIVATE_API 5.5.0 1
@@ -1801,16 +1802,16 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV47Runtime3shlERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime3shrERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime3subERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
- (arch=amd64 armhf i386)_ZN3QV47Runtime4uNotERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV47Runtime4uNotERKNS_5ValueE@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV47Runtime4ushrERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime5bitOrERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime5equalERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime5toIntERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
- (arch=amd64 armhf i386)_ZN3QV47Runtime5uPlusERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV47Runtime5uPlusERKNS_5ValueE@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV47Runtime6bitAndERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime6bitXorERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime6toUIntERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
- (arch=amd64 armhf i386)_ZN3QV47Runtime6uMinusERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV47Runtime6uMinusERKNS_5ValueE@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV47Runtime7closureEPNS_15ExecutionEngineEi@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime8lessThanERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime8notEqualERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
@@ -1822,7 +1823,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN3QV47Runtime9decrementERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime9incrementERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
  _ZN3QV47Runtime9lessEqualERKNS_5ValueES3_@Qt_5_PRIVATE_API 5.5.0 1
- (arch=amd64 armhf i386)_ZN3QV47Runtime9toBooleanERKNS_5ValueE@Qt_5_PRIVATE_API 5.5.0 1
+ (arch=amd64 arm64 armhf i386)_ZN3QV47Runtime9toBooleanERKNS_5ValueE@Qt_5_PRIVATE_API 5.7.1 1
  _ZN3QV48Compiler15JSUnitGenerator12generateUnitENS1_15GeneratorOptionE@Qt_5_PRIVATE_API 5.4.0 1
  _ZN3QV48Compiler15JSUnitGenerator13writeFunctionEPciPNS_2IR8FunctionE@Qt_5_PRIVATE_API 5.3.0 1
  _ZN3QV48Compiler15JSUnitGenerator14registerRegExpEPNS_2IR6RegExpE@Qt_5_PRIVATE_API 5.3.0 1
@@ -2736,8 +2737,8 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZNK3QV45Value12toNumberImplEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZNK3QV45Value13asArrayLengthEPb@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZNK3QV45Value16toQStringNoThrowEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
- (optional=templinst|arch=alpha mips64el sparc64)_ZNK3QV45Value2asINS_14FunctionObjectEEEPKT_v@Qt_5_PRIVATE_API 5.6.0~beta 1
- (optional=templinst|arch=alpha mips64el sparc64)_ZNK3QV45Value2asINS_14QObjectWrapperEEEPKT_v@Qt_5_PRIVATE_API 5.6.0~beta 1
+ (optional=templinst|arch=alpha armhf i386 mips64el powerpc sparc64)_ZNK3QV45Value2asINS_14FunctionObjectEEEPKT_v@Qt_5_PRIVATE_API 5.6.0~beta 1
+ (optional=templinst)_ZNK3QV45Value2asINS_14QObjectWrapperEEEPKT_v@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZNK3QV45Value8toObjectEPNS_15ExecutionEngineE@Qt_5_PRIVATE_API 5.5.0 1
  _ZNK3QV45Value8toStringEPNS_15ExecutionEngineE@Qt_5_PRIVATE_API 5.3.0 1
  _ZNK3QV45Value8toUInt16Ev@Qt_5_PRIVATE_API 5.2.0~beta1 1
@@ -2885,8 +2886,8 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (optional=templinst)_ZNSt6vectorIPKN3QV44Heap6StringESaIS4_EE19_M_emplace_back_auxIJS4_EEEvDpOT_@Qt_5_PRIVATE_API 5.5.0 1
  (optional=templinst|subst)_ZNSt6vectorIS_IiSaIiEESaIS1_EE17_M_default_appendE{size_t}@Qt_5 5.4.2
  (optional=templinst|arch=amd64 ppc64el)_ZNSt6vectorIS_IiSaIiEESaIS1_EE6resizeEm@Qt_5 5.7.0
- (optional=templinst|arch=amd64 ppc64el)_ZNSt6vectorIS_IiSaIiEESaIS1_EED1Ev@Qt_5 5.7.0
- (optional=templinst|arch=amd64 ppc64el)_ZNSt6vectorIS_IiSaIiEESaIS1_EED2Ev@Qt_5 5.7.0
+ (optional=templinst|arch=amd64 arm64 ppc64el)_ZNSt6vectorIS_IiSaIiEESaIS1_EED1Ev@Qt_5 5.7.0
+ (optional=templinst|arch=amd64 arm64 ppc64el)_ZNSt6vectorIS_IiSaIiEESaIS1_EED2Ev@Qt_5 5.7.0
  (optional=templinst|subst)_ZNSt6vectorIbSaIbEE13_M_reallocateE{size_t}@Qt_5 5.4.2
  (subst)_ZNSt6vectorIbSaIbEE14_M_fill_assignE{size_t}b@Qt_5 5.4.0
  (subst)_ZNSt6vectorIbSaIbEE14_M_fill_insertESt13_Bit_iterator{size_t}b@Qt_5 5.4.0
@@ -2894,7 +2895,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (subst)_ZNSt6vectorIbSaIbEEC1E{size_t}RKbRKS0_@Qt_5 5.4.0
  (subst)_ZNSt6vectorIbSaIbEEC2E{size_t}RKbRKS0_@Qt_5 5.4.0
  (optional=templinst|arch=!powerpc !ppc64el|subst)_ZNSt6vectorIcSaIcEE17_M_default_appendE{size_t}@Qt_5 5.7.0
- (optional=templinst|arch=amd64 armhf i386)_ZNSt6vectorIcSaIcEE19_M_emplace_back_auxIJRKcEEEvDpOT_@Qt_5 5.4.2
+ (optional=templinst|arch=amd64 arm64 armhf i386)_ZNSt6vectorIcSaIcEE19_M_emplace_back_auxIJRKcEEEvDpOT_@Qt_5 5.4.2
  (optional=templinst|subst)_ZNSt6vectorIiSaIiEE14_M_fill_assignE{size_t}RKi@Qt_5 5.4.0
  (optional=templinst|subst)_ZNSt6vectorIiSaIiEE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPiS1_EE{size_t}RKi@Qt_5 5.2.1
  (optional=templinst)_ZNSt6vectorIiSaIiEE19_M_emplace_back_auxIJiEEEvDpOT_@Qt_5 5.3.1
@@ -2993,8 +2994,8 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZTIN3QV415EvalISelFactoryE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTIN3QV424EvalInstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTIN3QV42IR9IRDecoderE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZTIN3QV43JIT11ISelFactoryE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZTIN3QV43JIT20InstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZTIN3QV43JIT11ISelFactoryE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZTIN3QV43JIT20InstructionSelectionE@Qt_5_PRIVATE_API 5.7.1 1
  _ZTIN3QV44Moth11ISelFactoryE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTIN3QV44Moth20InstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTIN3QV49Debugging8DebuggerE@Qt_5_PRIVATE_API 5.6.0~beta 1
@@ -3188,8 +3189,8 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZTSN3QV415EvalISelFactoryE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTSN3QV424EvalInstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTSN3QV42IR9IRDecoderE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZTSN3QV43JIT11ISelFactoryE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZTSN3QV43JIT20InstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZTSN3QV43JIT11ISelFactoryE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZTSN3QV43JIT20InstructionSelectionE@Qt_5_PRIVATE_API 5.7.1 1
  _ZTSN3QV44Moth11ISelFactoryE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTSN3QV44Moth20InstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTSN3QV49Debugging8DebuggerE@Qt_5_PRIVATE_API 5.6.0~beta 1
@@ -3382,8 +3383,8 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZTVN3QV415EvalISelFactoryE@Qt_5_PRIVATE_API 5.6.1 1
  _ZTVN3QV424EvalInstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTVN3QV42IR9IRDecoderE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZTVN3QV43JIT11ISelFactoryE@Qt_5_PRIVATE_API 5.3.0 1
- (arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)_ZTVN3QV43JIT20InstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZTVN3QV43JIT11ISelFactoryE@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZTVN3QV43JIT20InstructionSelectionE@Qt_5_PRIVATE_API 5.7.1 1
  _ZTVN3QV44Moth11ISelFactoryE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTVN3QV44Moth20InstructionSelectionE@Qt_5_PRIVATE_API 5.3.0 1
  _ZTVN3QV49Debugging8DebuggerE@Qt_5_PRIVATE_API 5.6.0~beta 1
@@ -3522,14 +3523,15 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (c++)"non-virtual thunk to QQmlValueType::objectDestroyed(QObject*)@Qt_5_PRIVATE_API" 5.5.0 1
  (c++)"non-virtual thunk to QQmlValueType::toDynamicMetaObject(QObject*)@Qt_5_PRIVATE_API" 5.5.0 1
  (c++)"non-virtual thunk to QQmlValueType::~QQmlValueType()@Qt_5_PRIVATE_API" 5.5.0 1
- (c++|arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)"non-virtual thunk to QV4::JIT::InstructionSelection::backendCompileStep()@Qt_5_PRIVATE_API" 5.3.0 1
- (c++|arch=amd64 armhf i386)"non-virtual thunk to QV4::JIT::InstructionSelection::mutableCompilationUnit()@Qt_5_PRIVATE_API" 5.6.0 1
- (c++|arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)"non-virtual thunk to QV4::JIT::InstructionSelection::run(int)@Qt_5_PRIVATE_API" 5.3.0 1
- (c++|arch=!arm64 !powerpc !ppc64el !s390x !kfreebsd-amd64)"non-virtual thunk to QV4::JIT::InstructionSelection::~InstructionSelection()@Qt_5_PRIVATE_API" 5.3.0 1
+ (c++|arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)"non-virtual thunk to QV4::JIT::InstructionSelection::backendCompileStep()@Qt_5_PRIVATE_API" 5.7.1 1
+ (c++|arch=amd64 arm64 armhf i386)"non-virtual thunk to QV4::JIT::InstructionSelection::mutableCompilationUnit()@Qt_5_PRIVATE_API" 5.7.1 1
+ (c++|arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)"non-virtual thunk to QV4::JIT::InstructionSelection::run(int)@Qt_5_PRIVATE_API" 5.7.1 1
+ (c++|arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)"non-virtual thunk to QV4::JIT::InstructionSelection::~InstructionSelection()@Qt_5_PRIVATE_API" 5.7.1 1
  (c++)"non-virtual thunk to QV4::Moth::InstructionSelection::backendCompileStep()@Qt_5_PRIVATE_API" 5.3.0 1
  (c++)"non-virtual thunk to QV4::Moth::InstructionSelection::mutableCompilationUnit()@Qt_5_PRIVATE_API" 5.6.0 1
  (c++)"non-virtual thunk to QV4::Moth::InstructionSelection::run(int)@Qt_5_PRIVATE_API" 5.3.0 1
  (c++)"non-virtual thunk to QV4::Moth::InstructionSelection::~InstructionSelection()@Qt_5_PRIVATE_API" 5.3.0 1
+ qtDeclarativeHookData@Qt_5 5.7.1
  qt_v4DebuggerHook@Qt_5 5.5.0
  qt_v4ResolvePendingBreakpointsHook@Qt_5 5.5.0
  qt_v4StackTrace@Qt_5 5.3.0

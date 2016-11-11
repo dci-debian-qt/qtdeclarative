@@ -11,7 +11,7 @@ qtdeclarative-opensource-src (5.7.1~20161021-5ubuntu1) UNRELEASED; urgency=mediu
     - debian/patches/disable_failing_tests.patch
     - debian/patches/fix_binary_location_for_tests.patch
   * Rebase QML cache patch for 5.7 and add arm64 support.
-  * Update symbols and mark private ones.
+  * Update symbols and mark private ones for 5.7.0 and 5.7.1.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 07 Sep 2016 13:12:08 +0000
 
