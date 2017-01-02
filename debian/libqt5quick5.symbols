@@ -1433,7 +1433,6 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN17QQuickItemPrivate11children_atEP16QQmlListPropertyI10QQuickItemEi@Qt_5_PRIVATE_API 5.0.2 1
  _ZN17QQuickItemPrivate11data_appendEP16QQmlListPropertyI7QObjectEPS1_@Qt_5_PRIVATE_API 5.0.2 1
  _ZN17QQuickItemPrivate11derefWindowEv@Qt_5_PRIVATE_API 5.0.2 1
- _ZN17QQuickItemPrivate11markObjectsEPN3QV415ExecutionEngineE@Qt_5_PRIVATE_API 5.3.0 1
  _ZN17QQuickItemPrivate11removeChildEP10QQuickItem@Qt_5_PRIVATE_API 5.0.2 1
  _ZN17QQuickItemPrivate11transitionsEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN17QQuickItemPrivate12resources_atEP16QQmlListPropertyI7QObjectEi@Qt_5_PRIVATE_API 5.0.2 1
@@ -1458,6 +1457,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN17QQuickItemPrivate16transform_appendEP16QQmlListPropertyI15QQuickTransformEPS1_@Qt_5_PRIVATE_API 5.0.2 1
  _ZN17QQuickItemPrivate17canAcceptTabFocusEP10QQuickItem@Qt_5_PRIVATE_API 5.1.0 1
  _ZN17QQuickItemPrivate17refFromEffectItemEb@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN17QQuickItemPrivate18_q_createJSWrapperEPN3QV415ExecutionEngineE@Qt_5_PRIVATE_API 5.7.1 1
  _ZN17QQuickItemPrivate18updateSubFocusItemEP10QQuickItemb@Qt_5_PRIVATE_API 5.0.2 1
  _ZN17QQuickItemPrivate18visibleChildren_atEP16QQmlListPropertyI10QQuickItemEi@Qt_5_PRIVATE_API 5.0.2 1
  _ZN17QQuickItemPrivate19createTransformNodeEv@Qt_5_PRIVATE_API 5.0.2 1
@@ -3796,6 +3796,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV11QSGMaterial@Qt_5 5.0.2
  _ZTV11QSGRenderer@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV11QSGRootNode@Qt_5 5.0.2
+ _ZTV12QQmlRefCount@Qt_5 5.7.1
  _ZTV12QQuickSprite@Qt_5_PRIVATE_API 5.6.1 1
  _ZTV12QQuickWindow@Qt_5 5.0.2
  _ZTV13QQuickAnchors@Qt_5_PRIVATE_API 5.0.2 1
@@ -3912,12 +3913,14 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV27QQuickKeyNavigationAttached@Qt_5_PRIVATE_API 5.4.0 1
  _ZTV28QSGDistanceFieldTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV29QQuickImplicitSizeItemPrivate@Qt_5_PRIVATE_API 5.6.0~beta 1
+ _ZTV29QSGDistanceFieldGlyphConsumer@Qt_5_PRIVATE_API 5.7.1 1
  _ZTV30QQuickAbstractAnimationPrivate@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTV30QSGOpaqueTextureMaterialShader@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV32QQuickItemViewTransitionableItem@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTV33QSGDefaultDistanceFieldGlyphCache@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV34QSGDistanceFieldStyledTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV35QSGDistanceFieldOutlineTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
+ _ZTV38QQuickItemViewTransitionChangeListener@Qt_5_PRIVATE_API 5.7.1 1
  _ZTV39QSGHiQSubPixelDistanceFieldTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV39QSGLoQSubPixelDistanceFieldTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV40QSGDistanceFieldShiftedStyleTextMaterial@Qt_5_PRIVATE_API 5.0.2 1
@@ -3927,6 +3930,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV9QSGEngine@Qt_5 5.4.0
  _ZTVN16QSGBatchRenderer8RendererE@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZTVN23QQuickFramebufferObject8RendererE@Qt_5_PRIVATE_API 5.2.0~beta1 1
+ _ZTVN9QV8Engine9DeletableE@Qt_5 5.7.1
  _ZZZNK15QQuickXAnimator12propertyNameEvENKUlvE_clEvE15qstring_literal@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZZZNK15QQuickYAnimator12propertyNameEvENKUlvE_clEvE15qstring_literal@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZZZNK19QQuickScaleAnimator12propertyNameEvENKUlvE_clEvE15qstring_literal@Qt_5_PRIVATE_API 5.2.0~beta1 1
