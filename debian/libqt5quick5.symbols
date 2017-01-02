@@ -389,8 +389,8 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN12QQuickPixmap23connectDownloadProgressEP7QObjecti@Qt_5_PRIVATE_API 5.0.2 1
  _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrl6QFlagsINS_6OptionEE@Qt_5_PRIVATE_API 5.0.2 1
  _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrl@Qt_5_PRIVATE_API 5.0.2 1
- _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrlRK5QSize6QFlagsINS_6OptionEE13AutoTransform@Qt_5_PRIVATE_API 5.5.0 1
  _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrlRK5QSize6QFlagsINS_6OptionEE@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrlRK5QSize6QFlagsINS_6OptionEERK26QQuickImageProviderOptions@Qt_5_PRIVATE_API 5.7.1 1
  _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrlRK5QSize@Qt_5_PRIVATE_API 5.0.2 1
  _ZN12QQuickPixmap5clearEP7QObject@Qt_5_PRIVATE_API 5.0.2 1
  _ZN12QQuickPixmap5clearEv@Qt_5_PRIVATE_API 5.0.2 1
@@ -2524,6 +2524,16 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN26QQuickDesignerSupportItems17disableTransitionEP7QObject@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN26QQuickDesignerSupportItems26disableNativeTextRenderingEP10QQuickItem@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN26QQuickDesignerSupportItems41registerFixResourcePathsForObjectCallBackEPFvP7QObjectE@Qt_5_PRIVATE_API 5.6.0~beta 1
+ _ZN26QQuickImageProviderOptions16setAutoTransformENS_13AutoTransformE@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN26QQuickImageProviderOptions25setPreserveAspectRatioFitEb@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN26QQuickImageProviderOptions26setPreserveAspectRatioCropEb@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN26QQuickImageProviderOptionsC1ERKS_@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN26QQuickImageProviderOptionsC1Ev@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN26QQuickImageProviderOptionsC2ERKS_@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN26QQuickImageProviderOptionsC2Ev@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN26QQuickImageProviderOptionsD1Ev@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN26QQuickImageProviderOptionsD2Ev@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN26QQuickImageProviderOptionsaSERKS_@Qt_5_PRIVATE_API 5.7.1 1
  _ZN26QQuickItemViewTransitioner16addToTargetListsENS_14TransitionTypeEP32QQuickItemViewTransitionableItemi@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN26QQuickItemViewTransitioner16resetTargetListsEv@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN26QQuickItemViewTransitioner16transitionObjectENS_14TransitionTypeEb@Qt_5_PRIVATE_API 5.6.0~beta 1
@@ -2602,6 +2612,16 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN30QQuickAbstractAnimationPrivate14createPropertyEP7QObjectRK7QStringS1_PS2_@Qt_5_PRIVATE_API 5.6.0~rc 1
  _ZN30QQuickAbstractAnimationPrivate17animationFinishedEP21QAbstractAnimationJob@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN30QQuickAbstractAnimationPrivate8commenceEv@Qt_5_PRIVATE_API 5.6.0~beta 1
+ _ZN30QQuickImageProviderWithOptions12requestImageERK7QStringP5QSizeRKS3_@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN30QQuickImageProviderWithOptions12requestImageERK7QStringP5QSizeRKS3_RK26QQuickImageProviderOptions@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN30QQuickImageProviderWithOptions13requestPixmapERK7QStringP5QSizeRKS3_@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN30QQuickImageProviderWithOptions13requestPixmapERK7QStringP5QSizeRKS3_RK26QQuickImageProviderOptions@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN30QQuickImageProviderWithOptions14requestTextureERK7QStringP5QSizeRKS3_@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN30QQuickImageProviderWithOptions14requestTextureERK7QStringP5QSizeRKS3_RK26QQuickImageProviderOptions@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN30QQuickImageProviderWithOptions20requestImageResponseERK7QStringRK5QSize@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN30QQuickImageProviderWithOptions20requestImageResponseERK7QStringRK5QSizeRK26QQuickImageProviderOptions@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN30QQuickImageProviderWithOptionsC1EN21QQmlImageProviderBase9ImageTypeE6QFlagsINS0_4FlagEE@Qt_5_PRIVATE_API 5.7.1 1
+ _ZN30QQuickImageProviderWithOptionsC2EN21QQmlImageProviderBase9ImageTypeE6QFlagsINS0_4FlagEE@Qt_5_PRIVATE_API 5.7.1 1
  _ZN30QSGOpaqueTextureMaterialShader10initializeEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN30QSGOpaqueTextureMaterialShader11updateStateERKN17QSGMaterialShader11RenderStateEP11QSGMaterialS5_@Qt_5_PRIVATE_API 5.0.2 1
  _ZN30QSGOpaqueTextureMaterialShader4typeE@Qt_5_PRIVATE_API 5.0.2 1
@@ -3424,6 +3444,10 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZNK24QSGOpaqueTextureMaterial7compareEPK11QSGMaterial@Qt_5 5.0.2
  _ZNK24QSGSmoothTextureMaterial12createShaderEv@Qt_5_PRIVATE_API 5.1.1 1
  _ZNK24QSGSmoothTextureMaterial4typeEv@Qt_5_PRIVATE_API 5.1.1 1
+ _ZNK26QQuickImageProviderOptions13autoTransformEv@Qt_5_PRIVATE_API 5.7.1 1
+ _ZNK26QQuickImageProviderOptions22preserveAspectRatioFitEv@Qt_5_PRIVATE_API 5.7.1 1
+ _ZNK26QQuickImageProviderOptions23preserveAspectRatioCropEv@Qt_5_PRIVATE_API 5.7.1 1
+ _ZNK26QQuickImageProviderOptionseqERKS_@Qt_5_PRIVATE_API 5.7.1 1
  _ZNK26QQuickItemViewTransitioner11targetItemsENS_14TransitionTypeE@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZNK26QQuickItemViewTransitioner13canTransitionENS_14TransitionTypeEb@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZNK26QQuickItemViewTransitioner13targetIndexesENS_14TransitionTypeE@Qt_5_PRIVATE_API 5.6.0~beta 1
@@ -3614,6 +3638,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTI29QQuickImplicitSizeItemPrivate@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTI29QSGDistanceFieldGlyphConsumer@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI30QQuickAbstractAnimationPrivate@Qt_5_PRIVATE_API 5.6.0~beta 1
+ _ZTI30QQuickImageProviderWithOptions@Qt_5_PRIVATE_API 5.7.1 1
  _ZTI30QSGOpaqueTextureMaterialShader@Qt_5_PRIVATE_API 5.0.2 1
  _ZTI32QQuickItemViewTransitionableItem@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTI33QSGDefaultDistanceFieldGlyphCache@Qt_5_PRIVATE_API 5.0.2 1
@@ -3767,6 +3792,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTS29QQuickImplicitSizeItemPrivate@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTS29QSGDistanceFieldGlyphConsumer@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS30QQuickAbstractAnimationPrivate@Qt_5_PRIVATE_API 5.6.0~beta 1
+ _ZTS30QQuickImageProviderWithOptions@Qt_5_PRIVATE_API 5.7.1 1
  _ZTS30QSGOpaqueTextureMaterialShader@Qt_5_PRIVATE_API 5.0.2 1
  _ZTS32QQuickItemViewTransitionableItem@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTS33QSGDefaultDistanceFieldGlyphCache@Qt_5_PRIVATE_API 5.0.2 1
@@ -3915,6 +3941,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZTV29QQuickImplicitSizeItemPrivate@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTV29QSGDistanceFieldGlyphConsumer@Qt_5_PRIVATE_API 5.7.1 1
  _ZTV30QQuickAbstractAnimationPrivate@Qt_5_PRIVATE_API 5.6.0~beta 1
+ _ZTV30QQuickImageProviderWithOptions@Qt_5_PRIVATE_API 5.7.1 1
  _ZTV30QSGOpaqueTextureMaterialShader@Qt_5_PRIVATE_API 5.0.2 1
  _ZTV32QQuickItemViewTransitionableItem@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZTV33QSGDefaultDistanceFieldGlyphCache@Qt_5_PRIVATE_API 5.0.2 1

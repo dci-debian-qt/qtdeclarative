@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 5.7.1 amd64 arm64 armhf i386 powerpc ppc64el
+# SymbolsHelper-Confirmed: 5.7.1 amd64 arm64 armhf i386 powerpc ppc64el s390x
 libQt5Qml.so.5 libqt5qml5 #MINVER#
 | libqt5qml5 #MINVER#, qtdeclarative-abi-5-7-0
  Qt_5.0@Qt_5.0 5.6.0~beta
@@ -1514,7 +1514,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection19convertTypeToSInt32EPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
  (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection19convertTypeToUInt32EPNS_2IR4ExprES4_@Qt_5_PRIVATE_API 5.7.1 1
  (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection20visitCJumpStrictBoolEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.7.1 1
- (arch=!powerpc !ppc64el)_ZN3QV43JIT20InstructionSelection20visitCJumpStrictNullEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection20visitCJumpStrictNullEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.7.1 1
  (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection21callBuiltinDeclareVarEbRK7QString@Qt_5_PRIVATE_API 5.7.1 1
  (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection21callBuiltinDeleteNameERK7QStringPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
  (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection21callBuiltinTypeofNameERK7QStringPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
@@ -1535,7 +1535,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection24callBuiltinPushWithScopeEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
  (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection24prepareVariableArgumentsEPNS_2IR8ExprListE@Qt_5_PRIVATE_API 5.7.1 1
  (arch=!kfreebsd-amd64 !powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection25callBuiltinPushCatchScopeERK7QString@Qt_5_PRIVATE_API 5.7.1 1
- (arch=!powerpc !ppc64el)_ZN3QV43JIT20InstructionSelection25visitCJumpStrictUndefinedEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.7.1 1
+ (arch=!powerpc !ppc64el !s390x)_ZN3QV43JIT20InstructionSelection25visitCJumpStrictUndefinedEPNS_2IR5BinopEPNS2_10BasicBlockES6_@Qt_5_PRIVATE_API 5.7.1 1
  (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection26callBuiltinDeleteSubscriptEPNS_2IR4ExprES4_S4_@Qt_5_PRIVATE_API 5.7.1 1
  (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection26callBuiltinTypeofSubscriptEPNS_2IR4ExprES4_S4_@Qt_5_PRIVATE_API 5.7.1 1
  (arch=amd64 arm64 armhf i386)_ZN3QV43JIT20InstructionSelection26callBuiltinUnwindExceptionEPNS_2IR4ExprE@Qt_5_PRIVATE_API 5.7.1 1
@@ -2888,15 +2888,15 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  (optional=templinst)_ZNSt6vectorIPKN3QV44Heap6StringESaIS4_EE19_M_emplace_back_auxIJS4_EEEvDpOT_@Qt_5_PRIVATE_API 5.5.0 1
  (optional=templinst|subst)_ZNSt6vectorIS_IiSaIiEESaIS1_EE17_M_default_appendE{size_t}@Qt_5 5.4.2
  (optional=templinst|arch=amd64 ppc64el)_ZNSt6vectorIS_IiSaIiEESaIS1_EE6resizeEm@Qt_5 5.7.0
- (optional=templinst|arch=amd64 arm64 ppc64el)_ZNSt6vectorIS_IiSaIiEESaIS1_EED1Ev@Qt_5 5.7.0
- (optional=templinst|arch=amd64 arm64 ppc64el)_ZNSt6vectorIS_IiSaIiEESaIS1_EED2Ev@Qt_5 5.7.0
+ (optional=templinst|arch=amd64 arm64 ppc64el s390x)_ZNSt6vectorIS_IiSaIiEESaIS1_EED1Ev@Qt_5 5.7.0
+ (optional=templinst|arch=amd64 arm64 ppc64el s390x)_ZNSt6vectorIS_IiSaIiEESaIS1_EED2Ev@Qt_5 5.7.0
  (optional=templinst|subst)_ZNSt6vectorIbSaIbEE13_M_reallocateE{size_t}@Qt_5 5.4.2
  (subst)_ZNSt6vectorIbSaIbEE14_M_fill_assignE{size_t}b@Qt_5 5.4.0
  (subst)_ZNSt6vectorIbSaIbEE14_M_fill_insertESt13_Bit_iterator{size_t}b@Qt_5 5.4.0
  (subst)_ZNSt6vectorIbSaIbEE6resizeE{size_t}b@Qt_5 5.4.2
  (subst)_ZNSt6vectorIbSaIbEEC1E{size_t}RKbRKS0_@Qt_5 5.4.0
  (subst)_ZNSt6vectorIbSaIbEEC2E{size_t}RKbRKS0_@Qt_5 5.4.0
- (optional=templinst|arch=!powerpc !ppc64el|subst)_ZNSt6vectorIcSaIcEE17_M_default_appendE{size_t}@Qt_5 5.7.0
+ (optional=templinst|arch=!powerpc !ppc64el !s390x|subst)_ZNSt6vectorIcSaIcEE17_M_default_appendE{size_t}@Qt_5 5.7.0
  (optional=templinst|arch=amd64 arm64 armhf i386)_ZNSt6vectorIcSaIcEE19_M_emplace_back_auxIJRKcEEEvDpOT_@Qt_5 5.4.2
  (optional=templinst|subst)_ZNSt6vectorIiSaIiEE14_M_fill_assignE{size_t}RKi@Qt_5 5.4.0
  (optional=templinst|subst)_ZNSt6vectorIiSaIiEE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPiS1_EE{size_t}RKi@Qt_5 5.2.1
