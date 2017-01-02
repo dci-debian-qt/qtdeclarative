@@ -53,6 +53,12 @@ qtdeclarative-opensource-src (5.6.1-8) unstable; urgency=medium
 
  -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Sun, 11 Sep 2016 09:30:31 -0300
 
+qtdeclarative-opensource-src (5.6.1-7ubuntu2~2) zesty; urgency=medium
+
+  * No-change rebuild for libdouble-conversion1
+
+ -- Iain Lane <iain@orangesquash.org.uk>  Mon, 05 Dec 2016 14:57:15 +0000
+
 qtdeclarative-opensource-src (5.6.1-7ubuntu2~1) yakkety; urgency=medium
 
   * debian/patches/Revert-Remove-this-piece-of-code.patch:
