@@ -11,11 +11,11 @@ Uploaders: Sune Vuorela <debian@pusling.com>,
 Build-Depends: debhelper (>= 9.20160114~),
                dpkg-dev (>= 1.16.1),
                libgl1-mesa-dri,
-               libqt5opengl5-dev (>= 5.7.1~20161021+dfsg~),
+               libqt5opengl5-dev (>= 5.7.1+dfsg~),
                libqt5xmlpatterns5-dev (>= 5.7.1~20161021~),
                pkg-kde-tools (>= 0.15.17~),
                python,
-               qtbase5-private-dev (>= 5.7.1~20161021+dfsg~),
+               qtbase5-private-dev (>= 5.7.1+dfsg~),
                xauth,
                xvfb
 Build-Depends-Indep: libqt5sql5-sqlite (>= 5.7.1~20161021+dfsg~),
@@ -94,8 +94,6 @@ Package: qml-module-qtquick-layouts
 Multi-Arch: same
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-quicklayouts-plugin (<< 5.2.1-4~)
-Replaces: qtdeclarative5-quicklayouts-plugin (<< 5.2.1-4~)
 Description: Qt 5 Quick Layouts QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -132,8 +130,6 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-folderlistmodel-plugin (<< 5.2.1-5~)
-Replaces: qtdeclarative5-folderlistmodel-plugin (<< 5.2.1-5~)
 Description: Qt 5 folderlistmodel QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -156,8 +152,6 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: libqt5sql5-sqlite, ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-localstorage-plugin (<< 5.2.1-5~)
-Replaces: qtdeclarative5-localstorage-plugin (<< 5.2.1-5~)
 Description: Qt 5 localstorage QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -180,8 +174,6 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-models-plugin (<< 5.2.1-5~), qml-model-qtqml-models2 (<< 5.2.1-5ubuntu4~)
-Replaces: qtdeclarative5-models-plugin (<< 5.2.1-5~), qml-model-qtqml-models2 (<< 5.2.1-5ubuntu4~)
 Description: Qt 5 Models2 QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -215,8 +207,6 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-particles-plugin (<< 5.2.1-5~)
-Replaces: qtdeclarative5-particles-plugin (<< 5.2.1-5~)
 Description: Qt 5 particles 2 QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -239,8 +229,6 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: libgl1-mesa-dri | libgl1, ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-qtquick2-plugin (<< 5.2.1-5~)
-Replaces: qtdeclarative5-qtquick2-plugin (<< 5.2.1-5~)
 Description: Qt 5 Qt Quick 2 QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -263,8 +251,6 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-settings-plugin (<< 5.2.1-5~)
-Replaces: qtdeclarative5-settings-plugin (<< 5.2.1-5~)
 Description: Qt 5 settings QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -287,8 +273,6 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: qml-module-qtquick2, ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-test-plugin (<< 5.2.1-5~)
-Replaces: qtdeclarative5-test-plugin (<< 5.2.1-5~)
 Description: Qt 5 test QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -311,8 +295,6 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-window-plugin (<< 5.2.1-5~)
-Replaces: qtdeclarative5-window-plugin (<< 5.2.1-5~)
 Description: Qt 5 window 2 QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -336,8 +318,6 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-xmllistmodel-plugin (<< 5.2.1-5~)
-Replaces: qtdeclarative5-xmllistmodel-plugin (<< 5.2.1-5~)
 Description: Qt 5 xmllistmodel QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -368,8 +348,6 @@ Architecture: any
 Multi-Arch: same
 Section: libdevel
 Depends: qtdeclarative5-dev (= ${binary:Version}), ${misc:Depends}
-Breaks: qtdeclarative5-dev (<< 5.2.0-5~)
-Replaces: qtdeclarative5-dev (<< 5.2.0-5~)
 Description: Qt 5 declarative private development files
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -408,8 +386,6 @@ Architecture: any
 Multi-Arch: foreign
 Section: devel
 Depends: qtchooser, ${misc:Depends}, ${shlibs:Depends}
-Breaks: qtdeclarative5-dev-tools (<< 5.2.0-5~)
-Replaces: qtdeclarative5-dev-tools (<< 5.2.0-5~)
 Description: Qt 5 QML viewer
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
