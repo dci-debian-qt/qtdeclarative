@@ -1,7 +1,6 @@
 # Backported patches
 Fix-visibility-of-properties-in-value-types.patch
 fix_tst_qqmlapplicationengine.diff
-Scale-images-correctly-with-sourceSize-and-PreserveA.patch
 Fix-SignalSpy-with-QQmlPropertyMap-signals.patch
 
 # Debian patches

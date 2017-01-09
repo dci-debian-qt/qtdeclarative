@@ -12,8 +12,6 @@ qtdeclarative-opensource-src (5.7.1-1ubuntu1) UNRELEASED; urgency=medium
     - debian/patches/fix_binary_location_for_tests.patch
   * Rebase QML cache patch for 5.7 and add arm64 support.
   * Update symbols and mark private ones for 5.7.0 and 5.7.1.
-  * debian/patches/Scale-images-correctly-with-sourceSize-and-PreserveA.patch:
-    - Backport from dev. (LP: #1604025)
   * debian/patches/Fix-SignalSpy-with-QQmlPropertyMap-signals.patch:
     - Backport from 5.8 (LP: #1624251)
 
