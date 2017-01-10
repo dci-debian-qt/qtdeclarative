@@ -10,11 +10,11 @@ Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/qtdeclarative-opensource-s
 Forwarded: No
 Last-Update: 2015-02-25
 
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/ARMv7Assembler.h
+Index: qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/ARMv7Assembler.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/3rdparty/masm/assembler/ARMv7Assembler.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/ARMv7Assembler.h
-@@ -445,6 +445,12 @@ public:
+--- qtdeclarative-opensource-src-5.7.0.orig/src/3rdparty/masm/assembler/ARMv7Assembler.h
++++ qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/ARMv7Assembler.h
+@@ -446,6 +446,12 @@ public:
          ConditionInvalid
      } Condition;
  
@@ -27,7 +27,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/ARMv7As
  #define JUMP_ENUM_WITH_SIZE(index, value) (((value) << 3) | (index))
  #define JUMP_ENUM_SIZE(jump) ((jump) >> 3) 
      enum JumpType { JumpFixed = JUMP_ENUM_WITH_SIZE(0, 0), 
-@@ -2782,6 +2788,7 @@ private:
+@@ -2783,6 +2789,7 @@ private:
          AssemblerLabel label() const { return m_buffer.label(); }
          bool isAligned(int alignment) const { return m_buffer.isAligned(alignment); }
          void* data() const { return m_buffer.data(); }
@@ -35,11 +35,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/ARMv7As
  
          unsigned debugOffset() { return m_buffer.debugOffset(); }
  
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/AbstractMacroAssembler.h
+Index: qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/AbstractMacroAssembler.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/3rdparty/masm/assembler/AbstractMacroAssembler.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/AbstractMacroAssembler.h
-@@ -486,6 +486,11 @@ public:
+--- qtdeclarative-opensource-src-5.7.0.orig/src/3rdparty/masm/assembler/AbstractMacroAssembler.h
++++ qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/AbstractMacroAssembler.h
+@@ -487,6 +487,11 @@ public:
              return Call(jump.m_label, Linkable);
          }
  
@@ -51,7 +51,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/Abstrac
          AssemblerLabel m_label;
      private:
          Flags m_flags;
-@@ -746,6 +751,12 @@ public:
+@@ -794,6 +799,12 @@ public:
      {
          AssemblerType::cacheFlush(code, size);
      }
@@ -64,10 +64,10 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/Abstrac
  protected:
      AbstractMacroAssembler()
          : m_randomSource(cryptographicallyRandomNumber())
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/AssemblerBuffer.h
+Index: qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/AssemblerBuffer.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/3rdparty/masm/assembler/AssemblerBuffer.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/AssemblerBuffer.h
+--- qtdeclarative-opensource-src-5.7.0.orig/src/3rdparty/masm/assembler/AssemblerBuffer.h
++++ qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/AssemblerBuffer.h
 @@ -86,6 +86,14 @@ namespace JSC {
                  grow();
          }
@@ -83,10 +83,10 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/Assembl
          bool isAligned(int alignment) const
          {
              return !(m_index & (alignment - 1));
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/LinkBuffer.h
+Index: qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/LinkBuffer.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/3rdparty/masm/assembler/LinkBuffer.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/LinkBuffer.h
+--- qtdeclarative-opensource-src-5.7.0.orig/src/3rdparty/masm/assembler/LinkBuffer.h
++++ qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/LinkBuffer.h
 @@ -109,11 +109,13 @@ public:
      
      // These methods are used to link or set values at code generation time.
@@ -102,10 +102,10 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/LinkBuf
      }
      
      void link(Jump jump, CodeLocationLabel label)
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/X86Assembler.h
+Index: qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/X86Assembler.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/3rdparty/masm/assembler/X86Assembler.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/X86Assembler.h
+--- qtdeclarative-opensource-src-5.7.0.orig/src/3rdparty/masm/assembler/X86Assembler.h
++++ qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/X86Assembler.h
 @@ -101,6 +101,11 @@ public:
          ConditionNC = ConditionAE,
      } Condition;
@@ -126,10 +126,10 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/3rdparty/masm/assembler/X86Asse
  
          PassRefPtr<ExecutableMemoryHandle> executableCopy(JSGlobalData& globalData, void* ownerUID, JITCompilationEffort effort)
          {
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/compiler.pri
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/compiler/compiler.pri
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/compiler/compiler.pri
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/compiler.pri
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/compiler/compiler.pri
++++ qtdeclarative-opensource-src-5.7.0/src/qml/compiler/compiler.pri
 @@ -28,10 +28,10 @@ HEADERS += \
      $$PWD/qv4isel_moth_p.h \
      $$PWD/qv4instr_moth_p.h
@@ -142,11 +142,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/compiler.pri
  
 +DEFINES += V4_UNIT_CACHE
  }
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmlirbuilder.cpp
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qqmlirbuilder.cpp
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/compiler/qqmlirbuilder.cpp
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmlirbuilder.cpp
-@@ -1296,7 +1296,12 @@ bool IRBuilder::isStatementNodeScript(QQ
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/compiler/qqmlirbuilder.cpp
++++ qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qqmlirbuilder.cpp
+@@ -1303,7 +1303,12 @@ bool IRBuilder::isStatementNodeScript(QQ
  QV4::CompiledData::Unit *QmlUnitGenerator::generate(Document &output)
  {
      QQmlRefPointer<QV4::CompiledData::CompilationUnit> compilationUnit = output.javaScriptCompilationUnit;
@@ -160,7 +160,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmlirbuilder.cpp
      const uint unitSize = jsUnit->unitSize;
  
      const int importSize = sizeof(QV4::CompiledData::Import) * output.imports.count();
-@@ -1322,7 +1327,6 @@ QV4::CompiledData::Unit *QmlUnitGenerato
+@@ -1329,7 +1334,6 @@ QV4::CompiledData::Unit *QmlUnitGenerato
      memset(data + unitSize, 0, totalSize - unitSize);
      if (jsUnit != compilationUnit->data)
          free(jsUnit);
@@ -168,7 +168,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmlirbuilder.cpp
  
      QV4::CompiledData::Unit *qmlUnit = reinterpret_cast<QV4::CompiledData::Unit *>(data);
      qmlUnit->unitSize = totalSize;
-@@ -1333,8 +1337,22 @@ QV4::CompiledData::Unit *QmlUnitGenerato
+@@ -1340,8 +1344,22 @@ QV4::CompiledData::Unit *QmlUnitGenerato
      qmlUnit->offsetToObjects = unitSize + importSize;
      qmlUnit->nObjects = output.objects.count();
      qmlUnit->indexOfRootObject = output.indexOfRootObject;
@@ -191,7 +191,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmlirbuilder.cpp
  
      // write imports
      char *importPtr = data + qmlUnit->offsetToImports;
-@@ -1426,7 +1444,12 @@ QV4::CompiledData::Unit *QmlUnitGenerato
+@@ -1433,7 +1451,12 @@ QV4::CompiledData::Unit *QmlUnitGenerato
          }
      }
  
@@ -204,11 +204,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmlirbuilder.cpp
  
      return qmlUnit;
  }
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmltypecompiler.cpp
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qqmltypecompiler.cpp
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/compiler/qqmltypecompiler.cpp
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmltypecompiler.cpp
-@@ -218,6 +218,7 @@ bool QQmlTypeCompiler::compile()
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/compiler/qqmltypecompiler.cpp
++++ qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qqmltypecompiler.cpp
+@@ -224,6 +224,7 @@ bool QQmlTypeCompiler::compile()
          QScopedPointer<QV4::EvalInstructionSelection> isel(v4->iselFactory->create(engine, v4->executableAllocator, &document->jsModule, &document->jsGenerator));
          isel->setUseFastLookups(false);
          isel->setUseTypeInference(true);
@@ -216,7 +216,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmltypecompiler.c
          document->javaScriptCompilationUnit = isel->compile(/*generated unit data*/false);
      }
  
-@@ -423,6 +424,7 @@ QQmlPropertyCacheCreator::QQmlPropertyCa
+@@ -429,6 +430,7 @@ QQmlPropertyCacheCreator::QQmlPropertyCa
      , qmlObjects(*typeCompiler->qmlObjects())
      , imports(typeCompiler->imports())
      , resolvedTypes(typeCompiler->resolvedTypes())
@@ -224,11 +224,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmltypecompiler.c
  {
  }
  
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmltypecompiler_p.h
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qqmltypecompiler_p.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/compiler/qqmltypecompiler_p.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmltypecompiler_p.h
-@@ -152,6 +152,7 @@ protected:
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/compiler/qqmltypecompiler_p.h
++++ qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qqmltypecompiler_p.h
+@@ -158,6 +158,7 @@ protected:
      QHash<int, QQmlCompiledData::TypeReference*> *resolvedTypes;
      QVector<QByteArray> vmeMetaObjects;
      QVector<QQmlPropertyCache*> propertyCaches;
@@ -236,11 +236,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qqmltypecompiler_p
  };
  
  // "Converts" signal expressions to full-fleged function declarations with
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4compileddata_p.h
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qv4compileddata_p.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/compiler/qv4compileddata_p.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4compileddata_p.h
-@@ -608,6 +608,11 @@ struct Q_QML_PRIVATE_EXPORT CompilationU
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/compiler/qv4compileddata_p.h
++++ qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qv4compileddata_p.h
+@@ -614,6 +614,11 @@ struct Q_QML_PRIVATE_EXPORT CompilationU
      QVector<QV4::Function *> runtimeFunctions;
      mutable QQmlNullableValue<QUrl> m_url;
  
@@ -252,11 +252,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4compileddata_p.
      // index is object index. This allows fast access to the
      // property data when initializing bindings, avoiding expensive
      // lookups by string (property name).
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_moth_p.h
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qv4isel_moth_p.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/compiler/qv4isel_moth_p.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_moth_p.h
-@@ -75,9 +75,11 @@ public:
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/compiler/qv4isel_moth_p.h
++++ qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qv4isel_moth_p.h
+@@ -81,9 +81,11 @@ public:
      ~InstructionSelection();
  
      virtual void run(int functionIndex);
@@ -268,13 +268,13 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_moth_p.h
  
      virtual void visitJump(IR::Jump *);
      virtual void visitCJump(IR::CJump *);
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.cpp
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qv4isel_p.cpp
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/compiler/qv4isel_p.cpp
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.cpp
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/compiler/qv4isel_p.cpp
++++ qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qv4isel_p.cpp
 @@ -3,6 +3,12 @@
- ** Copyright (C) 2015 The Qt Company Ltd.
- ** Contact: http://www.qt.io/licensing/
+ ** Copyright (C) 2016 The Qt Company Ltd.
+ ** Contact: https://www.qt.io/licensing/
  **
 +** Copyright (C) 2015 Nomovok Ltd. All rights reserved.
 +** Contact: info@nomovok.com
@@ -284,8 +284,8 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.cpp
 +**
  ** This file is part of the QtQml module of the Qt Toolkit.
  **
- ** $QT_BEGIN_LICENSE:LGPL21$
-@@ -42,10 +48,66 @@
+ ** $QT_BEGIN_LICENSE:LGPL$
+@@ -48,10 +54,66 @@
  #endif
  
  #include <QString>
@@ -352,7 +352,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.cpp
  EvalInstructionSelection::EvalInstructionSelection(QV4::ExecutableAllocator *execAllocator, Module *module, QV4::Compiler::JSUnitGenerator *jsGenerator)
      : useFastLookups(true)
      , useTypeInference(true)
-@@ -61,6 +123,9 @@ EvalInstructionSelection::EvalInstructio
+@@ -67,6 +129,9 @@ EvalInstructionSelection::EvalInstructio
      Q_ASSERT(execAllocator);
  #endif
      Q_ASSERT(module);
@@ -362,7 +362,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.cpp
  }
  
  EvalInstructionSelection::~EvalInstructionSelection()
-@@ -69,15 +134,307 @@ EvalInstructionSelection::~EvalInstructi
+@@ -75,15 +140,307 @@ EvalInstructionSelection::~EvalInstructi
  EvalISelFactory::~EvalISelFactory()
  {}
  
@@ -675,11 +675,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.cpp
  }
  
  void IRDecoder::visitMove(IR::Move *s)
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.h
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qv4isel_p.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/compiler/qv4isel_p.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.h
-@@ -59,6 +59,10 @@ class QQmlEnginePrivate;
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/compiler/qv4isel_p.h
++++ qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qv4isel_p.h
+@@ -65,6 +65,10 @@ class QQmlEnginePrivate;
  
  namespace QV4 {
  
@@ -690,7 +690,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.h
  class ExecutableAllocator;
  struct Function;
  
-@@ -68,6 +72,7 @@ public:
+@@ -74,6 +78,7 @@ public:
      EvalInstructionSelection(QV4::ExecutableAllocator *execAllocator, IR::Module *module, QV4::Compiler::JSUnitGenerator *jsGenerator);
      virtual ~EvalInstructionSelection() = 0;
  
@@ -698,7 +698,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.h
      QQmlRefPointer<QV4::CompiledData::CompilationUnit> compile(bool generateUnitData = true);
  
      void setUseFastLookups(bool b) { useFastLookups = b; }
-@@ -82,10 +87,13 @@ public:
+@@ -88,10 +93,13 @@ public:
      int registerRegExp(IR::RegExp *regexp) { return jsGenerator->registerRegExp(regexp); }
      int registerJSClass(int count, IR::ExprList *args) { return jsGenerator->registerJSClass(count, args); }
      QV4::Compiler::JSUnitGenerator *jsUnitGenerator() const { return jsGenerator; }
@@ -712,7 +712,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.h
  
      bool useFastLookups;
      bool useTypeInference;
-@@ -93,6 +101,7 @@ protected:
+@@ -99,6 +107,7 @@ protected:
      QV4::Compiler::JSUnitGenerator *jsGenerator;
      QScopedPointer<QV4::Compiler::JSUnitGenerator> ownJSGenerator;
      IR::Module *irModule;
@@ -720,11 +720,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_p.h
  };
  
  class Q_QML_PRIVATE_EXPORT EvalISelFactory
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4assembler.cpp
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/jit/qv4assembler.cpp
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/jit/qv4assembler.cpp
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4assembler.cpp
-@@ -69,7 +69,15 @@ void CompilationUnit::linkBackendToEngin
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/jit/qv4assembler.cpp
++++ qtdeclarative-opensource-src-5.7.0/src/qml/jit/qv4assembler.cpp
+@@ -75,7 +75,15 @@ void CompilationUnit::linkBackendToEngin
  
          QV4::Function *runtimeFunction = new QV4::Function(engine, this, compiledFunction,
                                                             (ReturnedValue (*)(QV4::ExecutionEngine *, const uchar *)) codeRefs[i].code().executableAddress());
@@ -741,11 +741,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4assembler.cpp
      }
  }
  
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4assembler_p.h
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/jit/qv4assembler_p.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/jit/qv4assembler_p.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4assembler_p.h
-@@ -74,6 +74,16 @@ namespace JIT {
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/jit/qv4assembler_p.h
++++ qtdeclarative-opensource-src-5.7.0/src/qml/jit/qv4assembler_p.h
+@@ -80,6 +80,16 @@ namespace JIT {
  
  class InstructionSelection;
  
@@ -762,7 +762,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4assembler_p.h
  struct CompilationUnit : public QV4::CompiledData::CompilationUnit
  {
      virtual ~CompilationUnit();
-@@ -86,6 +96,8 @@ struct CompilationUnit : public QV4::Com
+@@ -92,6 +102,8 @@ struct CompilationUnit : public QV4::Com
  
      QVector<JSC::MacroAssemblerCodeRef> codeRefs;
      QList<QVector<QV4::Primitive> > constantValues;
@@ -771,8 +771,8 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4assembler_p.h
  };
  
  struct RelativeCall {
-@@ -1086,7 +1098,12 @@ public:
-             move(TrustedImm64(u.i), ReturnValueRegister);
+@@ -1090,7 +1102,12 @@ public:
+             move(TrustedImm64(i), ReturnValueRegister);
              move64ToDouble(ReturnValueRegister, target);
  #else
 -            JSC::MacroAssembler::loadDouble(constantTable().loadValueAddress(c, ScratchRegister), target);
@@ -785,7 +785,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4assembler_p.h
  #endif
              return target;
          }
-@@ -1174,6 +1191,12 @@ public:
+@@ -1178,6 +1195,12 @@ public:
      Label exceptionReturnLabel;
      IR::BasicBlock * catchBlock;
      QVector<Jump> exceptionPropagationJumps;
@@ -798,10 +798,10 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4assembler_p.h
  private:
      QScopedPointer<const StackLayout> _stackLayout;
      ConstantTable _constTable;
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4cachedlinkdata_p.h
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/jit/qv4cachedlinkdata_p.h
 ===================================================================
 --- /dev/null
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4cachedlinkdata_p.h
++++ qtdeclarative-opensource-src-5.7.0/src/qml/jit/qv4cachedlinkdata_p.h
 @@ -0,0 +1,196 @@
 +/***************************************************************************
 +**
@@ -999,11 +999,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4cachedlinkdata_p.h
 +QT_END_NAMESPACE
 +
 +#endif
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4isel_masm.cpp
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/jit/qv4isel_masm.cpp
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/jit/qv4isel_masm.cpp
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4isel_masm.cpp
-@@ -43,6 +43,7 @@
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/jit/qv4isel_masm.cpp
++++ qtdeclarative-opensource-src-5.7.0/src/qml/jit/qv4isel_masm.cpp
+@@ -49,6 +49,7 @@
  #include "qv4assembler_p.h"
  #include "qv4unop_p.h"
  #include "qv4binop_p.h"
@@ -1011,7 +1011,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4isel_masm.cpp
  
  #include <QtCore/QBuffer>
  #include <QtCore/QCoreApplication>
-@@ -154,9 +155,13 @@ JSC::MacroAssemblerCodeRef Assembler::li
+@@ -160,9 +161,13 @@ JSC::MacroAssemblerCodeRef Assembler::li
      JSC::LinkBuffer linkBuffer(dummy, this, 0);
  
      QHash<void*, const char*> functions;
@@ -1026,7 +1026,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4isel_masm.cpp
      }
  
      foreach (const DataLabelPatch &p, _dataLabelPatches)
-@@ -358,6 +363,25 @@ void InstructionSelection::run(int funct
+@@ -364,6 +369,25 @@ void InstructionSelection::run(int funct
      JSC::MacroAssemblerCodeRef codeRef =_as->link(&dummySize);
      compilationUnit->codeRefs[functionIndex] = codeRef;
  
@@ -1052,7 +1052,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4isel_masm.cpp
      qSwap(_function, function);
      delete _as;
      _as = oldAssembler;
-@@ -381,6 +405,11 @@ QQmlRefPointer<QV4::CompiledData::Compil
+@@ -387,6 +411,11 @@ QQmlRefPointer<QV4::CompiledData::Compil
      return result;
  }
  
@@ -1064,17 +1064,17 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4isel_masm.cpp
  void InstructionSelection::callBuiltinInvalid(IR::Name *func, IR::ExprList *args, IR::Expr *result)
  {
      prepareCallData(args, 0);
-@@ -1955,5 +1984,4 @@ void InstructionSelection::visitCJumpEqu
+@@ -1961,5 +1990,4 @@ void InstructionSelection::visitCJumpEqu
                                  _block, trueBlock, falseBlock);
  }
  
 -
  #endif // ENABLE(ASSEMBLER)
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4isel_masm_p.h
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/jit/qv4isel_masm_p.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/jit/qv4isel_masm_p.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4isel_masm_p.h
-@@ -76,8 +76,11 @@ public:
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/jit/qv4isel_masm_p.h
++++ qtdeclarative-opensource-src-5.7.0/src/qml/jit/qv4isel_masm_p.h
+@@ -82,8 +82,11 @@ public:
      virtual void run(int functionIndex);
  
      const void *addConstantTable(QVector<QV4::Primitive> *values);
@@ -1086,11 +1086,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jit/qv4isel_masm_p.h
  
      virtual void callBuiltinInvalid(IR::Name *func, IR::ExprList *args, IR::Expr *result);
      virtual void callBuiltinTypeofQmlContextProperty(IR::Expr *base, IR::Member::MemberKind kind, int propertyIndex, IR::Expr *result);
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4functionobject.cpp
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/jsruntime/qv4functionobject.cpp
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/jsruntime/qv4functionobject.cpp
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4functionobject.cpp
-@@ -287,6 +287,7 @@ ReturnedValue FunctionCtor::construct(co
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/jsruntime/qv4functionobject.cpp
++++ qtdeclarative-opensource-src-5.7.0/src/qml/jsruntime/qv4functionobject.cpp
+@@ -293,6 +293,7 @@ ReturnedValue FunctionCtor::construct(co
  
      Compiler::JSUnitGenerator jsGenerator(&module);
      QScopedPointer<EvalInstructionSelection> isel(scope.engine->iselFactory->create(QQmlEnginePrivate::get(scope.engine), scope.engine->executableAllocator, &module, &jsGenerator));
@@ -1098,11 +1098,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4functionobject
      QQmlRefPointer<CompiledData::CompilationUnit> compilationUnit = isel->compile();
      Function *vmf = compilationUnit->linkToEngine(scope.engine);
  
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4qobjectwrapper.cpp
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/jsruntime/qv4qobjectwrapper.cpp
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/jsruntime/qv4qobjectwrapper.cpp
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4qobjectwrapper.cpp
-@@ -632,6 +632,7 @@ ReturnedValue QObjectWrapper::getPropert
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/jsruntime/qv4qobjectwrapper.cpp
++++ qtdeclarative-opensource-src-5.7.0/src/qml/jsruntime/qv4qobjectwrapper.cpp
+@@ -635,6 +635,7 @@ ReturnedValue QObjectWrapper::getPropert
      QQmlPropertyCache *cache = ddata->propertyCache;
      Q_ASSERT(cache);
      QQmlPropertyData *property = cache->property(propertyIndex);
@@ -1110,11 +1110,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4qobjectwrapper
      Q_ASSERT(property); // We resolved this property earlier, so it better exist!
      return getProperty(engine, object, property, captureRequired);
  }
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4script.cpp
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/jsruntime/qv4script.cpp
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/jsruntime/qv4script.cpp
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4script.cpp
-@@ -211,6 +211,7 @@ void Script::parse()
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/jsruntime/qv4script.cpp
++++ qtdeclarative-opensource-src-5.7.0/src/qml/jsruntime/qv4script.cpp
+@@ -217,6 +217,7 @@ void Script::parse()
          QScopedPointer<EvalInstructionSelection> isel(v4->iselFactory->create(QQmlEnginePrivate::get(v4), v4->executableAllocator, &module, &jsGenerator));
          if (inheritContext)
              isel->setUseFastLookups(false);
@@ -1122,7 +1122,7 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4script.cpp
          QQmlRefPointer<QV4::CompiledData::CompilationUnit> compilationUnit = isel->compile();
          vmFunction = compilationUnit->linkToEngine(v4);
          ScopedObject holder(valueScope, v4->memoryManager->allocObject<CompilationUnitHolder>(compilationUnit));
-@@ -314,6 +315,7 @@ QQmlRefPointer<QV4::CompiledData::Compil
+@@ -320,6 +321,7 @@ QQmlRefPointer<QV4::CompiledData::Compil
  
      QScopedPointer<EvalInstructionSelection> isel(engine->iselFactory->create(QQmlEnginePrivate::get(engine), engine->executableAllocator, module, unitGenerator));
      isel->setUseFastLookups(false);
@@ -1130,11 +1130,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4script.cpp
      return isel->compile(/*generate unit data*/false);
  }
  
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/qml/qqmlengine.cpp
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/qml/qqmlengine.cpp
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/qml/qqmlengine.cpp
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/qml/qqmlengine.cpp
-@@ -599,7 +599,8 @@ QQmlEnginePrivate::QQmlEnginePrivate(QQm
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/qml/qqmlengine.cpp
++++ qtdeclarative-opensource-src-5.7.0/src/qml/qml/qqmlengine.cpp
+@@ -607,7 +607,8 @@ QQmlEnginePrivate::QQmlEnginePrivate(QQm
    activeObjectCreator(0),
    networkAccessManager(0), networkAccessManagerFactory(0), urlInterceptor(0),
    scarceResourcesRefCount(0), importDatabase(e), typeLoader(e),
@@ -1144,11 +1144,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/qml/qqmlengine.cpp
  {
  }
  
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/qml/qqmlengine_p.h
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/qml/qqmlengine_p.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/qml/qqmlengine_p.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/qml/qqmlengine_p.h
-@@ -250,6 +250,8 @@ public:
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/qml/qqmlengine_p.h
++++ qtdeclarative-opensource-src-5.7.0/src/qml/qml/qqmlengine_p.h
+@@ -252,6 +252,8 @@ public:
  
      mutable QMutex networkAccessManagerMutex;
  
@@ -1157,11 +1157,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/qml/qqmlengine_p.h
  private:
      // Must be called locked
      QQmlPropertyCache *createCache(QQmlType *, int);
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_moth.cpp
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qv4isel_moth.cpp
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/compiler/qv4isel_moth.cpp
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_moth.cpp
-@@ -451,6 +451,11 @@ QQmlRefPointer<QV4::CompiledData::Compil
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/compiler/qv4isel_moth.cpp
++++ qtdeclarative-opensource-src-5.7.0/src/qml/compiler/qv4isel_moth.cpp
+@@ -457,6 +457,11 @@ QQmlRefPointer<QV4::CompiledData::Compil
      return result;
  }
  
@@ -1173,11 +1173,11 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/compiler/qv4isel_moth.cpp
  void InstructionSelection::callValue(IR::Expr *value, IR::ExprList *args, IR::Expr *result)
  {
      Instruction::CallValue call;
-Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4global_p.h
+Index: qtdeclarative-opensource-src-5.7.0/src/qml/jsruntime/qv4global_p.h
 ===================================================================
---- qtdeclarative-opensource-src-5.6.0-rc.orig/src/qml/jsruntime/qv4global_p.h
-+++ qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4global_p.h
-@@ -116,6 +116,9 @@ inline double trunc(double d) { return d
+--- qtdeclarative-opensource-src-5.7.0.orig/src/qml/jsruntime/qv4global_p.h
++++ qtdeclarative-opensource-src-5.7.0/src/qml/jsruntime/qv4global_p.h
+@@ -129,6 +129,9 @@ inline double trunc(double d) { return d
  #define ENABLE_YARR_JIT 1
  #define ENABLE_JIT 1
  #define ENABLE_ASSEMBLER 1
@@ -1187,3 +1187,19 @@ Index: qtdeclarative-opensource-src-5.6.0-rc/src/qml/jsruntime/qv4global_p.h
  #else
  #define ENABLE_YARR_JIT 0
  #define ENABLE_ASSEMBLER 0
+diff -urN qtdeclarative-opensource-src-5.7.0.old/src/3rdparty/masm/assembler/ARM64Assembler.h qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/ARM64Assembler.h
+--- qtdeclarative-opensource-src-5.7.0.old/src/3rdparty/masm/assembler/ARM64Assembler.h	2016-06-11 12:05:08.000000000 +0000
++++ qtdeclarative-opensource-src-5.7.0/src/3rdparty/masm/assembler/ARM64Assembler.h	2016-09-08 11:13:19.460760204 +0000
+@@ -570,6 +570,12 @@
+         ConditionInvalid
+     } Condition;
+ 
++    // Code inherited from the QMLC project
++    void appendData(char *data, int len)
++    {
++        return m_buffer.appendData(data, len);
++    }
++
+     static Condition invert(Condition cond)
+     {
+         return static_cast<Condition>(cond ^ 1);

@@ -14,7 +14,7 @@ export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
 export QT_SELECT := qt5
 
 %:
-	dh $@ --parallel --with pkgkde_symbolshelper --dbg-package=qtdeclarative5-dbg
+	dh $@ --parallel --with pkgkde_symbolshelper
 
 override_dh_auto_clean:
 	dh_auto_clean
@@ -73,7 +73,8 @@ override_dh_auto_test-arch:
 ifneq ("$(DEB_HOST_ARCH)$(DEB_HOST_SERIES)","ppc64elxenial")
 	$(MAKE) install -Csrc/imports INSTALL_ROOT=$(CURDIR)/test_root
 	mkdir -p $(CURDIR)/.local/share/QtProject/tst_qqmlengine
-	xvfb-run -a \
+	# Make the tests non-fatal, see the 5.7.1~20161021-2 changelog.
+	-xvfb-run -a \
 	         -s "-screen 0 1024x768x24 +extension RANDR +extension RENDER +extension GLX" \
 	         dh_auto_test --max-parallel=1 -- -k -Ctests/auto \
 	         QML2_IMPORT_PATH=$(CURDIR)/test_root/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/qml \
@@ -81,3 +82,6 @@ ifneq ("$(DEB_HOST_ARCH)$(DEB_HOST_SERIES)","ppc64elxenial")
 endif
 
 override_dh_auto_test-indep:
+
+override_dh_strip:
+	dh_strip --dbgsym-migration='qtdeclarative5-dbg (<< 5.7.0-7~)'
