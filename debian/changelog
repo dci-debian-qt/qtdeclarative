@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.7.1-1ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.7.1-1ubuntu1~7) zesty; urgency=medium
 
   [ Dmitry Shachnev ]
   * Merge 5.6.1-7 from unstable.
