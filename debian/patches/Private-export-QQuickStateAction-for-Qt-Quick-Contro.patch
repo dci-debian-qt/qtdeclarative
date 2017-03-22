@@ -1,0 +1,30 @@
+From ab2c5be35dd8f339ec39f52364625a53fa6d0ded Mon Sep 17 00:00:00 2001
+From: J-P Nurmi <jpnurmi@theqtcompany.com>
+Date: Fri, 26 Feb 2016 11:08:27 +0100
+Subject: [PATCH] Private export QQuickStateAction for Qt Quick Controls 2
+
+Popup and drawer transitions need to be able to setup a list of
+QQuickStateActions for QQuickTransitionManager::transition().
+
+Change-Id: I062948170ce38d15ecf6075b45e8ca393b607562
+Reviewed-by: Mitch Curtis <mitch.curtis@theqtcompany.com>
+---
+ src/quick/util/qquickstate_p.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/quick/util/qquickstate_p.h b/src/quick/util/qquickstate_p.h
+index 5c33d4b..7d22ca9 100644
+--- a/src/quick/util/qquickstate_p.h
++++ b/src/quick/util/qquickstate_p.h
+@@ -64,7 +64,7 @@ class QQuickStateActionEvent;
+ class QQmlBinding;
+ class QQmlExpression;
+ 
+-class QQuickStateAction
++class Q_QUICK_PRIVATE_EXPORT QQuickStateAction
+ {
+ public:
+     QQuickStateAction();
+-- 
+2.9.3
+

@@ -1,0 +1,118 @@
+From a2d154022ddd585fd4ed4cd9e1d1a00ddee3bf5c Mon Sep 17 00:00:00 2001
+From: Liang Qi <liang.qi@theqtcompany.com>
+Date: Thu, 19 Nov 2015 07:46:01 +0100
+Subject: [PATCH] QQuickItem: added isAncestorOf()
+
+[ChangeLog][QtQuick][QQuickItem] added isAncestorOf()
+
+Change-Id: I9f6e0574db787c6c9d2311223c6a3ae7fd820bab
+Reviewed-by: J-P Nurmi <jpnurmi@theqtcompany.com>
+---
+ src/quick/items/qquickitem.cpp                  | 20 +++++++++++++
+ src/quick/items/qquickitem.h                    |  2 ++
+ tests/auto/quick/qquickitem2/tst_qquickitem.cpp | 38 +++++++++++++++++++++++++
+ 3 files changed, 60 insertions(+)
+
+diff --git a/src/quick/items/qquickitem.cpp b/src/quick/items/qquickitem.cpp
+index b89482f..ae7b197 100644
+--- a/src/quick/items/qquickitem.cpp
++++ b/src/quick/items/qquickitem.cpp
+@@ -6825,6 +6825,26 @@ QQuickItem *QQuickItem::scopedFocusItem() const
+ }
+ 
+ /*!
++    Returns \c true if this item is an ancestor of \a child (i.e., if this item
++    is \a child's parent, or one of \a child's parent's ancestors).
++
++    \since 5.7
++
++    \sa parentItem()
++  */
++bool QQuickItem::isAncestorOf(const QQuickItem *child) const
++{
++    if (!child || child == this)
++        return false;
++    const QQuickItem *ancestor = child;
++    while ((ancestor = ancestor->parentItem())) {
++        if (ancestor == this)
++            return true;
++    }
++    return false;
++}
++
++/*!
+     Returns the mouse buttons accepted by this item.
+ 
+     The default value is Qt::NoButton; that is, no mouse buttons are accepted.
+diff --git a/src/quick/items/qquickitem.h b/src/quick/items/qquickitem.h
+index d92910c..50d691b 100644
+--- a/src/quick/items/qquickitem.h
++++ b/src/quick/items/qquickitem.h
+@@ -278,6 +278,8 @@ public:
+     bool isFocusScope() const;
+     QQuickItem *scopedFocusItem() const;
+ 
++    bool isAncestorOf(const QQuickItem *child) const;
++
+     Qt::MouseButtons acceptedMouseButtons() const;
+     void setAcceptedMouseButtons(Qt::MouseButtons buttons);
+     bool acceptHoverEvents() const;
+diff --git a/tests/auto/quick/qquickitem2/tst_qquickitem.cpp b/tests/auto/quick/qquickitem2/tst_qquickitem.cpp
+index c7717b9..518e248 100644
+--- a/tests/auto/quick/qquickitem2/tst_qquickitem.cpp
++++ b/tests/auto/quick/qquickitem2/tst_qquickitem.cpp
+@@ -117,6 +117,7 @@ private slots:
+     void contains_data();
+     void contains();
+     void childAt();
++    void isAncestorOf();
+ 
+     void grab();
+ 
+@@ -2959,6 +2960,43 @@ void tst_QQuickItem::grab()
+ 
+ }
+ 
++void tst_QQuickItem::isAncestorOf()
++{
++    QQuickItem parent;
++
++    QQuickItem sub1;
++    sub1.setParentItem(&parent);
++
++    QQuickItem child1;
++    child1.setParentItem(&sub1);
++    QQuickItem child2;
++    child2.setParentItem(&sub1);
++
++    QQuickItem sub2;
++    sub2.setParentItem(&parent);
++
++    QQuickItem child3;
++    child3.setParentItem(&sub2);
++    QQuickItem child4;
++    child4.setParentItem(&sub2);
++
++    QVERIFY(parent.isAncestorOf(&sub1));
++    QVERIFY(parent.isAncestorOf(&sub2));
++    QVERIFY(parent.isAncestorOf(&child1));
++    QVERIFY(parent.isAncestorOf(&child2));
++    QVERIFY(parent.isAncestorOf(&child3));
++    QVERIFY(parent.isAncestorOf(&child4));
++    QVERIFY(sub1.isAncestorOf(&child1));
++    QVERIFY(sub1.isAncestorOf(&child2));
++    QVERIFY(!sub1.isAncestorOf(&child3));
++    QVERIFY(!sub1.isAncestorOf(&child4));
++    QVERIFY(sub2.isAncestorOf(&child3));
++    QVERIFY(sub2.isAncestorOf(&child4));
++    QVERIFY(!sub2.isAncestorOf(&child1));
++    QVERIFY(!sub2.isAncestorOf(&child2));
++    QVERIFY(!sub1.isAncestorOf(&sub1));
++    QVERIFY(!sub2.isAncestorOf(&sub2));
++}
+ 
+ QTEST_MAIN(tst_QQuickItem)
+ 
+-- 
+2.9.3
+

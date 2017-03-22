@@ -1,10 +1,9 @@
 # Backported patches
 QQuickItemView-forceLayout-Also-call-layout-when-d-f.patch
-#Add-a-facility-to-version-type-information-for-debug.patch
-#V4-Free-up-2-address-bits-in-64bit-mode.patch
 fix-V4-on-big-endian.patch
 Fix-visibility-of-properties-in-value-types.patch
-#V4-Fix-usage-of-QV4-Value-tags-types.patch
+QQuickItem-added-isAncestorOf.patch
+Private-export-QQuickStateAction-for-Qt-Quick-Contro.patch
 
 # Debian patches
 check_system_double-conversion.patch

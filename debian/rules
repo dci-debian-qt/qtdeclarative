@@ -13,6 +13,9 @@ export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) $(shell dpkg-buildfla
 export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
 export QT_SELECT := qt5
 
+# Skip tests on the archs they are known to be flaky with current configuration
+testskip_architectures := powerpc ppc64el s390x
+
 %:
 	dh $@ --parallel --with pkgkde_symbolshelper --dbg-package=qtdeclarative5-dbg
 
@@ -70,7 +73,7 @@ override_dh_makeshlibs:
 	dh_makeshlibs
 
 override_dh_auto_test-arch:
-ifneq ("$(DEB_HOST_ARCH)$(DEB_HOST_SERIES)","ppc64elxenial")
+ifneq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(testskip_architectures)))
 	$(MAKE) install -Csrc/imports INSTALL_ROOT=$(CURDIR)/test_root
 	mkdir -p $(CURDIR)/.local/share/QtProject/tst_qqmlengine
 	xvfb-run -a \
