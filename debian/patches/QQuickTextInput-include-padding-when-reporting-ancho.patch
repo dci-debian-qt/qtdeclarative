@@ -1,0 +1,42 @@
+From e3a6565c3832e6f3001d49c52ca59fa4fa555f1b Mon Sep 17 00:00:00 2001
+From: Richard Moe Gustavsen <richard.gustavsen@qt.io>
+Date: Mon, 13 Jun 2016 15:00:42 +0200
+Subject: [PATCH] QQuickTextInput: include padding when reporting anchor rect
+
+If a padding is set on QQuickTextInput (like controls 2
+does), the anchor selection handle ends up at a wrong
+location. So ensure that we include padding when calculating
+achor rect (like we do for QQuickTextInput::cursorRectangle()).
+
+Change-Id: I356d38443ad891959f3242e254e37961e4965a4c
+Reviewed-by: J-P Nurmi <jpnurmi@qt.io>
+---
+ src/quick/items/qquicktextinput.cpp | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/src/quick/items/qquicktextinput.cpp b/src/quick/items/qquicktextinput.cpp
+index 504dece0d..03c6b892c 100644
+--- a/src/quick/items/qquicktextinput.cpp
++++ b/src/quick/items/qquicktextinput.cpp
+@@ -1003,6 +1003,7 @@ void QQuickTextInput::q_validatorChanged()
+ 
+ QRectF QQuickTextInputPrivate::anchorRectangle() const
+ {
++    Q_Q(const QQuickTextInput);
+     QRectF rect;
+     int a;
+     // Unfortunately we cannot use selectionStart() and selectionEnd()
+@@ -1023,8 +1024,8 @@ QRectF QQuickTextInputPrivate::anchorRectangle() const
+             a = 0;
+         QTextLine l = m_textLayout.lineForTextPosition(a);
+         if (l.isValid()) {
+-            qreal x = l.cursorToX(a) - hscroll;
+-            qreal y = l.y() - vscroll;
++            qreal x = l.cursorToX(a) - hscroll + q->leftPadding();
++            qreal y = l.y() - vscroll + q->topPadding();
+             rect.setRect(x, y, 1, l.height());
+         }
+     }
+-- 
+2.11.0
+

@@ -1,8 +1,13 @@
-qtdeclarative-opensource-src (5.6.2-0ubuntu1~~xenialoverlay1~6) xenial; urgency=medium
+qtdeclarative-opensource-src (5.6.2-0ubuntu1~~xenialoverlay1~7) xenial; urgency=medium
 
   * Add patches required for supporting Qt Quick Controls 2 (ver 5.7) on 5.6.
     - debian/patches/Private-export-QQuickStateAction-for-Qt-Quick-Contro.patch
     - debian/patches/QQuickItem-added-isAncestorOf.patch
+    - debian/patches/Allow-target-path-version-in-a-parent-module.patch
+    - debian/patches/Fix-qmlimportscanner-to-find-Qt-Quick-Controls-2-sty.patch
+    - debian/patches/Teach-the-QML-engine-to-find-static-Qt-Quick-Control.patch
+    - debian/patches/Add-support-for-input-method-selection-handles.patch
+    - debian/patches/QQuickTextInput-include-padding-when-reporting-ancho.patch
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 08 Mar 2017 07:46:16 +0000
 

@@ -4,6 +4,11 @@ fix-V4-on-big-endian.patch
 Fix-visibility-of-properties-in-value-types.patch
 QQuickItem-added-isAncestorOf.patch
 Private-export-QQuickStateAction-for-Qt-Quick-Contro.patch
+Allow-target-path-version-in-a-parent-module.patch
+Fix-qmlimportscanner-to-find-Qt-Quick-Controls-2-sty.patch
+Teach-the-QML-engine-to-find-static-Qt-Quick-Control.patch
+Add-support-for-input-method-selection-handles.patch
+QQuickTextInput-include-padding-when-reporting-ancho.patch
 
 # Debian patches
 check_system_double-conversion.patch

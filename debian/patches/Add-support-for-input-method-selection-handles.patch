@@ -1,0 +1,233 @@
+From 6bf790e27d437631d2241942062e16b3c8191095 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Arve=20S=C3=A6ther?=
+ <jan-arve.saether@theqtcompany.com>
+Date: Thu, 26 Nov 2015 10:40:21 +0100
+Subject: [PATCH] Add support for input method selection handles
+
+QQuickTextInput needs to report back Qt::ImhAnchorRectangle, and
+make it possible to query the cursor position of any given point
+with inputMethodQuery(Qt::ImCursorPosition, point)
+
+Change-Id: Iabe1946e7a8642b51c4601b51e2a13763bdbbd0c
+Reviewed-by: Richard Moe Gustavsen <richard.gustavsen@theqtcompany.com>
+---
+ src/quick/items/qquickitem.cpp        |  1 +
+ src/quick/items/qquicktextcontrol.cpp | 19 ++++++++++++-
+ src/quick/items/qquicktextcontrol_p.h |  1 +
+ src/quick/items/qquicktextedit.cpp    |  7 ++++-
+ src/quick/items/qquicktextinput.cpp   | 50 ++++++++++++++++++++++++++++++-----
+ src/quick/items/qquicktextinput_p_p.h |  2 ++
+ 6 files changed, 71 insertions(+), 9 deletions(-)
+
+diff --git a/src/quick/items/qquickitem.cpp b/src/quick/items/qquickitem.cpp
+index a9ec40f73..6f8fc2e87 100644
+--- a/src/quick/items/qquickitem.cpp
++++ b/src/quick/items/qquickitem.cpp
+@@ -4145,6 +4145,7 @@ QVariant QQuickItem::inputMethodQuery(Qt::InputMethodQuery query) const
+         v = (bool)(flags() & ItemAcceptsInputMethod);
+         break;
+     case Qt::ImHints:
++    case Qt::ImAnchorRectangle:
+     case Qt::ImCursorRectangle:
+     case Qt::ImFont:
+     case Qt::ImCursorPosition:
+diff --git a/src/quick/items/qquicktextcontrol.cpp b/src/quick/items/qquicktextcontrol.cpp
+index ab460034b..e2f4d5154 100644
+--- a/src/quick/items/qquicktextcontrol.cpp
++++ b/src/quick/items/qquicktextcontrol.cpp
+@@ -1384,10 +1384,16 @@ QVariant QQuickTextControl::inputMethodQuery(Qt::InputMethodQuery property, QVar
+     switch (property) {
+     case Qt::ImCursorRectangle:
+         return cursorRect();
++    case Qt::ImAnchorRectangle:
++        return anchorRect();
+     case Qt::ImFont:
+         return QVariant(d->cursor.charFormat().font());
+-    case Qt::ImCursorPosition:
++    case Qt::ImCursorPosition: {
++        const QPointF pt = argument.toPointF();
++        if (!pt.isNull())
++            return QVariant(d->doc->documentLayout()->hitTest(pt, Qt::FuzzyHit) - block.position());
+         return QVariant(d->cursor.position() - block.position());
++    }
+     case Qt::ImSurroundingText:
+         return QVariant(block.text());
+     case Qt::ImCurrentSelection:
+@@ -1497,6 +1503,17 @@ void QQuickTextControl::setCursorVisible(bool visible)
+             && (d->interactionFlags & (Qt::TextEditable | Qt::TextSelectableByKeyboard)));
+ }
+ 
++QRectF QQuickTextControl::anchorRect() const
++{
++    Q_D(const QQuickTextControl);
++    QRectF rect;
++    QTextCursor cursor = d->cursor;
++    if (!cursor.isNull()) {
++        rect = d->rectForPosition(cursor.anchor());
++    }
++    return rect;
++}
++
+ QRectF QQuickTextControl::cursorRect(const QTextCursor &cursor) const
+ {
+     Q_D(const QQuickTextControl);
+diff --git a/src/quick/items/qquicktextcontrol_p.h b/src/quick/items/qquicktextcontrol_p.h
+index 23c91d555..ca5a3d319 100644
+--- a/src/quick/items/qquicktextcontrol_p.h
++++ b/src/quick/items/qquicktextcontrol_p.h
+@@ -96,6 +96,7 @@ public:
+     bool hasImState() const;
+     bool cursorVisible() const;
+     void setCursorVisible(bool visible);
++    QRectF anchorRect() const;
+     QRectF cursorRect(const QTextCursor &cursor) const;
+     QRectF cursorRect() const;
+     QRectF selectionRect(const QTextCursor &cursor) const;
+diff --git a/src/quick/items/qquicktextedit.cpp b/src/quick/items/qquicktextedit.cpp
+index f2e9f63fa..d9c0e428a 100644
+--- a/src/quick/items/qquicktextedit.cpp
++++ b/src/quick/items/qquicktextedit.cpp
+@@ -508,7 +508,7 @@ void QQuickTextEdit::setFont(const QFont &font)
+         updateSize();
+         updateWholeDocument();
+ #ifndef QT_NO_IM
+-        updateInputMethod(Qt::ImCursorRectangle | Qt::ImFont);
++        updateInputMethod(Qt::ImCursorRectangle | Qt::ImAnchorRectangle | Qt::ImFont);
+ #endif
+     }
+     emit fontChanged(d->sourceFont);
+@@ -1670,6 +1670,7 @@ void QQuickTextEdit::select(int start, int end)
+ 
+     // QTBUG-11100
+     updateSelection();
++    updateInputMethod();
+ }
+ 
+ /*!
+@@ -1842,7 +1843,11 @@ QVariant QQuickTextEdit::inputMethodQuery(Qt::InputMethodQuery property, QVarian
+         v = (int)d->effectiveInputMethodHints();
+         break;
+     default:
++        if (property == Qt::ImCursorPosition && !argument.isNull())
++            argument = QVariant(argument.toPointF() - QPointF(d->xoff, d->yoff));
+         v = d->control->inputMethodQuery(property, argument);
++        if (property == Qt::ImCursorRectangle || property == Qt::ImAnchorRectangle)
++            v = QVariant(v.toRectF().translated(d->xoff, d->yoff));
+         break;
+     }
+     return v;
+diff --git a/src/quick/items/qquicktextinput.cpp b/src/quick/items/qquicktextinput.cpp
+index 6551af439..f93857a89 100644
+--- a/src/quick/items/qquicktextinput.cpp
++++ b/src/quick/items/qquicktextinput.cpp
+@@ -369,7 +369,7 @@ void QQuickTextInput::setFont(const QFont &font)
+         d->updateLayout();
+         updateCursorRectangle();
+ #ifndef QT_NO_IM
+-        updateInputMethod(Qt::ImCursorRectangle | Qt::ImFont);
++        updateInputMethod(Qt::ImCursorRectangle | Qt::ImFont | Qt::ImAnchorRectangle);
+ #endif
+     }
+     emit fontChanged(d->sourceFont);
+@@ -1005,6 +1005,36 @@ void QQuickTextInput::q_validatorChanged()
+ }
+ #endif // QT_NO_VALIDATOR
+ 
++QRectF QQuickTextInputPrivate::anchorRectangle() const
++{
++    QRectF rect;
++    int a;
++    // Unfortunately we cannot use selectionStart() and selectionEnd()
++    // since they always assume that the selectionStart is logically before selectionEnd.
++    // To rely on that would cause havoc if the user was interactively moving the end selection
++    // handle to become before the start selection
++    if (m_selstart == m_selend)
++        // This is to handle the case when there is "no selection" while moving the handle onto the
++        // same position as the other handle (in which case it would hide the selection handles)
++        a = m_cursor;
++    else
++        a = m_selstart == m_cursor ? m_selend : m_selstart;
++    if (a >= 0) {
++#ifndef QT_NO_IM
++        a += m_preeditCursor;
++#endif
++        if (m_echoMode == QQuickTextInput::NoEcho)
++            a = 0;
++        QTextLine l = m_textLayout.lineForTextPosition(a);
++        if (l.isValid()) {
++            qreal x = l.cursorToX(a) - hscroll;
++            qreal y = l.y() - vscroll;
++            rect.setRect(x, y, 1, l.height());
++        }
++    }
++    return rect;
++}
++
+ void QQuickTextInputPrivate::checkIsValid()
+ {
+     Q_Q(QQuickTextInput);
+@@ -1813,10 +1843,16 @@ QVariant QQuickTextInput::inputMethodQuery(Qt::InputMethodQuery property, QVaria
+         return QVariant((int) d->effectiveInputMethodHints());
+     case Qt::ImCursorRectangle:
+         return cursorRectangle();
++    case Qt::ImAnchorRectangle:
++        return d->anchorRectangle();
+     case Qt::ImFont:
+         return font();
+-    case Qt::ImCursorPosition:
++    case Qt::ImCursorPosition: {
++        const QPointF pt = argument.toPointF();
++        if (!pt.isNull())
++            return QVariant(d->positionAt(pt));
+         return QVariant(d->m_cursor);
++    }
+     case Qt::ImSurroundingText:
+         if (d->m_echoMode == PasswordEchoOnEdit && !d->m_passwordEchoEditing) {
+             return QVariant(displayText());
+@@ -2613,7 +2649,7 @@ void QQuickTextInput::updateCursorRectangle(bool scroll)
+         d->cursorItem->setHeight(r.height());
+     }
+ #ifndef QT_NO_IM
+-    updateInputMethod(Qt::ImCursorRectangle);
++    updateInputMethod(Qt::ImCursorRectangle | Qt::ImAnchorRectangle);
+ #endif
+ }
+ 
+@@ -3147,8 +3183,8 @@ void QQuickTextInputPrivate::setSelection(int start, int length)
+     emit q->selectionChanged();
+     emitCursorPositionChanged();
+ #ifndef QT_NO_IM
+-    q->updateInputMethod(Qt::ImCursorRectangle | Qt::ImAnchorPosition
+-                        | Qt::ImCursorPosition | Qt::ImCurrentSelection);
++    q->updateInputMethod(Qt::ImCursorRectangle | Qt::ImAnchorRectangle | Qt::ImCursorPosition | Qt::ImAnchorPosition
++                       | Qt::ImCurrentSelection);
+ #endif
+ }
+ 
+@@ -3346,8 +3382,8 @@ void QQuickTextInputPrivate::processInputMethodEvent(QInputMethodEvent *event)
+ 
+     if (selectionChange) {
+         emit q->selectionChanged();
+-        q->updateInputMethod(Qt::ImCursorRectangle | Qt::ImAnchorPosition
+-                            | Qt::ImCursorPosition | Qt::ImCurrentSelection);
++        q->updateInputMethod(Qt::ImCursorRectangle | Qt::ImAnchorRectangle
++                            | Qt::ImCurrentSelection);
+     }
+ }
+ #endif // QT_NO_IM
+diff --git a/src/quick/items/qquicktextinput_p_p.h b/src/quick/items/qquicktextinput_p_p.h
+index 24cbc7f74..9d3c66f04 100644
+--- a/src/quick/items/qquicktextinput_p_p.h
++++ b/src/quick/items/qquicktextinput_p_p.h
+@@ -340,6 +340,8 @@ public:
+     int selectionStart() const { return hasSelectedText() ? m_selstart : -1; }
+     int selectionEnd() const { return hasSelectedText() ? m_selend : -1; }
+ 
++    QRectF anchorRectangle() const;
++
+     int positionAt(qreal x, qreal y, QTextLine::CursorPosition position) const;
+     int positionAt(const QPointF &point, QTextLine::CursorPosition position = QTextLine::CursorBetweenCharacters) const {
+         return positionAt(point.x(), point.y(), position);
+-- 
+2.11.0
+

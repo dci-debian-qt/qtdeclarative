@@ -1,0 +1,695 @@
+From 3c5e438890db63ecde98c84d221f87a3af52e1bf Mon Sep 17 00:00:00 2001
+From: J-P Nurmi <jpnurmi@theqtcompany.com>
+Date: Mon, 11 Apr 2016 17:17:19 +0200
+Subject: [PATCH] Allow target path version in a parent module
+
+For example, the QML Engine is now able to locate QtQml.Models 2.x
+in both of the following target/installation paths:
+
+- QT_INSTALL_QML/QtQml/Models.2
+- QT_INSTALL_QML/QtQml.2/Models
+
+This is required for QtQuick Controls 2. The target path of the module
+is QT_INSTALL_QML/QtQuick/Controls.2. The built-in styles are installed
+as sub-directories to be able to locate them from the controls module.
+
+Some of the built-in styles provide their own C++ extensions via style-
+specific imports (eg. the Material attached property is imported from
+QtQuick.Controls.Material 2.0). The problem is that the QML Engine does
+not find the module from QT_INSTALL_QML/QtQuick/Controls.2/Material,
+but requires it to be installed outside the main controls module ie.
+QT_INSTALL_QML/QtQuick/Controls/Material(.2). This makes it a) hard to
+locate the styles from the main controls module, and b) conflicts with
+the target path of QtQuick Controls 1.
+
+[ChangeLog][QtQml] Made the QML Engine capable of locating QML sub-
+modules from within a versioned parent module path. For example,
+QtQml.Models 2.x can be either in QT_INSTALL_QML/QtQml/Models.2 or
+in QT_INSTALL_QML/QtQml.2/Models.
+
+Change-Id: I2fe4bbdd6d04dd1e80cbe9b3e7e02617658a0756
+Task-number: QTBUG-52556
+Reviewed-by: J-P Nurmi <jpnurmi@qt.io>
+Reviewed-by: Shawn Rutledge <shawn.rutledge@theqtcompany.com>
+Reviewed-by: Simon Hausmann <simon.hausmann@theqtcompany.com>
+---
+ src/qml/qml/qqmlimport.cpp                         | 99 +++++++++++++++-------
+ src/qml/qml/qqmlimport_p.h                         |  3 +-
+ src/qml/qml/qqmltypeloader.cpp                     | 11 +--
+ tests/auto/qml/qqmlimport/tst_qqmlimport.cpp       | 39 +++++++++
+ tests/auto/qml/qqmlmoduleplugin/data/child.qml     |  3 +
+ tests/auto/qml/qqmlmoduleplugin/data/child2.qml    |  3 +
+ tests/auto/qml/qqmlmoduleplugin/data/child21.qml   |  3 +
+ .../plugin.2.1/childplugin/childplugin.cpp         | 71 ++++++++++++++++
+ .../plugin.2.1/childplugin/childplugin.pro         | 12 +++
+ .../qqmlmoduleplugin/plugin.2.1/childplugin/qmldir |  1 +
+ .../plugin.2/childplugin/childplugin.cpp           | 71 ++++++++++++++++
+ .../plugin.2/childplugin/childplugin.pro           | 13 +++
+ .../qqmlmoduleplugin/plugin.2/childplugin/qmldir   |  1 +
+ .../plugin/childplugin/childplugin.cpp             | 70 +++++++++++++++
+ .../plugin/childplugin/childplugin.pro             | 12 +++
+ .../qml/qqmlmoduleplugin/plugin/childplugin/qmldir |  1 +
+ .../auto/qml/qqmlmoduleplugin/qqmlmoduleplugin.pro |  5 +-
+ .../qml/qqmlmoduleplugin/tst_qqmlmoduleplugin.cpp  | 54 ++++++++++++
+ 18 files changed, 430 insertions(+), 42 deletions(-)
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/data/child.qml
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/data/child2.qml
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/data/child21.qml
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/plugin.2.1/childplugin/childplugin.cpp
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/plugin.2.1/childplugin/childplugin.pro
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/plugin.2.1/childplugin/qmldir
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/plugin.2/childplugin/childplugin.cpp
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/plugin.2/childplugin/childplugin.pro
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/plugin.2/childplugin/qmldir
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/plugin/childplugin/childplugin.cpp
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/plugin/childplugin/childplugin.pro
+ create mode 100644 tests/auto/qml/qqmlmoduleplugin/plugin/childplugin/qmldir
+
+Index: qtdeclarative-opensource-src-5.6.2/src/qml/qml/qqmlimport.cpp
+===================================================================
+--- qtdeclarative-opensource-src-5.6.2.orig/src/qml/qml/qqmlimport.cpp
++++ qtdeclarative-opensource-src-5.6.2/src/qml/qml/qqmlimport.cpp
+@@ -477,20 +477,58 @@ QList<QQmlImports::ScriptReference> QQml
+     return scripts;
+ }
+ 
++static QString joinStringRefs(const QVector<QStringRef> &refs, const QChar &sep)
++{
++    QString str;
++    for (auto it = refs.cbegin(); it != refs.cend(); ++it) {
++        if (it != refs.cbegin())
++            str += sep;
++        str += *it;
++    }
++    return str;
++}
++
+ /*!
+-    Form a complete path to a qmldir file, from a base URL, a module URI and version specification.
++    Forms complete paths to a qmldir file, from a base URL, a module URI and version specification.
++
++    For example, QtQml.Models 2.0:
++    - base/QtQml/Models.2.0/qmldir
++    - base/QtQml.2.0/Models/qmldir
++    - base/QtQml/Models.2/qmldir
++    - base/QtQml.2/Models/qmldir
++    - base/QtQml/Models/qmldir
+ */
+-QString QQmlImports::completeQmldirPath(const QString &uri, const QString &base, int vmaj, int vmin,
+-                                        ImportVersion version)
++QStringList QQmlImports::completeQmldirPaths(const QString &uri, const QStringList &basePaths, int vmaj, int vmin)
+ {
+-    QString url = uri;
+-    url.replace(Dot, Slash);
++    const QVector<QStringRef> parts = uri.splitRef(Dot, QString::SkipEmptyParts);
+ 
+-    QString dir = base;
+-    if (!dir.endsWith(Slash) && !dir.endsWith(Backslash))
+-        dir += Slash;
++    QStringList qmlDirPathsPaths;
++    // fully & partially versioned parts + 1 unversioned for each base path
++    qmlDirPathsPaths.reserve(basePaths.count() * (2 * parts.count() + 1));
++
++    for (int version = FullyVersioned; version <= Unversioned; ++version) {
++        const QString ver = versionString(vmaj, vmin, static_cast<QQmlImports::ImportVersion>(version));
++
++        for (const QString &path : basePaths) {
++            QString dir = path;
++            if (!dir.endsWith(Slash) && !dir.endsWith(Backslash))
++                dir += Slash;
++
++            // append to the end
++            qmlDirPathsPaths += dir + joinStringRefs(parts, Slash) + ver + Slash_qmldir;
++
++            if (version != Unversioned) {
++                // insert in the middle
++                for (int index = parts.count() - 2; index >= 0; --index) {
++                    qmlDirPathsPaths += dir + joinStringRefs(parts.mid(0, index + 1), Slash)
++                                            + ver + Slash
++                                            + joinStringRefs(parts.mid(index + 1), Slash) + Slash_qmldir;
++                }
++            }
++        }
++    }
+ 
+-    return dir + url + versionString(vmaj, vmin, version) + Slash_qmldir;
++    return qmlDirPathsPaths;
+ }
+ 
+ QString QQmlImports::versionString(int vmaj, int vmin, ImportVersion version)
+@@ -1114,32 +1152,29 @@ bool QQmlImportsPrivate::locateQmldir(co
+     QStringList localImportPaths = database->importPathList(QQmlImportDatabase::Local);
+ 
+     // Search local import paths for a matching version
+-    for (int version = QQmlImports::FullyVersioned; version <= QQmlImports::Unversioned; ++version) {
+-        foreach (const QString &path, localImportPaths) {
+-            QString qmldirPath = QQmlImports::completeQmldirPath(uri, path, vmaj, vmin, static_cast<QQmlImports::ImportVersion>(version));
+-
+-            QString absoluteFilePath = typeLoader.absoluteFilePath(qmldirPath);
+-            if (!absoluteFilePath.isEmpty()) {
+-                QString url;
+-                QString absolutePath = absoluteFilePath.left(absoluteFilePath.lastIndexOf(Slash)+1);
+-                if (absolutePath.at(0) == Colon)
+-                    url = QLatin1String("qrc://") + absolutePath.mid(1);
+-                else
+-                    url = QUrl::fromLocalFile(absolutePath).toString();
++    const QStringList qmlDirPaths = QQmlImports::completeQmldirPaths(uri, localImportPaths, vmaj, vmin);
++    for (const QString &qmldirPath : qmlDirPaths) {
++        QString absoluteFilePath = typeLoader.absoluteFilePath(qmldirPath);
++        if (!absoluteFilePath.isEmpty()) {
++            QString url;
++            QString absolutePath = absoluteFilePath.left(absoluteFilePath.lastIndexOf(Slash)+1);
++            if (absolutePath.at(0) == Colon)
++                url = QLatin1String("qrc://") + absolutePath.mid(1);
++            else
++                url = QUrl::fromLocalFile(absolutePath).toString();
++
++            QQmlImportDatabase::QmldirCache *cache = new QQmlImportDatabase::QmldirCache;
++            cache->versionMajor = vmaj;
++            cache->versionMinor = vmin;
++            cache->qmldirFilePath = absoluteFilePath;
++            cache->qmldirPathUrl = url;
++            cache->next = cacheHead;
++            database->qmldirCache.insert(uri, cache);
+ 
+-                QQmlImportDatabase::QmldirCache *cache = new QQmlImportDatabase::QmldirCache;
+-                cache->versionMajor = vmaj;
+-                cache->versionMinor = vmin;
+-                cache->qmldirFilePath = absoluteFilePath;
+-                cache->qmldirPathUrl = url;
+-                cache->next = cacheHead;
+-                database->qmldirCache.insert(uri, cache);
++            *outQmldirFilePath = absoluteFilePath;
++            *outQmldirPathUrl = url;
+ 
+-                *outQmldirFilePath = absoluteFilePath;
+-                *outQmldirPathUrl = url;
+-
+-                return true;
+-            }
++            return true;
+         }
+     }
+ 
+Index: qtdeclarative-opensource-src-5.6.2/src/qml/qml/qqmlimport_p.h
+===================================================================
+--- qtdeclarative-opensource-src-5.6.2.orig/src/qml/qml/qqmlimport_p.h
++++ qtdeclarative-opensource-src-5.6.2/src/qml/qml/qqmlimport_p.h
+@@ -124,8 +124,7 @@ public:
+ 
+     QList<CompositeSingletonReference> resolvedCompositeSingletons() const;
+ 
+-    static QString completeQmldirPath(const QString &uri, const QString &base, int vmaj, int vmin,
+-                                      QQmlImports::ImportVersion version);
++    static QStringList completeQmldirPaths(const QString &uri, const QStringList &basePaths, int vmaj, int vmin);
+     static QString versionString(int vmaj, int vmin, ImportVersion version);
+ 
+     static bool isLocal(const QString &url);
+Index: qtdeclarative-opensource-src-5.6.2/src/qml/qml/qqmltypeloader.cpp
+===================================================================
+--- qtdeclarative-opensource-src-5.6.2.orig/src/qml/qml/qqmltypeloader.cpp
++++ qtdeclarative-opensource-src-5.6.2/src/qml/qml/qqmltypeloader.cpp
+@@ -1389,13 +1389,10 @@ bool QQmlTypeLoader::Blob::addImport(con
+ 
+                     // Probe for all possible locations
+                     int priority = 0;
+-                    for (int version = QQmlImports::FullyVersioned; version <= QQmlImports::Unversioned; ++version) {
+-                        foreach (const QString &path, remotePathList) {
+-                            QString qmldirUrl = QQmlImports::completeQmldirPath(importUri, path, import->majorVersion, import->minorVersion,
+-                                                                                static_cast<QQmlImports::ImportVersion>(version));
+-                            if (!fetchQmldir(QUrl(qmldirUrl), import, ++priority, errors))
+-                                return false;
+-                        }
++                    const QStringList qmlDirPaths = QQmlImports::completeQmldirPaths(importUri, remotePathList, import->majorVersion, import->minorVersion);
++                    for (const QString &qmldirPath : qmlDirPaths) {
++                        if (!fetchQmldir(QUrl(qmldirPath), import, ++priority, errors))
++                            return false;
+                     }
+                 }
+             }
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlimport/tst_qqmlimport.cpp
+===================================================================
+--- qtdeclarative-opensource-src-5.6.2.orig/tests/auto/qml/qqmlimport/tst_qqmlimport.cpp
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlimport/tst_qqmlimport.cpp
+@@ -45,6 +45,8 @@ class tst_QQmlImport : public QQmlDataTe
+ private slots:
+     void testDesignerSupported();
+     void uiFormatLoading();
++    void completeQmldirPaths_data();
++    void completeQmldirPaths();
+     void cleanup();
+ };
+ 
+@@ -127,6 +129,43 @@ void tst_QQmlImport::uiFormatLoading()
+     delete test;
+ }
+ 
++Q_DECLARE_METATYPE(QQmlImports::ImportVersion)
++
++void tst_QQmlImport::completeQmldirPaths_data()
++{
++    QTest::addColumn<QString>("uri");
++    QTest::addColumn<QStringList>("basePaths");
++    QTest::addColumn<int>("majorVersion");
++    QTest::addColumn<int>("minorVersion");
++    QTest::addColumn<QStringList>("expectedPaths");
++
++    QTest::newRow("QtQml") << "QtQml" << (QStringList() << "qtbase/qml/" << "path/to/qml") << 2 << 7
++                           << (QStringList() << "qtbase/qml/QtQml.2.7/qmldir" << "path/to/qml/QtQml.2.7/qmldir"
++                                             << "qtbase/qml/QtQml.2/qmldir" << "path/to/qml/QtQml.2/qmldir"
++                                             << "qtbase/qml/QtQml/qmldir" << "path/to/qml/QtQml/qmldir");
++
++    QTest::newRow("QtQml.Models") << "QtQml.Models" << QStringList("qtbase/qml/") << 2 << 2
++                                  << (QStringList() << "qtbase/qml/QtQml/Models.2.2/qmldir" << "qtbase/qml/QtQml.2.2/Models/qmldir"
++                                                    << "qtbase/qml/QtQml/Models.2/qmldir" << "qtbase/qml/QtQml.2/Models/qmldir"
++                                                    << "qtbase/qml/QtQml/Models/qmldir");
++
++    QTest::newRow("org.qt-project.foo.bar") << "org.qt-project.foo.bar" << QStringList("qtbase/qml/") << 0 << 1
++                                            << (QStringList() << "qtbase/qml/org/qt-project/foo/bar.0.1/qmldir" << "qtbase/qml/org/qt-project/foo.0.1/bar/qmldir" << "qtbase/qml/org/qt-project.0.1/foo/bar/qmldir" << "qtbase/qml/org.0.1/qt-project/foo/bar/qmldir"
++                                                              << "qtbase/qml/org/qt-project/foo/bar.0/qmldir" << "qtbase/qml/org/qt-project/foo.0/bar/qmldir" << "qtbase/qml/org/qt-project.0/foo/bar/qmldir" << "qtbase/qml/org.0/qt-project/foo/bar/qmldir"
++                                                              << "qtbase/qml/org/qt-project/foo/bar/qmldir");
++}
++
++void tst_QQmlImport::completeQmldirPaths()
++{
++    QFETCH(QString, uri);
++    QFETCH(QStringList, basePaths);
++    QFETCH(int, majorVersion);
++    QFETCH(int, minorVersion);
++    QFETCH(QStringList, expectedPaths);
++
++    QCOMPARE(QQmlImports::completeQmldirPaths(uri, basePaths, majorVersion, minorVersion), expectedPaths);
++}
++
+ QTEST_MAIN(tst_QQmlImport)
+ 
+ #include "tst_qqmlimport.moc"
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/data/child.qml
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/data/child.qml
+@@ -0,0 +1,3 @@
++import org.qtproject.AutoTestQmlPluginType.ChildPlugin 1.0
++
++MyChildPluginType { value: 123 }
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/data/child2.qml
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/data/child2.qml
+@@ -0,0 +1,3 @@
++import org.qtproject.AutoTestQmlPluginType.ChildPlugin 2.0
++
++MyChildPluginType { valueOnlyIn2: 123 }
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/data/child21.qml
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/data/child21.qml
+@@ -0,0 +1,3 @@
++import org.qtproject.AutoTestQmlPluginType.ChildPlugin 2.1
++
++MyChildPluginType { valueOnlyIn2: 123 }
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2.1/childplugin/childplugin.cpp
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2.1/childplugin/childplugin.cpp
+@@ -0,0 +1,71 @@
++/****************************************************************************
++**
++** Copyright (C) 2016 The Qt Company Ltd.
++** Contact: https://www.qt.io/licensing/
++**
++** This file is part of the test suite of the Qt Toolkit.
++**
++** $QT_BEGIN_LICENSE:GPL-EXCEPT$
++** Commercial License Usage
++** Licensees holding valid commercial Qt licenses may use this file in
++** accordance with the commercial license agreement provided with the
++** Software or, alternatively, in accordance with the terms contained in
++** a written agreement between you and The Qt Company. For licensing terms
++** and conditions see https://www.qt.io/terms-conditions. For further
++** information use the contact form at https://www.qt.io/contact-us.
++**
++** GNU General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU
++** General Public License version 3 as published by the Free Software
++** Foundation with exceptions as appearing in the file LICENSE.GPL3-EXCEPT
++** included in the packaging of this file. Please review the following
++** information to ensure the GNU General Public License requirements will
++** be met: https://www.gnu.org/licenses/gpl-3.0.html.
++**
++** $QT_END_LICENSE$
++**
++****************************************************************************/
++#include <QStringList>
++#include <QtQml/qqmlextensionplugin.h>
++#include <QtQml/qqml.h>
++#include <QDebug>
++
++class MyChildPluginType : public QObject
++{
++    Q_OBJECT
++    Q_PROPERTY(int value READ value WRITE setValue)
++    Q_PROPERTY(int valueOnlyIn2 READ value WRITE setValue)
++
++public:
++    MyChildPluginType(QObject *parent=0) : QObject(parent)
++    {
++        qWarning("child import2.1 worked");
++    }
++
++    int value() const { return v; }
++    void setValue(int i) { v = i; }
++
++private:
++    int v;
++};
++
++
++class MyChildPlugin : public QQmlExtensionPlugin
++{
++    Q_OBJECT
++    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
++
++public:
++    MyChildPlugin()
++    {
++        qWarning("child plugin2.1 created");
++    }
++
++    void registerTypes(const char *uri)
++    {
++        Q_ASSERT(QLatin1String(uri) == "org.qtproject.AutoTestQmlPluginType.ChildPlugin");
++        qmlRegisterType<MyChildPluginType>(uri, 2, 1, "MyChildPluginType");
++    }
++};
++
++#include "childplugin.moc"
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2.1/childplugin/childplugin.pro
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2.1/childplugin/childplugin.pro
+@@ -0,0 +1,12 @@
++TEMPLATE = lib
++CONFIG += childplugin
++SOURCES = childplugin.cpp
++QT = core qml
++DESTDIR = ../../imports/org/qtproject/AutoTestQmlPluginType.2.1/ChildPlugin
++
++QT += core-private gui-private qml-private
++
++IMPORT_FILES = \
++        qmldir
++
++include (../../../../shared/imports.pri)
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2.1/childplugin/qmldir
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2.1/childplugin/qmldir
+@@ -0,0 +1 @@
++plugin childplugin
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2/childplugin/childplugin.cpp
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2/childplugin/childplugin.cpp
+@@ -0,0 +1,71 @@
++/****************************************************************************
++**
++** Copyright (C) 2016 The Qt Company Ltd.
++** Contact: https://www.qt.io/licensing/
++**
++** This file is part of the test suite of the Qt Toolkit.
++**
++** $QT_BEGIN_LICENSE:GPL-EXCEPT$
++** Commercial License Usage
++** Licensees holding valid commercial Qt licenses may use this file in
++** accordance with the commercial license agreement provided with the
++** Software or, alternatively, in accordance with the terms contained in
++** a written agreement between you and The Qt Company. For licensing terms
++** and conditions see https://www.qt.io/terms-conditions. For further
++** information use the contact form at https://www.qt.io/contact-us.
++**
++** GNU General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU
++** General Public License version 3 as published by the Free Software
++** Foundation with exceptions as appearing in the file LICENSE.GPL3-EXCEPT
++** included in the packaging of this file. Please review the following
++** information to ensure the GNU General Public License requirements will
++** be met: https://www.gnu.org/licenses/gpl-3.0.html.
++**
++** $QT_END_LICENSE$
++**
++****************************************************************************/
++#include <QStringList>
++#include <QtQml/qqmlextensionplugin.h>
++#include <QtQml/qqml.h>
++#include <QDebug>
++
++class MyChildPluginType : public QObject
++{
++    Q_OBJECT
++    Q_PROPERTY(int value READ value WRITE setValue)
++    Q_PROPERTY(int valueOnlyIn2 READ value WRITE setValue)
++
++public:
++    MyChildPluginType(QObject *parent=0) : QObject(parent)
++    {
++        qWarning("child import2 worked");
++    }
++
++    int value() const { return v; }
++    void setValue(int i) { v = i; }
++
++private:
++    int v;
++};
++
++
++class MyChildPlugin : public QQmlExtensionPlugin
++{
++    Q_OBJECT
++    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
++
++public:
++    MyChildPlugin()
++    {
++        qWarning("child plugin2 created");
++    }
++
++    void registerTypes(const char *uri)
++    {
++        Q_ASSERT(QLatin1String(uri) == "org.qtproject.AutoTestQmlPluginType.ChildPlugin");
++        qmlRegisterType<MyChildPluginType>(uri, 2, 0, "MyChildPluginType");
++    }
++};
++
++#include "childplugin.moc"
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2/childplugin/childplugin.pro
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2/childplugin/childplugin.pro
+@@ -0,0 +1,13 @@
++TEMPLATE = lib
++CONFIG += childplugin
++SOURCES = childplugin.cpp
++QT = core qml
++DESTDIR = ../../imports/org/qtproject/AutoTestQmlPluginType.2/ChildPlugin
++
++QT += core-private gui-private qml-private
++
++IMPORT_DIR = DESTDIR
++IMPORT_FILES = \
++        qmldir
++
++include (../../../../shared/imports.pri)
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2/childplugin/qmldir
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin.2/childplugin/qmldir
+@@ -0,0 +1 @@
++plugin childplugin
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin/childplugin/childplugin.cpp
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin/childplugin/childplugin.cpp
+@@ -0,0 +1,70 @@
++/****************************************************************************
++**
++** Copyright (C) 2016 The Qt Company Ltd.
++** Contact: https://www.qt.io/licensing/
++**
++** This file is part of the test suite of the Qt Toolkit.
++**
++** $QT_BEGIN_LICENSE:GPL-EXCEPT$
++** Commercial License Usage
++** Licensees holding valid commercial Qt licenses may use this file in
++** accordance with the commercial license agreement provided with the
++** Software or, alternatively, in accordance with the terms contained in
++** a written agreement between you and The Qt Company. For licensing terms
++** and conditions see https://www.qt.io/terms-conditions. For further
++** information use the contact form at https://www.qt.io/contact-us.
++**
++** GNU General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU
++** General Public License version 3 as published by the Free Software
++** Foundation with exceptions as appearing in the file LICENSE.GPL3-EXCEPT
++** included in the packaging of this file. Please review the following
++** information to ensure the GNU General Public License requirements will
++** be met: https://www.gnu.org/licenses/gpl-3.0.html.
++**
++** $QT_END_LICENSE$
++**
++****************************************************************************/
++#include <QStringList>
++#include <QtQml/qqmlextensionplugin.h>
++#include <QtQml/qqml.h>
++#include <QDebug>
++
++class MyChildPluginType : public QObject
++{
++    Q_OBJECT
++    Q_PROPERTY(int value READ value WRITE setValue)
++
++public:
++    MyChildPluginType(QObject *parent=0) : QObject(parent)
++    {
++        qWarning("child import worked");
++    }
++
++    int value() const { return v; }
++    void setValue(int i) { v = i; }
++
++private:
++    int v;
++};
++
++
++class MyChildPlugin : public QQmlExtensionPlugin
++{
++    Q_OBJECT
++    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
++
++public:
++    MyChildPlugin()
++    {
++        qWarning("child plugin created");
++    }
++
++    void registerTypes(const char *uri)
++    {
++        Q_ASSERT(QLatin1String(uri) == "org.qtproject.AutoTestQmlPluginType.ChildPlugin");
++        qmlRegisterType<MyChildPluginType>(uri, 1, 0, "MyChildPluginType");
++    }
++};
++
++#include "childplugin.moc"
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin/childplugin/childplugin.pro
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin/childplugin/childplugin.pro
+@@ -0,0 +1,12 @@
++TEMPLATE = lib
++CONFIG += childplugin
++SOURCES = childplugin.cpp
++QT = core qml
++DESTDIR = ../../imports/org/qtproject/AutoTestQmlPluginType/ChildPlugin
++
++QT += core-private gui-private qml-private
++
++IMPORT_FILES = \
++        qmldir
++
++include (../../../../shared/imports.pri)
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin/childplugin/qmldir
+===================================================================
+--- /dev/null
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/plugin/childplugin/qmldir
+@@ -0,0 +1 @@
++plugin childplugin
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/qqmlmoduleplugin.pro
+===================================================================
+--- qtdeclarative-opensource-src-5.6.2.orig/tests/auto/qml/qqmlmoduleplugin/qqmlmoduleplugin.pro
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/qqmlmoduleplugin.pro
+@@ -17,7 +17,10 @@ SUBDIRS =\
+     preemptedStrictModule\
+     invalidNamespaceModule\
+     invalidFirstCommandModule\
+-    protectedModule
++    protectedModule\
++    plugin/childplugin\
++    plugin.2/childplugin\
++    plugin.2.1/childplugin
+ 
+ tst_qqmlmoduleplugin_pro.depends += plugin
+ SUBDIRS += tst_qqmlmoduleplugin.pro
+Index: qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/tst_qqmlmoduleplugin.cpp
+===================================================================
+--- qtdeclarative-opensource-src-5.6.2.orig/tests/auto/qml/qqmlmoduleplugin/tst_qqmlmoduleplugin.cpp
++++ qtdeclarative-opensource-src-5.6.2/tests/auto/qml/qqmlmoduleplugin/tst_qqmlmoduleplugin.cpp
+@@ -75,6 +75,9 @@ private slots:
+     void importStrictModule();
+     void importStrictModule_data();
+     void importProtectedModule();
++    void importsChildPlugin();
++    void importsChildPlugin2();
++    void importsChildPlugin21();
+ 
+ private:
+     QString m_importsDirectory;
+@@ -580,6 +583,57 @@ void tst_qqmlmoduleplugin::importProtect
+     QVERIFY(object != 0);
+ }
+ 
++void tst_qqmlmoduleplugin::importsChildPlugin()
++{
++    QQmlEngine engine;
++    engine.addImportPath(m_importsDirectory);
++    QTest::ignoreMessage(QtWarningMsg, "child plugin created");
++    QTest::ignoreMessage(QtWarningMsg, "child import worked");
++    QTest::ignoreMessage(QtWarningMsg, "Module 'org.qtproject.AutoTestQmlPluginType.ChildPlugin' does not contain a module identifier directive - it cannot be protected from external registrations.");
++    QQmlComponent component(&engine, testFileUrl(QStringLiteral("child.qml")));
++    foreach (QQmlError err, component.errors())
++        qWarning() << err;
++    VERIFY_ERRORS(0);
++    QObject *object = component.create();
++    QVERIFY(object != 0);
++    QCOMPARE(object->property("value").toInt(),123);
++    delete object;
++}
++
++void tst_qqmlmoduleplugin::importsChildPlugin2()
++{
++    QQmlEngine engine;
++    engine.addImportPath(m_importsDirectory);
++    QTest::ignoreMessage(QtWarningMsg, "child plugin2 created");
++    QTest::ignoreMessage(QtWarningMsg, "child import2 worked");
++    QTest::ignoreMessage(QtWarningMsg, "Module 'org.qtproject.AutoTestQmlPluginType.ChildPlugin' does not contain a module identifier directive - it cannot be protected from external registrations.");
++    QQmlComponent component(&engine, testFileUrl(QStringLiteral("child2.qml")));
++    foreach (QQmlError err, component.errors())
++        qWarning() << err;
++    VERIFY_ERRORS(0);
++    QObject *object = component.create();
++    QVERIFY(object != 0);
++    QCOMPARE(object->property("value").toInt(),123);
++    delete object;
++}
++
++void tst_qqmlmoduleplugin::importsChildPlugin21()
++{
++    QQmlEngine engine;
++    engine.addImportPath(m_importsDirectory);
++    QTest::ignoreMessage(QtWarningMsg, "child plugin2.1 created");
++    QTest::ignoreMessage(QtWarningMsg, "child import2.1 worked");
++    QTest::ignoreMessage(QtWarningMsg, "Module 'org.qtproject.AutoTestQmlPluginType.ChildPlugin' does not contain a module identifier directive - it cannot be protected from external registrations.");
++    QQmlComponent component(&engine, testFileUrl(QStringLiteral("child21.qml")));
++    foreach (QQmlError err, component.errors())
++        qWarning() << err;
++    VERIFY_ERRORS(0);
++    QObject *object = component.create();
++    QVERIFY(object != 0);
++    QCOMPARE(object->property("value").toInt(),123);
++    delete object;
++}
++
+ QTEST_MAIN(tst_qqmlmoduleplugin)
+ 
+ #include "tst_qqmlmoduleplugin.moc"
