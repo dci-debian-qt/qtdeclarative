@@ -134,7 +134,7 @@ libQt5Qml.so.5 libqt5qml5 #MINVER#
  _ZN11QQmlImports13versionStringEiiNS_13ImportVersionE@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN11QQmlImports16addLibraryImportEP18QQmlImportDatabaseRK7QStringS4_iiS4_S4_bP5QListI9QQmlErrorE@Qt_5_PRIVATE_API 5.0.2 1
  _ZN11QQmlImports17addImplicitImportEP18QQmlImportDatabaseP5QListI9QQmlErrorE@Qt_5_PRIVATE_API 5.0.2 1
- _ZN11QQmlImports18completeQmldirPathERK7QStringS2_iiNS_13ImportVersionE@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN11QQmlImports19completeQmldirPathsERK7QStringRK11QStringListii@Qt_5_PRIVATE_API 5.6.2 1
  _ZN11QQmlImports19updateQmldirContentEP18QQmlImportDatabaseRK7QStringS4_S4_S4_P5QListI9QQmlErrorE@Qt_5_PRIVATE_API 5.0.2 1
  _ZN11QQmlImports26setDesignerSupportRequiredEb@Qt_5_PRIVATE_API 5.4.0 1
  _ZN11QQmlImports7isLocalERK4QUrl@Qt_5_PRIVATE_API 5.0.2 1

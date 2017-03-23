@@ -1512,6 +1512,13 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN17QQuickPaintedItemD0Ev@Qt_5 5.0.2
  _ZN17QQuickPaintedItemD1Ev@Qt_5 5.0.2
  _ZN17QQuickPaintedItemD2Ev@Qt_5 5.0.2
+ _ZN17QQuickStateAction17deleteFromBindingEv@Qt_5_PRIVATE_API 5.6.2 1
+ _ZN17QQuickStateActionC1EP7QObjectRK7QStringP11QQmlContextRK8QVariant@Qt_5_PRIVATE_API 5.6.2 1
+ _ZN17QQuickStateActionC1EP7QObjectRK7QStringRK8QVariant@Qt_5_PRIVATE_API 5.6.2 1
+ _ZN17QQuickStateActionC1Ev@Qt_5_PRIVATE_API 5.6.2 1
+ _ZN17QQuickStateActionC2EP7QObjectRK7QStringP11QQmlContextRK8QVariant@Qt_5_PRIVATE_API 5.6.2 1
+ _ZN17QQuickStateActionC2EP7QObjectRK7QStringRK8QVariant@Qt_5_PRIVATE_API 5.6.2 1
+ _ZN17QQuickStateActionC2Ev@Qt_5_PRIVATE_API 5.6.2 1
  _ZN17QQuickTextPrivate10updateSizeEv@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN17QQuickTextPrivate12elideFormatsEiiiP7QVectorIN11QTextLayout11FormatRangeEE@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZN17QQuickTextPrivate12mirrorChangeEv@Qt_5_PRIVATE_API 5.6.0~beta 1
@@ -2704,6 +2711,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZNK10QQuickItem11mapFromItemEPKS_RK7QPointF@Qt_5 5.0.2
  _ZNK10QQuickItem12antialiasingEv@Qt_5 5.0.2
  _ZNK10QQuickItem12boundingRectEv@Qt_5 5.0.2
+ _ZNK10QQuickItem12isAncestorOfEPKS_@Qt_5 5.6.2
  _ZNK10QQuickItem12isFocusScopeEv@Qt_5 5.0.2
  _ZNK10QQuickItem12isUnderMouseEv@Qt_5 5.0.2
  _ZNK10QQuickItem12mapFromSceneERK7QPointF@Qt_5 5.0.2
@@ -3314,6 +3322,7 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZNK22QQuickTextInputPrivate11stripStringERK7QString@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZNK22QQuickTextInputPrivate12isValidInputE5QCharS0_@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZNK22QQuickTextInputPrivate13textDirectionEv@Qt_5_PRIVATE_API 5.6.0~beta 1
+ _ZNK22QQuickTextInputPrivate15anchorRectangleEv@Qt_5_PRIVATE_API 5.6.2 1
  _ZNK22QQuickTextInputPrivate15layoutDirectionEv@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZNK22QQuickTextInputPrivate16getImplicitWidthEv@Qt_5_PRIVATE_API 5.6.0~beta 1
  _ZNK22QQuickTextInputPrivate18hasAcceptableInputERK7QString@Qt_5_PRIVATE_API 5.6.0~beta 1
