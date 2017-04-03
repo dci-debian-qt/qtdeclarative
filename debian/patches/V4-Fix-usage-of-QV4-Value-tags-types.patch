@@ -17,7 +17,7 @@ Reviewed-by: Simon Hausmann <simon.hausmann@qt.io>
  5 files changed, 41 insertions(+), 17 deletions(-)
 
 diff --git a/src/qml/jit/qv4isel_masm.cpp b/src/qml/jit/qv4isel_masm.cpp
-index 1913b39..05afc1e 100644
+index 1913b398e..05afc1ee7 100644
 --- a/src/qml/jit/qv4isel_masm.cpp
 +++ b/src/qml/jit/qv4isel_masm.cpp
 @@ -965,7 +965,7 @@ void InstructionSelection::swapValues(IR::Expr *source, IR::Expr *target)
@@ -48,7 +48,7 @@ index 1913b39..05afc1e 100644
                  }
                  _as->or64(Assembler::TrustedImm64(tag << 32),
 diff --git a/src/qml/jsruntime/qv4arraydata.cpp b/src/qml/jsruntime/qv4arraydata.cpp
-index 85d8155..6316737 100644
+index 85d8155d3..631673723 100644
 --- a/src/qml/jsruntime/qv4arraydata.cpp
 +++ b/src/qml/jsruntime/qv4arraydata.cpp
 @@ -98,7 +98,7 @@ Q_STATIC_ASSERT(sizeof(Heap::ArrayData) == sizeof(Heap::SparseArrayData));
@@ -136,7 +136,7 @@ index 85d8155..6316737 100644
      return true;
  }
 diff --git a/src/qml/jsruntime/qv4persistent.cpp b/src/qml/jsruntime/qv4persistent.cpp
-index fd3bd1f..3f70a41 100644
+index fd3bd1f66..3f70a41a1 100644
 --- a/src/qml/jsruntime/qv4persistent.cpp
 +++ b/src/qml/jsruntime/qv4persistent.cpp
 @@ -133,7 +133,7 @@ PersistentValueStorage::Iterator &PersistentValueStorage::Iterator::operator++()
@@ -149,7 +149,7 @@ index fd3bd1f..3f70a41 100644
          }
          index = -1;
 diff --git a/src/qml/jsruntime/qv4value_p.h b/src/qml/jsruntime/qv4value_p.h
-index ebe43b5..1333912 100644
+index ebe43b505..13339129e 100644
 --- a/src/qml/jsruntime/qv4value_p.h
 +++ b/src/qml/jsruntime/qv4value_p.h
 @@ -220,6 +220,17 @@ public:
@@ -193,7 +193,7 @@ index ebe43b5..1333912 100644
  {
      Primitive v;
 diff --git a/src/qml/memory/qv4mm.cpp b/src/qml/memory/qv4mm.cpp
-index 2588d8d..b11c8c5 100644
+index 2588d8db0..b11c8c510 100644
 --- a/src/qml/memory/qv4mm.cpp
 +++ b/src/qml/memory/qv4mm.cpp
 @@ -454,7 +454,7 @@ void MemoryManager::sweep(bool lastSweep)
@@ -206,5 +206,5 @@ index 2588d8d..b11c8c5 100644
              else
                  remainingWeakQObjectWrappers.append(v);
 -- 
-2.9.3
+2.11.0
 

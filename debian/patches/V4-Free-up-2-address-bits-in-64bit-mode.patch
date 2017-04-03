@@ -21,7 +21,7 @@ Reviewed-by: Lars Knoll <lars.knoll@qt.io>
  8 files changed, 269 insertions(+), 152 deletions(-)
 
 diff --git a/src/qml/debugger/qqmldebug.cpp b/src/qml/debugger/qqmldebug.cpp
-index ea98bb1..e864469 100644
+index ea98bb16f..e864469da 100644
 --- a/src/qml/debugger/qqmldebug.cpp
 +++ b/src/qml/debugger/qqmldebug.cpp
 @@ -132,7 +132,7 @@ quintptr Q_QML_EXPORT qtDeclarativeHookData[] = {
@@ -34,7 +34,7 @@ index ea98bb1..e864469 100644
  
  Q_STATIC_ASSERT(HookCount == sizeof(qtDeclarativeHookData) / sizeof(qtDeclarativeHookData[0]));
 diff --git a/src/qml/jit/qv4assembler.cpp b/src/qml/jit/qv4assembler.cpp
-index 929726f..b7dbc81 100644
+index 929726f4b..b7dbc81f9 100644
 --- a/src/qml/jit/qv4assembler.cpp
 +++ b/src/qml/jit/qv4assembler.cpp
 @@ -133,8 +133,30 @@ void Assembler::generateCJumpOnNonZero(RegisterID reg, IR::BasicBlock *currentBl
@@ -97,7 +97,7 @@ index 929726f..b7dbc81 100644
      and32(Assembler::TrustedImm32(Value::NotDouble_Mask), Assembler::ScratchRegister);
      Assembler::Jump isNoDbl = branch32(Assembler::Equal, Assembler::ScratchRegister,
 diff --git a/src/qml/jit/qv4assembler_p.h b/src/qml/jit/qv4assembler_p.h
-index 532a311..ba9ca66 100644
+index 532a3114f..ba9ca6693 100644
 --- a/src/qml/jit/qv4assembler_p.h
 +++ b/src/qml/jit/qv4assembler_p.h
 @@ -374,6 +374,11 @@ public:
@@ -113,7 +113,7 @@ index 532a311..ba9ca66 100644
                                  IR::BasicBlock *currentBlock, IR::BasicBlock *trueBlock,
                                  IR::BasicBlock *falseBlock);
 diff --git a/src/qml/jit/qv4isel_masm.cpp b/src/qml/jit/qv4isel_masm.cpp
-index b6df5fb..1913b39 100644
+index b6df5fb08..1913b398e 100644
 --- a/src/qml/jit/qv4isel_masm.cpp
 +++ b/src/qml/jit/qv4isel_masm.cpp
 @@ -703,7 +703,7 @@ void InstructionSelection::loadString(const QString &str, IR::Expr *target)
@@ -283,7 +283,7 @@ index b6df5fb..1913b39 100644
      return true;
  }
 diff --git a/src/qml/jit/qv4isel_masm_p.h b/src/qml/jit/qv4isel_masm_p.h
-index 6e9b02b..f6d9364 100644
+index 6e9b02b03..f6d936406 100644
 --- a/src/qml/jit/qv4isel_masm_p.h
 +++ b/src/qml/jit/qv4isel_masm_p.h
 @@ -166,8 +166,8 @@ protected:
@@ -298,7 +298,7 @@ index 6e9b02b..f6d9364 100644
      bool visitCJumpNullUndefined(IR::Type nullOrUndef, IR::Binop *binop,
                                   IR::BasicBlock *trueBlock, IR::BasicBlock *falseBlock);
 diff --git a/src/qml/jsruntime/qv4scopedvalue_p.h b/src/qml/jsruntime/qv4scopedvalue_p.h
-index 0b063ee..ca23f83 100644
+index 0b063ee4b..ca23f83cf 100644
 --- a/src/qml/jsruntime/qv4scopedvalue_p.h
 +++ b/src/qml/jsruntime/qv4scopedvalue_p.h
 @@ -309,7 +309,7 @@ struct ScopedCallData {
@@ -311,7 +311,7 @@ index 0b063ee..ca23f83 100644
      }
  
 diff --git a/src/qml/jsruntime/qv4value_p.h b/src/qml/jsruntime/qv4value_p.h
-index 5abf5ad..02425c5 100644
+index 5abf5ad9e..02425c52a 100644
 --- a/src/qml/jsruntime/qv4value_p.h
 +++ b/src/qml/jsruntime/qv4value_p.h
 @@ -70,23 +70,85 @@ private:
@@ -658,7 +658,7 @@ index 5abf5ad..02425c5 100644
      Encode(ReturnedValue v) {
          val = v;
 diff --git a/src/qml/jsruntime/qv4vme_moth.cpp b/src/qml/jsruntime/qv4vme_moth.cpp
-index 024a72b..4688908 100644
+index 024a72bde..468890828 100644
 --- a/src/qml/jsruntime/qv4vme_moth.cpp
 +++ b/src/qml/jsruntime/qv4vme_moth.cpp
 @@ -563,7 +563,7 @@ QV4::ReturnedValue VME::run(ExecutionEngine *engine, const uchar *code
@@ -779,5 +779,5 @@ index 024a72b..4688908 100644
          callData->thisObject = QV4::Primitive::undefinedValue();
          STOREVALUE(instr.result, Runtime::constructGlobalLookup(engine, instr.index, callData));
 -- 
-2.9.3
+2.11.0
 
