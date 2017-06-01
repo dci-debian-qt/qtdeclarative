@@ -1,3 +1,38 @@
+qtdeclarative-opensource-src (5.9.0~beta3-2) experimental; urgency=medium
+
+  * Update symbols files from buildds’ logs.
+  * Update qv4isel_always_export.patch to the proposed patch set 2.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 06 May 2017 15:18:33 +0300
+
+qtdeclarative-opensource-src (5.9.0~beta3-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Backport proposed upstream fix for build failure on non-JIT archs
+    (qv4isel_always_export.patch).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 06 May 2017 09:52:34 +0300
+
+qtdeclarative-opensource-src (5.9.0~beta2-1) experimental; urgency=medium
+
+  [ Simon Quigley ]
+  * New upstream release.
+  * Bump dpkg-dev build-dependency to 1.17.14, for build profiles.
+  * Do not build the documentation packages when the nodoc profile is enabled.
+  * Drop fix_tst_qqmlapplicationengine.diff as it's reverse-applicable.
+  * Refresh patches:
+   - disableopengltests.patch
+   - fix_test_remove_qlibraryinfo.patch
+   - Do-not-make-lack-of-SSE2-support-on-x86-32-fatal.patch
+  * Add new binary package qml-module-qtquick-sharedimage.
+  * Update symbols from build logs.
+
+  [ Dmitry Shachnev ]
+  * Add Lintian overrides for new test JS files with long lines.
+  * Update debian/copyright.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 27 Apr 2017 22:00:12 +0300
+
 qtdeclarative-opensource-src (5.7.1-2) unstable; urgency=medium
 
   [ Dmitry Shachnev ]
