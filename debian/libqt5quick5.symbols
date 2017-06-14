@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 5.9.0 amd64
+# SymbolsHelper-Confirmed: 5.9.0 amd64 arm64 armhf i386 ppc64el
 libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
 | libqt5quick5 #MINVER#, qtdeclarative-abi-5-9-0
  Qt_5.0@Qt_5.0 5.6.0~beta
@@ -443,7 +443,6 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN12QQuickPixmap23connectDownloadProgressEP7QObjecti@Qt_5_PRIVATE_API 5.0.2 1
  _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrl6QFlagsINS_6OptionEE@Qt_5_PRIVATE_API 5.0.2 1
  _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrl@Qt_5_PRIVATE_API 5.0.2 1
- _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrlRK5QSize6QFlagsINS_6OptionEE13AutoTransform@Qt_5_PRIVATE_API 5.7.1
  _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrlRK5QSize6QFlagsINS_6OptionEE@Qt_5_PRIVATE_API 5.0.2 1
  _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrlRK5QSize6QFlagsINS_6OptionEERK26QQuickImageProviderOptions@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZN12QQuickPixmap4loadEP10QQmlEngineRK4QUrlRK5QSize@Qt_5_PRIVATE_API 5.0.2 1
@@ -1978,16 +1977,6 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN19QQuickImageProviderD0Ev@Qt_5 5.0.2
  _ZN19QQuickImageProviderD1Ev@Qt_5 5.0.2
  _ZN19QQuickImageProviderD2Ev@Qt_5 5.0.2
- _ZN19QQuickImageResponse11qt_metacallEN11QMetaObject4CallEiPPv@Qt_5 5.5.0
- _ZN19QQuickImageResponse11qt_metacastEPKc@Qt_5 5.5.0
- _ZN19QQuickImageResponse16staticMetaObjectE@Qt_5 5.5.0
- _ZN19QQuickImageResponse6cancelEv@Qt_5 5.5.0
- _ZN19QQuickImageResponse8finishedEv@Qt_5 5.5.0
- _ZN19QQuickImageResponseC1Ev@Qt_5 5.5.0
- _ZN19QQuickImageResponseC2Ev@Qt_5 5.5.0
- _ZN19QQuickImageResponseD0Ev@Qt_5 5.5.0
- _ZN19QQuickImageResponseD1Ev@Qt_5 5.5.0
- _ZN19QQuickImageResponseD2Ev@Qt_5 5.5.0
  _ZN19QQuickImageResponse11qt_metacallEN11QMetaObject4CallEiPPv@Qt_5 5.6.0~beta
  _ZN19QQuickImageResponse11qt_metacastEPKc@Qt_5 5.6.0~beta
  _ZN19QQuickImageResponse16staticMetaObjectE@Qt_5 5.6.0~beta
@@ -2770,8 +2759,6 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN24QQuickAsyncImageProviderD0Ev@Qt_5 5.5.0
  _ZN24QQuickAsyncImageProviderD1Ev@Qt_5 5.5.0
  _ZN24QQuickAsyncImageProviderD2Ev@Qt_5 5.5.0
- _ZN24QQuickOpacityAnimatorJob10initializeEP24QQuickAnimatorController@Qt_5_PRIVATE_API 5.2.0~beta1 1
- _ZN24QQuickOpacityAnimatorJob16nodeWasDestroyedEv@Qt_5_PRIVATE_API 5.3.2 1
  _ZN24QQuickOpacityAnimatorJob10invalidateEv@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZN24QQuickOpacityAnimatorJob17updateCurrentTimeEi@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN24QQuickOpacityAnimatorJob8postSyncEv@Qt_5_PRIVATE_API 5.9.0~beta 1
@@ -2842,8 +2829,6 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZN24QQuickShaderEffectSourceD0Ev@Qt_5_PRIVATE_API 5.0.2 1
  _ZN24QQuickShaderEffectSourceD1Ev@Qt_5_PRIVATE_API 5.0.2 1
  _ZN24QQuickShaderEffectSourceD2Ev@Qt_5_PRIVATE_API 5.0.2 1
- _ZN24QQuickUniformAnimatorJob13afterNodeSyncEv@Qt_5_PRIVATE_API 5.2.0~beta1 1
- _ZN24QQuickUniformAnimatorJob16nodeWasDestroyedEv@Qt_5_PRIVATE_API 5.3.2 1
  _ZN24QQuickUniformAnimatorJob10invalidateEv@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZN24QQuickUniformAnimatorJob17updateCurrentTimeEi@Qt_5_PRIVATE_API 5.2.0~beta1 1
  _ZN24QQuickUniformAnimatorJob8postSyncEv@Qt_5_PRIVATE_API 5.9.0~beta 1
@@ -3332,7 +3317,6 @@ libQt5Quick.so.5 libqt5quick5 #MINVER# | libqt5quick5-gles #MINVER#
  _ZNK10QSGTexture18horizontalWrapModeEv@Qt_5 5.0.2
  _ZNK10QSGTexture24normalizedTextureSubRectEv@Qt_5 5.0.2
  _ZNK10QSGTexture9filteringEv@Qt_5 5.0.2
- _ZNK10QStringRef7compareE13QLatin1StringN2Qt15CaseSensitivityE@Qt_5 5.7.1
  _ZNK11QQuickCurve10metaObjectEv@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZNK11QQuickCurve1xEv@Qt_5_PRIVATE_API 5.9.0~beta 1
  _ZNK11QQuickCurve1yEv@Qt_5_PRIVATE_API 5.9.0~beta 1
