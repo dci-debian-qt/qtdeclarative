@@ -1,3 +1,74 @@
+qtdeclarative-opensource-src (5.9.0-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge from Debian Experimental in Git repo.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 13 Jun 2017 19:35:17 -0500
+
+qtdeclarative-opensource-src (5.9.0-1) experimental; urgency=medium
+
+  [ Simon Quigley ]
+  * New upstream release.
+  * Remove qv4isel_always_export.patch as it's reverse-applicable.
+  * Some files were moved around and/or deleted; update the install files to
+    reflect that.
+  * Set XDG_RUNTIME_DIR in debian/rules to fix a lot of test failures.
+
+  [ Dmitry Shachnev ]
+  * Rename qml-module-qtquick-sharedimage to qml-module-qt-labs-sharedimage,
+    following upstream (see commit 4a4a8e911cfafcff).
+  * Update debian/copyright.
+  * Mark two symbols as optional to fix build with GCC 7 (closes: #853631).
+  * Drop the code to symlink private QmlDevTools headers, no longer needed.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 07 Jun 2017 23:31:12 +0300
+
+qtdeclarative-opensource-src (5.9.0~beta3-2) experimental; urgency=medium
+
+  * Update symbols files from buildds’ logs.
+  * Update qv4isel_always_export.patch to the proposed patch set 2.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 06 May 2017 15:18:33 +0300
+
+qtdeclarative-opensource-src (5.9.0~beta3-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Backport proposed upstream fix for build failure on non-JIT archs
+    (qv4isel_always_export.patch).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 06 May 2017 09:52:34 +0300
+
+qtdeclarative-opensource-src (5.9.0~beta2-1) experimental; urgency=medium
+
+  [ Simon Quigley ]
+  * New upstream release.
+  * Bump dpkg-dev build-dependency to 1.17.14, for build profiles.
+  * Do not build the documentation packages when the nodoc profile is enabled.
+  * Drop fix_tst_qqmlapplicationengine.diff as it's reverse-applicable.
+  * Refresh patches:
+   - disableopengltests.patch
+   - fix_test_remove_qlibraryinfo.patch
+   - Do-not-make-lack-of-SSE2-support-on-x86-32-fatal.patch
+  * Add new binary package qml-module-qtquick-sharedimage.
+  * Update symbols from build logs.
+
+  [ Dmitry Shachnev ]
+  * Add Lintian overrides for new test JS files with long lines.
+  * Update debian/copyright.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 27 Apr 2017 22:00:12 +0300
+
+qtdeclarative-opensource-src (5.7.1-2) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * Drop obsolete Breaks/Replaces. Qt versions before 5.3.2 were never part
+    of a stable release (Jessie and Wheezy-backports have 5.3.2).
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Do not make lack of SSE2 support on x86-32 fatal by using Guillem Jover's
+    patch (Closes: #792594). Thanks Guillem!
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Mon, 02 Jan 2017 12:15:42 -0300
+
 qtdeclarative-opensource-src (5.7.1-1ubuntu1~7) zesty; urgency=medium
 
   [ Dmitry Shachnev ]
@@ -16,14 +87,6 @@ qtdeclarative-opensource-src (5.7.1-1ubuntu1~7) zesty; urgency=medium
     - Backport from 5.8 (LP: #1624251)
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 07 Sep 2016 13:12:08 +0000
-
-qtdeclarative-opensource-src (5.7.1-2) UNRELEASED; urgency=medium
-
-  [ Dmitry Shachnev ]
-  * Drop obsolete Breaks/Replaces. Qt versions before 5.3.2 were never part
-    of a stable release (Jessie and Wheezy-backports have 5.3.2).
-
- -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Thu, 29 Dec 2016 00:52:28 +0300
 
 qtdeclarative-opensource-src (5.7.1-1) unstable; urgency=medium
 
