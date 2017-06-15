@@ -1,6 +1,8 @@
 qtdeclarative-opensource-src (5.9.0-1ubuntu1) UNRELEASED; urgency=medium
 
-  * Merge from Debian Experimental in Git repo.
+  * Merge from Debian Experimental in Git repo. Remaining changes:
+    - Keep transitional packages. These (and therefore the delta) can be
+      dropped in Ubuntu 18.04 LTS.
   * Dropped from the delta:
     - Support the gles packages.
     - Disable tests for ppc64el on Xenial.
