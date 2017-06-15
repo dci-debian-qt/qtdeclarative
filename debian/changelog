@@ -2,7 +2,6 @@ qtdeclarative-opensource-src (5.9.0-1ubuntu1) UNRELEASED; urgency=medium
 
   * Merge from Debian Experimental in Git repo.
   * Disable or remove the following patches:
-    - Do-not-make-lack-of-SSE2-support-on-x86-32-fatal.patch
     - Fix-SignalSpy-with-QQmlPropertyMap-signals.patch
     - Fix-visibility-of-properties-in-value-types.patch
     - QML-Compilation-unit-caching-and-JIT-changes.patch
