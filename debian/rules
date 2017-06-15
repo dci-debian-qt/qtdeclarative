@@ -55,8 +55,7 @@ override_dh_install:
 	dh_install --fail-missing
 
 override_dh_makeshlibs:
-	# On Ubuntu no -V due to -gles twin packages
-	dh_makeshlibs
+	dh_makeshlibs -V
 
 override_dh_auto_test-arch:
 ifneq ("$(DEB_HOST_ARCH)$(DEB_HOST_SERIES)","ppc64elxenial")

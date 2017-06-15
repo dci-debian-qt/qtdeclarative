@@ -32,6 +32,7 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: libgl1-mesa-glx
 Suggests: qt5-qmltooling-plugins
 Description: Qt 5 QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
@@ -239,7 +240,7 @@ Package: qml-module-qtquick2
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
-Depends: libgl1-mesa-dri | libgl1, ${misc:Depends}, ${shlibs:Depends}
+Depends: libgl1-mesa-dri, ${misc:Depends}, ${shlibs:Depends}
 Description: Qt 5 Qt Quick 2 QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -340,10 +341,10 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: libqt5qml5 (= ${binary:Version}),
-         libqt5quick5 (= ${binary:Version}) | libqt5quick5-gles,
-         libqt5quickparticles5 (= ${binary:Version}) | libqt5quickparticles5-gles,
+         libqt5quick5 (= ${binary:Version}),
+         libqt5quickparticles5 (= ${binary:Version}),
          libqt5quicktest5 (= ${binary:Version}),
-         libqt5quickwidgets5 (= ${binary:Version}) | libqt5quickwidgets5-gles,
+         libqt5quickwidgets5 (= ${binary:Version}),
          qt5-qmltooling-plugins,
          qtbase5-dev,
          ${misc:Depends}

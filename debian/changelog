@@ -1,6 +1,8 @@
 qtdeclarative-opensource-src (5.9.0-1ubuntu1) UNRELEASED; urgency=medium
 
   * Merge from Debian Experimental in Git repo.
+  * Dropped from the delta:
+    - Support the gles packages.
   * Disable or remove the following patches:
     - Fix-SignalSpy-with-QQmlPropertyMap-signals.patch
     - Fix-visibility-of-properties-in-value-types.patch
