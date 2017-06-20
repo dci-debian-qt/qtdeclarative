@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.9.0-1ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.9.0-2ubuntu1) UNRELEASED; urgency=medium
 
   * Merge from Debian Experimental in Git repo. Remaining changes:
     - Keep transitional packages. These (and therefore the delta) can be
@@ -12,11 +12,19 @@ qtdeclarative-opensource-src (5.9.0-1ubuntu1) UNRELEASED; urgency=medium
     - QML-Compilation-unit-caching-and-JIT-changes.patch
     - fix_tst_qqmlapplicationengine.diff
     - skip_failing_i386_test.patch
-  * Refresh the following patches:
-    - disableopengltests.patch
-    - fix_test_remove_qlibraryinfo.patch
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 13 Jun 2017 19:35:17 -0500
+
+qtdeclarative-opensource-src (5.9.0-2) experimental; urgency=medium
+
+  * Add a patch that should fix crashes on big endian systems.
+  * Add some new locations to fix_test_remove_qlibraryinfo.patch.
+  * Export QT_LOGGING_RULES when running tests, to override settings from
+    our new qtlogging.ini file.
+  * Fix a minor copyright issue, thanks to Scott Kitterman.
+  * Update symbols files from buildds’ logs.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 20 Jun 2017 13:43:53 +0300
 
 qtdeclarative-opensource-src (5.9.0-1) experimental; urgency=medium
 
