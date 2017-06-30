@@ -1,8 +1,31 @@
-qtdeclarative-opensource-src (5.9.0-0neon) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.9.0-2) experimental; urgency=medium
 
-  * New release
+  * Add a patch that should fix crashes on big endian systems.
+  * Add some new locations to fix_test_remove_qlibraryinfo.patch.
+  * Export QT_LOGGING_RULES when running tests, to override settings from
+    our new qtlogging.ini file.
+  * Fix a minor copyright issue, thanks to Scott Kitterman.
+  * Update symbols files from buildds’ logs.
 
- -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 01 Jun 2017 15:58:10 +0100
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 20 Jun 2017 13:43:53 +0300
+
+qtdeclarative-opensource-src (5.9.0-1) experimental; urgency=medium
+
+  [ Simon Quigley ]
+  * New upstream release.
+  * Remove qv4isel_always_export.patch as it's reverse-applicable.
+  * Some files were moved around and/or deleted; update the install files to
+    reflect that.
+  * Set XDG_RUNTIME_DIR in debian/rules to fix a lot of test failures.
+
+  [ Dmitry Shachnev ]
+  * Rename qml-module-qtquick-sharedimage to qml-module-qt-labs-sharedimage,
+    following upstream (see commit 4a4a8e911cfafcff).
+  * Update debian/copyright.
+  * Mark two symbols as optional to fix build with GCC 7 (closes: #853631).
+  * Drop the code to symlink private QmlDevTools headers, no longer needed.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 07 Jun 2017 23:31:12 +0300
 
 qtdeclarative-opensource-src (5.9.0~beta3-2) experimental; urgency=medium
 
