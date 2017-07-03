@@ -1,3 +1,14 @@
+qtdeclarative-opensource-src (5.9.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Drop big_endian.patch, applied upstream.
+  * Refresh other patches.
+  * Bump qtbase build-dependencies to 5.9.1.
+  * Update symbols files from buildds’ logs and the current build log.
+  * Bump Standards-Version to 4.0.0, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 01 Jul 2017 18:57:08 +0300
+
 qtdeclarative-opensource-src (5.9.0-2) experimental; urgency=medium
 
   * Add a patch that should fix crashes on big endian systems.
