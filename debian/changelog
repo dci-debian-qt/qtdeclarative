@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.9.0-2ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.9.1-2ubuntu1) UNRELEASED; urgency=medium
 
   [ Simon Quigley ]
   * Merge from Debian Experimental in Git repo. Remaining changes:
@@ -18,6 +18,25 @@ qtdeclarative-opensource-src (5.9.0-2ubuntu1) UNRELEASED; urgency=medium
   * Add testcase_array_iteration.patch which fixes some test hangs.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 13 Jun 2017 19:35:17 -0500
+
+qtdeclarative-opensource-src (5.9.1-2) experimental; urgency=medium
+
+  * Add a patch to enable JIT only on mipsel, not on mips and mips64el.
+  * Update symbols files from buildds’ logs.
+  * Bump qtxmlpatterns and qttools build-dependencies to 5.9.1.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 05 Jul 2017 18:39:37 +0300
+
+qtdeclarative-opensource-src (5.9.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Drop big_endian.patch, applied upstream.
+  * Refresh other patches.
+  * Bump qtbase build-dependencies to 5.9.1.
+  * Update symbols files from buildds’ logs and the current build log.
+  * Bump Standards-Version to 4.0.0, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 01 Jul 2017 18:57:08 +0300
 
 qtdeclarative-opensource-src (5.9.0-2) experimental; urgency=medium
 
