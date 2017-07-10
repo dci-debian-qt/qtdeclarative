@@ -147,6 +147,18 @@ Description: Qt 5 SharedImage QML module
  .
  This package contains the Shared Image plugin.
 
+Package: qml-module-qtquick-sharedimage
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Section: oldlibs
+Description: Qt 5 SharedImage QML module - transitional
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package is an empty dummy transitional.
+
 Package: qml-module-qtqml-models2
 Architecture: any
 Multi-Arch: same
