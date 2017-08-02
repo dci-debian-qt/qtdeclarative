@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.9.1-2ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.9.1-4ubuntu1) UNRELEASED; urgency=medium
 
   [ Simon Quigley ]
   * Merge from Debian Experimental in Git repo. Remaining changes:
@@ -18,6 +18,22 @@ qtdeclarative-opensource-src (5.9.1-2ubuntu1) UNRELEASED; urgency=medium
   * Add testcase_array_iteration.patch which fixes some test hangs.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 13 Jun 2017 19:35:17 -0500
+
+qtdeclarative-opensource-src (5.9.1-4) experimental; urgency=medium
+
+  * Fix QTBUG-61681 (Rebuild QQmlData::propertyCache if deleted by another
+    engine) by including rebuild-QmlDatapropertyCache-if-deleted.patch.
+  * Add my name to Uploaders.
+  * Bump debhelper compat to 10.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 02 Aug 2017 04:35:07 -0500
+
+qtdeclarative-opensource-src (5.9.1-3) experimental; urgency=medium
+
+  * Due to QTBUG-58567 we are forced to turn off JIT on mips* until
+    upstream solves this issue.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Mon, 31 Jul 2017 17:46:40 -0300
 
 qtdeclarative-opensource-src (5.9.1-2) experimental; urgency=medium
 
