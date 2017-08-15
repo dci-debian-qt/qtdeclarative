@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.9.1-4ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.9.1-4ubuntu1) artful; urgency=medium
 
   [ Simon Quigley ]
   * Merge from Debian Experimental in Git repo. Remaining changes:
@@ -17,7 +17,7 @@ qtdeclarative-opensource-src (5.9.1-4ubuntu1) UNRELEASED; urgency=medium
   [ Dmitry Shachnev ]
   * Add testcase_array_iteration.patch which fixes some test hangs.
 
- -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 13 Jun 2017 19:35:17 -0500
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sat, 05 Aug 2017 02:44:08 -0500
 
 qtdeclarative-opensource-src (5.9.1-4) experimental; urgency=medium
 
