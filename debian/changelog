@@ -1,3 +1,29 @@
+qtdeclarative-opensource-src (5.9.1-6ubuntu1) bionic; urgency=medium
+
+  * Merge from Debian Sid. Remaining changes:
+    - Keep transitional packages. These can be dropped after the next LTS.
+    - Add testcase_array_iteration.patch which fixes some test hangs.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Fri, 27 Oct 2017 11:56:40 -0500
+
+qtdeclarative-opensource-src (5.9.1-6) unstable; urgency=medium
+
+  * Add fix_image_source_memory_leak.patch to fix QTBUG-61754 (Closes: #874581).
+  * Update symbols files with buildds' logs.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 07 Sep 2017 14:01:39 -0300
+
+qtdeclarative-opensource-src (5.9.1-5) unstable; urgency=medium
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Bump qtdeclarative-abi to 5-9-1 so it matches' qtbase's versioning. Plus
+    it's the version we are pushing to unstable.
+
+  [ Dmitry Shachnev ]
+  * Update symbols files for GCC 7 symbols changes.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 15 Aug 2017 22:09:04 -0300
+
 qtdeclarative-opensource-src (5.9.1-4ubuntu1) artful; urgency=medium
 
   [ Simon Quigley ]
