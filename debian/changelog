@@ -1,4 +1,4 @@
-qtdeclarative-opensource-src (5.9.2-3ubuntu1) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.9.2-3ubuntu1) bionic; urgency=medium
 
   * Merge from Debian unstable, remaining changes:
     - Keep transitional packages until Bionic release.
