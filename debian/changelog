@@ -1,13 +1,61 @@
-qtdeclarative-opensource-src (5.9.2-0neon) UNRELEASED; urgency=medium
+qtdeclarative-opensource-src (5.9.2-3neon) unstable; urgency=medium
 
-  [ Simon Quigley ]
+  * Bump qtdeclarative-abi version to 5-9-2.
+  * Update debian/libqt5qml5.symbols from buildds’ logs.
+  * Temporarily revert upstream commit that caused issues in some KDE apps.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 26 Oct 2017 16:27:02 +0300
+
+qtdeclarative-opensource-src (5.9.2-2) experimental; urgency=medium
+
+  * Update for Qt binaries location change in qtbase 5.9.2+dfsg-3.
+    - Update .install files for qtdeclarative5-dev-tools, qmlscene and qml.
+    - Provide compatibility symlinks for the old location.
+    - Bump qtbase5-private-dev and qttools5-dev-tools build-dependencies.
+  * Bump Standards-Version to 4.1.1, stop using deprecated Priority: extra.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 20 Oct 2017 15:14:10 +0300
+
+qtdeclarative-opensource-src (5.9.2-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Drop patches, applied upstream:
+    - fix_image_source_memory_leak.patch
+    - rebuild-QmlDatapropertyCache-if-deleted.patch
+  * Refresh and rebase other patches.
+  * Update symbols files from the current build log.
+  * Bump Qt build-dependencies to 5.9.2.
+  * Use dh_missing instead of deprecated dh_install --fail-missing.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 15 Oct 2017 00:17:05 +0300
+
+qtdeclarative-opensource-src (5.9.1-6) unstable; urgency=medium
+
+  * Add fix_image_source_memory_leak.patch to fix QTBUG-61754 (Closes: #874581).
+  * Update symbols files with buildds' logs.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 07 Sep 2017 14:01:39 -0300
+
+qtdeclarative-opensource-src (5.9.1-5) unstable; urgency=medium
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Bump qtdeclarative-abi to 5-9-1 so it matches' qtbase's versioning. Plus
+    it's the version we are pushing to unstable.
+
+  [ Dmitry Shachnev ]
+  * Update symbols files for GCC 7 symbols changes.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 15 Aug 2017 22:09:04 -0300
+
+qtdeclarative-opensource-src (5.9.1-4) experimental; urgency=medium
+
   * Fix QTBUG-61681 (Rebuild QQmlData::propertyCache if deleted by another
     engine) by including rebuild-QmlDatapropertyCache-if-deleted.patch.
+  * Add my name to Uploaders.
+  * Bump debhelper compat to 10.
 
-  [ Jonathan Riddell ]
-  * New release
-
- -- Jonathan Riddell <jr@jriddell.org>  Fri, 10 Nov 2017 11:41:39 +0000
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 02 Aug 2017 04:35:07 -0500
 
 qtdeclarative-opensource-src (5.9.1-3) experimental; urgency=medium
 
