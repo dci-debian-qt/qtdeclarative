@@ -15,7 +15,7 @@ Build-Depends: debhelper (>= 9),
                libqt5xmlpatterns5-dev (>= 5.9.2~),
                pkg-kde-tools (>= 0.15.17~),
                python,
-               qtbase5-private-dev (>= 5.9.2+dfsg-3~),
+               qtbase5-private-dev (>= 5.9.2+dfsg),
                xauth,
                xvfb
 Build-Depends-Indep: libqt5sql5-sqlite (>= 5.9.2+dfsg~) <!nodoc>,
