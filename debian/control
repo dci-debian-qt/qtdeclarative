@@ -15,7 +15,7 @@ Build-Depends: debhelper (>= 9),
                libqt5xmlpatterns5-dev (>= 5.9.2~),
                pkg-kde-tools (>= 0.15.17~),
                python,
-               qtbase5-private-dev (>= 5.9.2+dfsg),
+               qtbase5-private-dev (>= 5.9.2+dfsg-3~),
                xauth,
                xvfb
 Build-Depends-Indep: libqt5sql5-sqlite (>= 5.9.2+dfsg~) <!nodoc>,
@@ -142,25 +142,11 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Breaks: qml-module-qtquick-sharedimage (<< 5.9.0-0neon+16.04+xenial+build15)
-Conflicts: qml-module-qtquick-sharedimage (<< 5.9.0-0neon+16.04+xenial+build15)
 Description: Qt 5 SharedImage QML module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
  .
  This package contains the Shared Image plugin.
-
-Package: qml-module-qtquick-sharedimage
-Architecture: any
-Multi-Arch: same
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Section: oldlibs
-Description: Qt 5 SharedImage QML module - transitional
- Qt is a cross-platform C++ application framework. Qt's primary feature
- is its rich set of widgets that provide standard GUI functionality.
- .
- This package is an empty dummy transitional.
 
 Package: qml-module-qtqml-models2
 Architecture: any
