@@ -10,15 +10,15 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 @@ -1,4 +1,7 @@
  load(qt_build_config)
  CONFIG += warning_clean
- 
+
 +QMAKE_CXXFLAGS += -DTESTBINDIR=\\\"$$PWD/bin\\\"
 +QMAKE_CXXFLAGS += -DTESTEXAMPLEDIR=\\\"$$PWD/examples\\\"
 +
- MODULE_VERSION = 5.9.2
+ MODULE_VERSION = 5.9.3
 --- a/tests/auto/qml/qmlmin/tst_qmlmin.cpp
 +++ b/tests/auto/qml/qmlmin/tst_qmlmin.cpp
 @@ -64,7 +64,7 @@ tst_qmlmin::tst_qmlmin()
- 
+
  void tst_qmlmin::initTestCase()
  {
 -    qmlminPath = QLibraryInfo::location(QLibraryInfo::BinariesPath) + QLatin1String("/qmlmin");
@@ -35,13 +35,13 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 -    m_process = new QQmlDebugProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qml", this);
 +    m_process = new QQmlDebugProcess(TESTBINDIR "/qml", this);
      m_client = new QQmlDebugMsgClient(m_connection);
- 
+
      m_process->start(QStringList() << QLatin1String(NORMALMODE) << QQmlDataTest::instance()->testFile(QMLFILE));
 --- a/tests/auto/qml/debugger/qqmldebuggingenabler/qqmldebuggingenabler/tst_qqmldebuggingenabler.cpp
 +++ b/tests/auto/qml/debugger/qqmldebuggingenabler/qqmldebuggingenabler/tst_qqmldebuggingenabler.cpp
 @@ -87,7 +87,7 @@ bool tst_QQmlDebuggingEnabler::init(bool
      connection = new QQmlDebugConnection();
- 
+
      if (qmlscene) {
 -        process = new QQmlDebugProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qmlscene", this);
 +        process = new QQmlDebugProcess(TESTBINDIR "/qmlscene", this);
@@ -51,7 +51,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 @@ -185,7 +185,7 @@ void tst_QQmlDebuggingEnabler::qmlscene(
      QFETCH(bool, blockMode);
      QFETCH(QStringList, services);
- 
+
 -    process = new QQmlDebugProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qmlscene",
 +    process = new QQmlDebugProcess(TESTBINDIR "/qmlscene",
                                     this);
@@ -65,22 +65,22 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
      QQmlDebugConnection *connection1 = new QQmlDebugConnection();
 -    QQmlDebugProcess *process1 = new QQmlDebugProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qmlscene", this);
 +    QQmlDebugProcess *process1 = new QQmlDebugProcess(TESTBINDIR "/qmlscene", this);
- 
+
      process1->start(QStringList() << QLatin1String("-qmljsdebugger=port:3782,3792") << testFile("test.qml"));
- 
+
 @@ -120,7 +120,7 @@ void tst_QQmlDebugService::checkPortRang
- 
+
      // Second instance
      QQmlDebugConnection *connection2 = new QQmlDebugConnection();
 -    QQmlDebugProcess *process2 = new QQmlDebugProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qmlscene", this);
 +    QQmlDebugProcess *process2 = new QQmlDebugProcess(TESTBINDIR "/qmlscene", this);
- 
+
      process2->start(QStringList() << QLatin1String("-qmljsdebugger=port:3782,3792") << testFile("test.qml"));
- 
+
 --- a/tests/auto/qml/debugger/qqmlenginecontrol/tst_qqmlenginecontrol.cpp
 +++ b/tests/auto/qml/debugger/qqmlenginecontrol/tst_qqmlenginecontrol.cpp
 @@ -95,7 +95,7 @@
- 
+
  void tst_QQmlEngineControl::connect(const QString &testFile, bool restrictServices)
  {
 -    const QString executable = QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qmlscene";
@@ -93,7 +93,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 @@ -73,8 +73,7 @@ void tst_QQmlInspector::startQmlProcess(
              .arg(STR_PORT_FROM).arg(STR_PORT_TO)
              .arg(restrictServices ? QStringLiteral(",services:QmlInspector") : QString());
- 
+
 -    m_process.reset(new QQmlDebugProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) +
 -                                         "/qml"));
 +    m_process.reset(new QQmlDebugProcess(TESTBINDIR "/qml"));
@@ -105,7 +105,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 @@ -107,7 +107,7 @@
              .arg(restrictServices ? QStringLiteral(",services:QmlDebugger,QmlInspector") :
                                      QString());
- 
+
 -    m_process = new QQmlDebugProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qml",
 +    m_process = new QQmlDebugProcess(TESTBINDIR "/qml",
                                       this);
@@ -130,9 +130,9 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
      process.setProgram("python");
 -    process.setArguments(QStringList() << "test262.py" << "--command=" + QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/qmljs " + qmljsParameter << "--parallel" << "--with-test-expectations");
 +    process.setArguments(QStringList() << "test262.py" << "--command=" + TESTBINDIR "/qmljs " + qmljsParameter << "--parallel" << "--with-test-expectations");
- 
+
      qDebug() << "Going to run" << process.program() << process.arguments() << "in" << process.workingDirectory();
- 
+
 --- a/tests/auto/qml/qmlcachegen/tst_qmlcachegen.cpp
 +++ b/tests/auto/qml/qmlcachegen/tst_qmlcachegen.cpp
 @@ -73,7 +73,7 @@
@@ -147,7 +147,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 --- a/tests/auto/qml/qmllint/main.cpp
 +++ b/tests/auto/qml/qmllint/main.cpp
 @@ -44,7 +44,7 @@ private:
- 
+
  void TestQmllint::initTestCase()
  {
 -    m_qmllintPath = QLibraryInfo::location(QLibraryInfo::BinariesPath) + QLatin1String("/qmllint");
@@ -158,12 +158,12 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 --- a/tests/auto/qml/qmlplugindump/tst_qmlplugindump.cpp
 +++ b/tests/auto/qml/qmlplugindump/tst_qmlplugindump.cpp
 @@ -54,7 +54,7 @@ tst_qmlplugindump::tst_qmlplugindump()
- 
+
  void tst_qmlplugindump::initTestCase()
  {
 -    qmlplugindumpPath = QLibraryInfo::location(QLibraryInfo::BinariesPath);
 +    qmlplugindumpPath = QLatin1String(TESTBINDIR);
- 
+
  #if defined(Q_OS_WIN)
      qmlplugindumpPath += QLatin1String("/qmlplugindump.exe");
 --- a/tests/auto/quick/examples/tst_examples.cpp
@@ -176,7 +176,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 -    examplesLocations << QLibraryInfo::location(QLibraryInfo::ExamplesPath) + QLatin1String("/quick");
 +    examplesLocations << QLatin1String(TESTEXAMPLEDIR "/qml");
 +    examplesLocations << QLatin1String(TESTEXAMPLEDIR "/quick");
- 
+
      foreach(const QString &examples, examplesLocations) {
          QDir d(examples);
 --- a/tests/auto/qml/debugger/qqmldebugjs/qqmldebugjs/tst_qqmldebugjs.cpp
