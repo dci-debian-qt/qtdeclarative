@@ -2,6 +2,7 @@ qtdeclarative-opensource-src (5.9.3-0ubuntu1) UNRELEASED; urgency=medium
 
   * 
   * Bump Standards-version to 4.1.2, no changes needed.
+  * Refresh patches.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Thu, 30 Nov 2017 18:57:01 -0600
 
