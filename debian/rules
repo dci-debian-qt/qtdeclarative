@@ -9,8 +9,7 @@ export CFLAGS := $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags -
 export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
 export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
 export QT_SELECT := qt5
-export DEB_BUILD_OPTIONS := nodoc
-export DEB_BUILD_PROFILES := nodoc
+
 %:
 	dh $@ --with pkgkde_symbolshelper
 
