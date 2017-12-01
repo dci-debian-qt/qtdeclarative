@@ -1,6 +1,6 @@
 qtdeclarative-opensource-src (5.9.3-0ubuntu1) UNRELEASED; urgency=medium
 
-  * 
+  * New upstream release.
   * Bump Standards-version to 4.1.2, no changes needed.
   * Refresh patches.
   * Update symbols from amd64 build logs.
